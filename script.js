@@ -180,7 +180,6 @@ function renderCart() {
       <button class="btn-danger" onclick="removeItem(${p.id})">
         <i class="fa-solid fa-trash"></i> Hapus
       </button>`;
-
     list.appendChild(d);
   });
 
@@ -284,6 +283,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
+  const logoutBtn = document.getElementById("logout-btn");
+  if (logoutBtn) logoutBtn.addEventListener("click", logout);
+
   document.addEventListener("click", (e) => {
     const btn = document.getElementById("profile-btn");
     const drop = document.getElementById("profile-dropdown");
@@ -297,3 +299,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+function logout() {
+  localStorage.removeItem("email");
+  localStorage.removeItem("user");
+  localStorage.removeItem("photoUrl");
+  localStorage.removeItem("cart");
+  window.location.href = "login.html";
+}
