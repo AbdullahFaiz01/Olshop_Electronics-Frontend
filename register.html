@@ -103,7 +103,7 @@
           return;
         }
         const data = await res.json();
-        showToast("🎉 Registrasi Berhasil!\nSilakan login.");
+        showToast("🎉 Registrasi Berhasil!\nSilakan login.", 5000);
 
         if (res.ok && data.message === "Registrasi berhasil!") {
           window.location.href = "login.html";
