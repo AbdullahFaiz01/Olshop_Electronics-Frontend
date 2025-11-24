@@ -91,7 +91,7 @@ function addToCart(id) {
 
   saveCart(cart);
   updateCartCount();
-  alert("Produk ditambahkan ke keranjang");
+  showToast("🛒 Produk ditambahkan ke keranjang");
 }
 
 function renderProducts() {
@@ -314,6 +314,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  if (!t) return;
+
+  t.textContent = msg;
+  t.classList.add("show");
+
+  setTimeout(() => {
+    t.classList.remove("show");
+  }, 2500);
+}
 
 function logout() {
   localStorage.removeItem("email");
