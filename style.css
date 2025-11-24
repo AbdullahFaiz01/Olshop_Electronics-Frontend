@@ -555,3 +555,16 @@ nav a:hover,
 #profile-dropdown a:hover {
   background: #f2f2f2;
 }
+#profile-dropdown,
+#profile-dropdown a {
+  pointer-events: auto !important;
+  z-index: 9999999 !important;
+}
+
+#profile-btn {
+  pointer-events: auto !important;
+}
+
+.right-menu * {
+  pointer-events: auto !important;
+}
