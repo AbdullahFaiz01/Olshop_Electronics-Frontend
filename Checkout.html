@@ -27,8 +27,8 @@
         </a>
 
         <a href="cart.html">
-          <i class="fa-solid fa-cart-shopping"></i>
-          Keranjang ( <span id="cart-count">0</span> )
+          <i class="fa-solid fa-cart-shopping"></i> Keranjang
+          ( <span id="cart-count">0</span> )
         </a>
 
         <a href="checkout.html" class="active">
@@ -64,4 +64,42 @@
 
   <section id="checkout-list" class="checkout-list"></section>
 
-  <div id="che
+  <div id="checkout-summary" class="checkout-summary">
+    <h3>Total: <span id="checkout-total">Rp 0</span></h3>
+
+    <div class="checkout-form">
+
+      <label for="nama">Nama Lengkap:</label>
+      <input type="text" id="nama" placeholder="Masukkan Nama Lengkap">
+
+      <label for="alamat">Alamat Lengkap:</label>
+      <textarea id="alamat" placeholder="Masukkan Alamat Lengkap"></textarea>
+
+      <label for="telepon">Nomor Telepon:</label>
+      <input type="text" id="telepon" placeholder="Masukkan Nomor Telepon">
+
+    </div>
+
+    <button id="checkout-btn" class="btn">
+      <i class="fa-solid fa-credit-card"></i> Bayar Sekarang
+    </button>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="year"></span> ElectroStore — Toko Elektronik Online</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("year").textContent = new Date().getFullYear();
+});
+</script>
+
+</body>
+</html>
