@@ -39,12 +39,10 @@ function updateNavbarPhoto() {
   const email = localStorage.getItem("email");
   const username = localStorage.getItem("user");
   const savedPhoto = localStorage.getItem("photoUrl");
-
   const area = document.getElementById("profile-area");
   const login = document.getElementById("login-link");
   const navPfp = document.getElementById("nav-pfp");
   const navUser = document.getElementById("nav-username");
-
   if (!email) {
     if (area) area.style.display = "none";
     if (login) login.style.display = "inline-block";
@@ -52,7 +50,6 @@ function updateNavbarPhoto() {
     if (navUser) navUser.textContent = "";
     return;
   }
-
   if (area) area.style.display = "flex";
   if (login) login.style.display = "none";
   if (navUser) navUser.textContent = username || email.split("@")[0];
@@ -128,16 +125,13 @@ function renderCart() {
   const totalEl = document.getElementById("cart-total");
   const summary = document.getElementById("cart-summary");
   if (!list) return;
-
   const cart = loadCart();
   let total = 0;
-
   if (!cart.length) {
     list.innerHTML = "<p>Keranjang kosong.</p>";
     summary.style.display = "none";
     return;
   }
-
   list.innerHTML = "";
   cart.forEach(item => {
     const p = PRODUCTS.find(x => x.id === item.id);
@@ -162,28 +156,23 @@ function renderCart() {
       </button>`;
     list.appendChild(d);
   });
-
   totalEl.textContent = formatIDR(total);
   summary.style.display = "block";
 }
 
 function renderCheckout() {
   if (!mustLogin()) return;
-
   const list = document.getElementById("checkout-list");
   const totalEl = document.getElementById("checkout-total");
   const summary = document.getElementById("checkout-summary");
   if (!list) return;
-
   const cart = loadCart();
   let total = 0;
-
   if (!cart.length) {
     list.innerHTML = "<p>Keranjang kosong.</p>";
     summary.style.display = "none";
     return;
   }
-
   list.innerHTML = "";
   cart.forEach(item => {
     const p = PRODUCTS.find(x => x.id === item.id);
@@ -199,7 +188,6 @@ function renderCheckout() {
         </div>
       </div>`;
   });
-
   totalEl.textContent = formatIDR(total);
 }
 
@@ -210,7 +198,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let page = window.location.pathname.split("/").pop();
   if (page === "") page = "index.html";
-
   if (page === "index.html") renderProducts();
   if (page === "cart.html") renderCart();
   if (page === "checkout.html") renderCheckout();
@@ -258,4 +245,16 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "receipt.html";
     };
   }
+
+  document.addEventListener("click", (e) => {
+    const btn = document.getElementById("profile-btn");
+    const drop = document.getElementById("profile-dropdown");
+    if (!btn || !drop) return;
+    if (btn.contains(e.target)) {
+      drop.style.display = drop.style.display === "block" ? "none" : "block";
+    } else {
+      drop.style.display = "none";
+    }
+  });
+
 });
