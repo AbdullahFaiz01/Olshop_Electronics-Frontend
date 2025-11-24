@@ -490,3 +490,18 @@ nav a:hover,
 .profile-menu button span {
     font-family: "Times New Roman", serif !important;
 }
+.profile-menu,
+#profile-btn {
+  position: relative !important;
+  z-index: 999 !important;
+  pointer-events: auto !important;
+}
+
+.right-menu nav {
+  z-index: 1 !important;
+}
+
+nav a,
+nav a::after {
+  pointer-events: auto;
+}
