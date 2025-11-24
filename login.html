@@ -92,7 +92,10 @@
 
         const data = await res.json();
 
-        if (!res.ok) return alert(data.message || "Login gagal!");
+        if (!res.ok) {
+          showToast("❌ Email atau password salah!", 1500);
+          return;
+        }
 
         localStorage.setItem("user", data.username);
         localStorage.setItem("email", data.email);
@@ -105,6 +108,7 @@
       });
     });
   </script>
-<div id="toast"></div>
+  <div id="toast"></div>
 </body>
+
 </html>
