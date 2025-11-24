@@ -20,8 +20,8 @@ const loadCart = () => JSON.parse(localStorage.getItem("cart") || "[]");
 const saveCart = c => localStorage.setItem("cart", JSON.stringify(c));
 
 const mustLogin = () => {
-  const e = localStorage.getItem("email");
-  if (!e) {
+  const email = localStorage.getItem("email");
+  if (!email) {
     alert("Anda harus login terlebih dahulu.");
     window.location.href = "login.html";
     return false;
@@ -39,10 +39,12 @@ function updateNavbarPhoto() {
   const email = localStorage.getItem("email");
   const username = localStorage.getItem("user");
   const savedPhoto = localStorage.getItem("photoUrl");
+
   const area = document.getElementById("profile-area");
   const login = document.getElementById("login-link");
   const navPfp = document.getElementById("nav-pfp");
   const navUser = document.getElementById("nav-username");
+
   if (!email) {
     if (area) area.style.display = "none";
     if (login) login.style.display = "inline-block";
@@ -50,6 +52,7 @@ function updateNavbarPhoto() {
     if (navUser) navUser.textContent = "";
     return;
   }
+
   if (area) area.style.display = "flex";
   if (login) login.style.display = "none";
   if (navUser) navUser.textContent = username || email.split("@")[0];
@@ -59,14 +62,19 @@ function updateNavbarPhoto() {
 async function fetchNavbarUser() {
   const email = localStorage.getItem("email");
   if (!email) return;
+
   try {
     const res = await fetch(`${API}/api/user/${encodeURIComponent(email)}`);
     if (!res.ok) return;
+
     const data = await res.json();
+
     if (data.username) localStorage.setItem("user", data.username);
     if (data.photoUrl) localStorage.setItem("photoUrl", data.photoUrl);
+
     const navPfp = document.getElementById("nav-pfp");
     const navUser = document.getElementById("nav-username");
+
     if (navUser) navUser.textContent = data.username;
     if (navPfp) navPfp.src = data.photoUrl || DEFAULT_ICON;
   } catch {}
@@ -74,11 +82,14 @@ async function fetchNavbarUser() {
 
 function addToCart(id) {
   if (!mustLogin()) return;
-  let c = loadCart();
-  const f = c.find(i => i.id === id);
-  if (f) f.qty++;
-  else c.push({ id, qty: 1 });
-  saveCart(c);
+
+  let cart = loadCart();
+  const found = cart.find(i => i.id === id);
+
+  if (found) found.qty++;
+  else cart.push({ id, qty: 1 });
+
+  saveCart(cart);
   updateCartCount();
   alert("Produk ditambahkan ke keranjang");
 }
@@ -86,7 +97,9 @@ function addToCart(id) {
 function renderProducts() {
   const list = document.getElementById("product-list");
   if (!list) return;
+
   list.innerHTML = "";
+
   PRODUCTS.forEach(p => {
     const d = document.createElement("div");
     d.className = "card";
@@ -104,9 +117,15 @@ function renderProducts() {
 function updateQty(id, delta) {
   let cart = loadCart();
   const item = cart.find(i => i.id === id);
+
   if (!item) return;
+
   item.qty += delta;
-  if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+
+  if (item.qty <= 0) {
+    cart = cart.filter(i => i.id !== id);
+  }
+
   saveCart(cart);
   renderCart();
   updateCartCount();
@@ -121,22 +140,29 @@ function removeItem(id) {
 
 function renderCart() {
   if (!mustLogin()) return;
+
   const list = document.getElementById("cart-list");
   const totalEl = document.getElementById("cart-total");
   const summary = document.getElementById("cart-summary");
+
   if (!list) return;
+
   const cart = loadCart();
   let total = 0;
+
   if (!cart.length) {
     list.innerHTML = "<p>Keranjang kosong.</p>";
     summary.style.display = "none";
     return;
   }
+
   list.innerHTML = "";
+
   cart.forEach(item => {
     const p = PRODUCTS.find(x => x.id === item.id);
     const sub = p.price * item.qty;
     total += sub;
+
     const d = document.createElement("div");
     d.className = "card";
     d.innerHTML = `
@@ -154,30 +180,39 @@ function renderCart() {
       <button class="btn-danger" onclick="removeItem(${p.id})">
         <i class="fa-solid fa-trash"></i> Hapus
       </button>`;
+
     list.appendChild(d);
   });
+
   totalEl.textContent = formatIDR(total);
   summary.style.display = "block";
 }
 
 function renderCheckout() {
   if (!mustLogin()) return;
+
   const list = document.getElementById("checkout-list");
   const totalEl = document.getElementById("checkout-total");
   const summary = document.getElementById("checkout-summary");
+
   if (!list) return;
+
   const cart = loadCart();
   let total = 0;
+
   if (!cart.length) {
     list.innerHTML = "<p>Keranjang kosong.</p>";
     summary.style.display = "none";
     return;
   }
+
   list.innerHTML = "";
+
   cart.forEach(item => {
     const p = PRODUCTS.find(x => x.id === item.id);
     const sub = p.price * item.qty;
     total += sub;
+
     list.innerHTML += `
       <div class="card checkout-item">
         <img src="${p.img}">
@@ -188,6 +223,7 @@ function renderCheckout() {
         </div>
       </div>`;
   });
+
   totalEl.textContent = formatIDR(total);
 }
 
@@ -198,6 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let page = window.location.pathname.split("/").pop();
   if (page === "") page = "index.html";
+
   if (page === "index.html") renderProducts();
   if (page === "cart.html") renderCart();
   if (page === "checkout.html") renderCheckout();
@@ -234,6 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = await res.json();
       alert(data.message);
+
       if (!res.ok) return;
 
       localStorage.setItem("lastOrder", JSON.stringify({
@@ -246,15 +284,17 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
+  /* FIX TOTAL NAVBAR DROPDOWN */
   document.addEventListener("click", (e) => {
     const btn = document.getElementById("profile-btn");
     const drop = document.getElementById("profile-dropdown");
+
     if (!btn || !drop) return;
+
     if (btn.contains(e.target)) {
-      drop.style.display = drop.style.display === "block" ? "none" : "block";
-    } else {
-      drop.style.display = "none";
+      drop.classList.toggle("show");
+    } else if (!drop.contains(e.target)) {
+      drop.classList.remove("show");
     }
   });
-
 });

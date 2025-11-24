@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("delete-photo-btn").onclick = async () => {
     if (!confirm("Yakin ingin menghapus foto profil?")) return;
 
-    const res = await fetch("https://olshopelectronics-production.up.railway.app/api/user/photo", {
+    await fetch("https://olshopelectronics-production.up.railway.app/api/user/photo", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email })
@@ -222,8 +222,6 @@ document.addEventListener("DOMContentLoaded", () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ oldEmail: email, newUsername, newEmail })
     });
-
-    const data = await res.json();
 
     if (res.ok) {
       localStorage.setItem("user", newUsername);
