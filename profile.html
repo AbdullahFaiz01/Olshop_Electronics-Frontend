@@ -138,7 +138,7 @@
   </div>
 </footer>
 
-<script src="/public/script.js"></script>
+<script src="script.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -165,6 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (data.photoUrl) {
         document.getElementById("pfp").src = data.photoUrl;
+        localStorage.setItem("photoUrl", data.photoUrl);
       }
     });
 

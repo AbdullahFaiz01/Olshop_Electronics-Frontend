@@ -25,9 +25,7 @@
     }
     .order h3 { margin: 0; color: var(--accent); }
     .order p { margin: 6px 0; }
-    .order details { margin-top: 10px; }
     .order summary { cursor: pointer; font-weight: bold; }
-
     .back-home {
       display: block;
       margin: 20px auto;
@@ -89,7 +87,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   const email = localStorage.getItem("email");
-
   document.getElementById("year").textContent = new Date().getFullYear();
 
   if (!email) {
@@ -140,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<script src="/public/script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>

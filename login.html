@@ -6,8 +6,7 @@
   <title>Login - ElectroStore</title>
 
   <link rel="icon" type="image/png" href="img/favicon.png" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -69,16 +68,11 @@
   </div>
 </footer>
 
+<script src="script.js"></script>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("year").textContent = new Date().getFullYear();
-});
-</script>
-
-<script src="/public/script.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
 
   const loginForm = document.getElementById("login-form");
 
@@ -101,9 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("user", data.username);
     localStorage.setItem("email", data.email);
 
-    if (data.photoUrl) {
-      localStorage.setItem("photoUrl", data.photoUrl);
-    }
+    if (data.photoUrl) localStorage.setItem("photoUrl", data.photoUrl);
 
     window.location.href = "index.html";
   });

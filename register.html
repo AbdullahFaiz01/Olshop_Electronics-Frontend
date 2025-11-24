@@ -75,16 +75,12 @@
   <p>© <span id="year"></span> ElectroStore</p>
 </footer>
 
+<script src="script.js"></script>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
   document.getElementById("year").textContent = new Date().getFullYear();
-});
-</script>
-
-<script src="/public/script.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
 
   const registerForm = document.getElementById("register-form");
 
@@ -98,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const res = await fetch("https://olshopelectronics-production.up.railway.app/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, email, password }),
+      body: JSON.stringify({ username, email, password })
     });
 
     const data = await res.json();
