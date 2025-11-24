@@ -91,7 +91,7 @@ function addToCart(id) {
 
   saveCart(cart);
   updateCartCount();
-  showToast("🛒 Produk ditambahkan ke keranjang", 1000);
+  showToast("🛒 Produk ditambahkan ke keranjang", 100);
 }
 
 function renderProducts() {
