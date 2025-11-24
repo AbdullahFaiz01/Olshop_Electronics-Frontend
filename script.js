@@ -77,7 +77,7 @@ async function fetchNavbarUser() {
 
     if (navUser) navUser.textContent = data.username;
     if (navPfp) navPfp.src = data.photoUrl || DEFAULT_ICON;
-  } catch {}
+  } catch { }
 }
 
 function addToCart(id) {
@@ -151,10 +151,18 @@ function renderCart() {
   let total = 0;
 
   if (!cart.length) {
-    list.innerHTML = "<p>Keranjang kosong.</p>";
-    summary.style.display = "none";
+    list.innerHTML = `
+    <div class="empty-cart-box slide-in">
+      <div class="empty-icon">🛒</div>
+      <h3>Keranjang Anda Kosong</h3>
+      <p>Yuk lanjutkan belanja untuk menemukan produk terbaik!</p>
+      <a href="index.html" class="big-shop-btn">Mulai Belanja</a>
+    </div>
+  `;
+    if (summary) summary.style.display = "none";
     return;
   }
+
 
   list.innerHTML = "";
 
