@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ElectroStore - Keranjang</title>
+
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+
+    <div class="logo-area">
+      <img src="img/Logo-ES.png" alt="ElectroStore Logo" class="logo-img" />
+      <h1 class="logo">ElectroStore</h1>
+    </div>
+
+    <div class="right-menu">
+
+      <nav>
+        <a href="index.html">
+          <i class="fa-solid fa-box"></i> Produk
+        </a>
+
+        <a href="cart.html" class="active">
+          <i class="fa-solid fa-cart-shopping"></i>
+          Keranjang ( <span id="cart-count">0</span> )
+        </a>
+
+        <a href="checkout.html">
+          <i class="fa-solid fa-credit-card"></i> Checkout
+        </a>
+      </nav>
+
+      <div class="profile-menu" id="profile-area" style="display:none;">
+        <button id="profile-btn">
+          <img id="nav-pfp" class="nav-pfp" src="img/default-pfp.png">
+          <span id="nav-username"></span>
+          <i class="fa-solid fa-caret-down"></i>
+        </button>
+
+        <div class="dropdown" id="profile-dropdown">
+          <a href="profile.html">Profil Saya</a>
+          <a href="#" id="logout-btn">Logout</a>
+        </div>
+      </div>
+
+      <a href="login.html" id="login-link" class="login-nav">
+        <i class="fa-solid fa-user"></i> Login
+      </a>
+
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h2>Keranjang Belanja</h2>
+    <p>Periksa kembali produk pilihan Anda sebelum checkout.</p>
+  </section>
+
+  <section id="cart-list" class="cart-list"></section>
+
+  <div id="cart-summary" class="cart-summary">
+    <h3>Total: <span id="cart-total">Rp 0</span></h3>
+    <button id="to-checkout" class="btn">
+      <i class="fa-solid fa-arrow-right"></i> Lanjut ke Checkout
+    </button>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="year"></span> ElectroStore — Toko Elektronik Online</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("year").textContent = new Date().getFullYear();
+});
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

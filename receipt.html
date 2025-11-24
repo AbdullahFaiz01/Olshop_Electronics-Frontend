@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Struk Pembelian - ElectroStore</title>
+  
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .receipt {
+      max-width: 500px;
+      background: #fff;
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-family: "Courier New", monospace;
+    }
+    .receipt h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .receipt p { margin: 4px 0; }
+    .items {
+      border-top: 1px dashed #aaa;
+      border-bottom: 1px dashed #aaa;
+      margin: 10px 0;
+      padding: 10px 0;
+    }
+    .total { 
+      font-weight: bold; 
+      text-align: right; 
+      margin-top: 10px;
+      font-size: 17px;
+      color: var(--accent);
+    }
+    .btn-home {
+      display: block;
+      text-align: center;
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 15px;
+    }
+    .btn-home:hover { background: #ff6633; }
+    .receipt-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 10px auto;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="receipt" id="receipt">
+
+    <img src="img/Logo-ES.png" alt="ElectroStore Logo" class="receipt-logo">
+
+    <h2>ElectroStore</h2>
+
+    <p><strong>Tanggal:</strong> <span id="tanggal"></span></p>
+    <p><strong>Nama:</strong> <span id="nama"></span></p>
+    <p><strong>Alamat:</strong> <span id="alamat"></span></p>
+    <p><strong>Telepon:</strong> <span id="telepon"></span></p>
+
+    <div class="items" id="item-list"></div>
+
+    <p class="total">Total: <span id="total"></span></p>
+
+    <a href="index.html" class="btn-home">Kembali ke Beranda</a>
+  </div>
+
+<script>
+  const user = localStorage.getItem("user");
+
+  if (!user) {
+    alert("Anda harus login untuk melihat struk pembelian!");
+    window.location.href = "login.html";
+  }
+
+  const lastOrder = JSON.parse(localStorage.getItem("lastOrder"));
+
+  if (!lastOrder) {
+    document.getElementById("receipt").innerHTML =
+      "<p style='text-align:center;'>Tidak ada data pesanan ditemukan.</p>";
+  } else {
+
+    document.getElementById("tanggal").textContent =
+      new Date(lastOrder.createdAt).toLocaleString("id-ID");
+
+    document.getElementById("nama").textContent = lastOrder.nama;
+    document.getElementById("alamat").textContent = lastOrder.alamat;
+    document.getElementById("telepon").textContent = lastOrder.telepon;
+
+    document.getElementById("total").textContent =
+      "Rp " + lastOrder.total.toLocaleString("id-ID");
+
+    const itemList = document.getElementById("item-list");
+
+    itemList.innerHTML = lastOrder.items
+      .map(i => `
+        <p>${i.title} (x${i.qty}) - Rp ${(i.price * i.qty).toLocaleString("id-ID")}</p>
+      `)
+      .join("");
+  }
+
+  localStorage.removeItem("cart");
+</script>
+
+</body>
+</html>

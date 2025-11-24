@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riwayat Pembelian - ElectroStore</title>
+  
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a2d04e2c7f.js" crossorigin="anonymous"></script>
+
+  <style>
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .order {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--accent);
+    }
+    .order h3 { margin: 0; color: var(--accent); }
+    .order p { margin: 6px 0; }
+    .order details { margin-top: 10px; }
+    .order summary { cursor: pointer; font-weight: bold; }
+
+    .back-home {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 15px;
+      width: 200px;
+      text-align: center;
+      background: var(--accent);
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .back-home:hover { background: #ff6633; }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+
+    <div class="logo-container">
+      <img src="img/Logo-ES.png" class="logo-img" alt="Logo">
+      <h1 class="logo">ElectroStore</h1>
+    </div>
+
+    <nav>
+      <a href="index.html"><i class="fa-solid fa-box"></i> Produk</a>
+      <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Keranjang (<span id="cart-count">0</span>)</a>
+      <a href="checkout.html"><i class="fa-solid fa-credit-card"></i> Checkout</a>
+
+      <div class="profile-menu" id="profile-area" style="display:none;">
+        <button id="profile-btn"><i class="fa-solid fa-user"></i> Profil</button>
+        <div class="dropdown" id="profile-dropdown">
+          <a href="profile.html">Profil Saya</a>
+          <a href="#" id="logout-nav">Logout</a>
+        </div>
+      </div>
+
+      <a href="login.html" id="login-link"><i class="fa-solid fa-user"></i> Login</a>
+    </nav>
+
+  </div>
+</header>
+
+<main class="container">
+  <h2><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Pembelian</h2>
+
+  <div id="history-list" class="history-list"></div>
+
+  <a href="index.html" class="back-home">Kembali ke Beranda</a>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> ElectroStore. All rights reserved.</p>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const email = localStorage.getItem("email");
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  if (!email) {
+    alert("Anda harus login untuk melihat riwayat pembelian!");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const historyList = document.getElementById("history-list");
+
+  fetch("https://olshopelectronics-production.up.railway.app/api/orders/" + encodeURIComponent(email))
+    .then(res => res.json())
+    .then(data => {
+      if (!data.length) {
+        historyList.innerHTML = "<p>Belum ada riwayat pembelian.</p>";
+        return;
+      }
+
+      historyList.innerHTML = "";
+
+      data.forEach(order => {
+        const div = document.createElement("div");
+        div.className = "order";
+
+        div.innerHTML = `
+          <h3>Pesanan #${order._id.slice(-6).toUpperCase()}</h3>
+          <p><strong>Tanggal:</strong> ${new Date(order.createdAt).toLocaleString("id-ID")}</p>
+          <p><strong>Nama:</strong> ${order.nama}</p>
+          <p><strong>Alamat:</strong> ${order.alamat}</p>
+          <p><strong>Telepon:</strong> ${order.telepon}</p>
+          <p><strong>Total:</strong> Rp ${order.total.toLocaleString("id-ID")}</p>
+
+          <details>
+            <summary>Lihat Detail Barang</summary>
+            <ul>
+              ${order.items.map(i => `<li>${i.title} (x${i.qty})</li>`).join("")}
+            </ul>
+          </details>
+        `;
+
+        historyList.appendChild(div);
+      });
+    })
+    .catch(err => {
+      historyList.innerHTML = `<p>Gagal memuat riwayat: ${err.message}</p>`;
+    });
+
+});
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

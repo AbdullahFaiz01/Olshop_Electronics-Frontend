@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil Saya - ElectroStore</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    .profile-box {
+      background: #fff; padding: 25px; border-radius: 12px;
+      max-width: 450px; margin: 40px auto; text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    .pfp {
+      width: 120px; height: 120px; border-radius: 50%;
+      object-fit: cover; border: 3px solid var(--accent);
+      margin-bottom: 10px; background: #eee;
+    }
+    .upload-btn {
+      display: block; width: 100%; padding: 10px;
+      background: var(--accent); color: white;
+      border-radius: 8px; margin-bottom: 15px;
+      border: none; cursor: pointer; font-weight: bold;
+    }
+    .upload-btn:hover { background: #ff6633; }
+    .profile-info p { margin: 6px 0; font-size: 16px; }
+    .btn-edit, .btn-logout {
+      width: 100%; padding: 10px; border-radius: 8px;
+      font-weight: bold; cursor: pointer; border: none; margin-top: 10px;
+    }
+    .btn-edit { background: #0275d8; color: white; }
+    .btn-edit:hover { background: #025aa5; }
+    .btn-logout { background: #d9534f; color: white; }
+    .btn-logout:hover { background: #c9302c; }
+    .modal-bg {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+      display: none; justify-content: center; align-items: center;
+    }
+    .modal-box {
+      background: white; padding: 20px;
+      width: 350px; border-radius: 12px;
+    }
+    .modal-box input {
+      width: 100%; padding: 10px;
+      margin-bottom: 12px; border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .btn-save, .btn-close {
+      width: 100%; padding: 10px; border-radius: 8px;
+      border: none; font-weight: bold; margin-top: 8px; color: white;
+    }
+    .btn-save { background: #28a745; }
+    .btn-close { background: #6c757d; }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+
+    <div class="logo-area">
+      <img src="img/Logo-ES.png" class="logo-img" alt="Logo ElectroStore">
+      <h1 class="logo">ElectroStore</h1>
+    </div>
+
+    <div class="right-menu">
+      <nav>
+        <a href="index.html"><i class="fa-solid fa-box"></i> Produk</a>
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Keranjang ( <span id="cart-count">0</span> )</a>
+        <a href="checkout.html"><i class="fa-solid fa-credit-card"></i> Checkout</a>
+      </nav>
+
+      <div class="profile-menu" id="profile-area" style="display:none;">
+        <button id="profile-btn">
+          <img id="nav-pfp" class="nav-pfp" src="img/default-pfp.png">
+          <span id="nav-username"></span>
+          <i class="fa-solid fa-caret-down"></i>
+        </button>
+        <div class="dropdown" id="profile-dropdown">
+          <a href="profile.html">Profil Saya</a>
+          <a href="#" id="logout-btn">Logout</a>
+        </div>
+      </div>
+
+      <a href="login.html" id="login-link" class="login-nav">
+        <i class="fa-solid fa-user"></i> Login
+      </a>
+
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="profile-box">
+
+    <img id="pfp" src="img/default-pfp.png" class="pfp" />
+
+    <input type="file" id="photo-input" accept="image/png, image/jpeg" style="display:none">
+    <button class="upload-btn" id="upload-btn">Upload Foto Profil</button>
+    <button class="upload-btn" style="background:#444" id="delete-photo-btn">Hapus Foto Profil</button>
+
+    <h2 id="username"></h2>
+
+    <div class="profile-info">
+      <p><strong>Email:</strong> <span id="email"></span></p>
+      <p><strong>Total Pesanan:</strong> <span id="pesanan"></span></p>
+    </div>
+
+    <button class="btn-edit" id="edit-btn">Edit Profil</button>
+    <button class="btn-logout" id="logout-main">Logout</button>
+
+  </div>
+</main>
+
+<div class="modal-bg" id="modal-bg">
+  <div class="modal-box">
+    <h3>Edit Profil</h3>
+
+    <label>Username Baru</label>
+    <input type="text" id="edit-username">
+
+    <label>Email Baru</label>
+    <input type="email" id="edit-email">
+
+    <button class="btn-save" id="save-btn">Simpan</button>
+    <button class="btn-close" id="close-btn">Batal</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="year"></span> ElectroStore</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const email = localStorage.getItem("email");
+
+  if (!email) {
+    alert("Anda harus login terlebih dahulu!");
+    window.location.href = "login.html";
+    return;
+  }
+
+  fetch("https://olshopelectronics-production.up.railway.app/api/user/" + email)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("username").textContent = data.username;
+      document.getElementById("email").textContent = data.email;
+      document.getElementById("pesanan").textContent = data.orders;
+
+      document.getElementById("edit-username").value = data.username;
+      document.getElementById("edit-email").value = data.email;
+
+      if (data.photoUrl) {
+        document.getElementById("pfp").src = data.photoUrl;
+      }
+    });
+
+  document.getElementById("upload-btn").onclick = () =>
+    document.getElementById("photo-input").click();
+
+  document.getElementById("photo-input").onchange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("photo", file);
+    formData.append("email", email);
+
+    const res = await fetch("https://olshopelectronics-production.up.railway.app/api/user/photo", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await res.json();
+    alert(data.message);
+
+    if (data.photoUrl) {
+      document.getElementById("pfp").src = data.photoUrl;
+      localStorage.setItem("photoUrl", data.photoUrl);
+    }
+  };
+
+  document.getElementById("delete-photo-btn").onclick = async () => {
+    if (!confirm("Yakin ingin menghapus foto profil?")) return;
+
+    const res = await fetch("https://olshopelectronics-production.up.railway.app/api/user/photo", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email })
+    });
+
+    const data = await res.json();
+    alert(data.message);
+
+    document.getElementById("pfp").src = "img/default-pfp.png";
+    localStorage.removeItem("photoUrl");
+  };
+
+  document.getElementById("edit-btn").onclick = () =>
+    document.getElementById("modal-bg").style.display = "flex";
+
+  document.getElementById("close-btn").onclick = () =>
+    document.getElementById("modal-bg").style.display = "none";
+
+  document.getElementById("save-btn").onclick = async () => {
+    const newUsername = document.getElementById("edit-username").value.trim();
+    const newEmail = document.getElementById("edit-email").value.trim();
+
+    const res = await fetch("https://olshopelectronics-production.up.railway.app/api/user/update", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ oldEmail: email, newUsername, newEmail })
+    });
+
+    const data = await res.json();
+    alert(data.message);
+
+    if (res.ok) {
+      localStorage.setItem("user", newUsername);
+      localStorage.setItem("email", newEmail);
+      location.reload();
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("email");
+    localStorage.removeItem("photoUrl");
+    window.location.href = "login.html";
+  };
+
+  document.getElementById("logout-main").onclick = logout;
+  document.getElementById("logout-btn").onclick = logout;
+});
+</script>
+
+</body>
+</html>
