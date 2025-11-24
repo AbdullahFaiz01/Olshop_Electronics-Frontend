@@ -284,7 +284,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  /* FIX TOTAL NAVBAR DROPDOWN */
   document.addEventListener("click", (e) => {
     const btn = document.getElementById("profile-btn");
     const drop = document.getElementById("profile-dropdown");
