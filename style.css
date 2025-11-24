@@ -395,6 +395,7 @@ nav a.active {
   display: flex;
   align-items: center;
   gap: 30px;
+  position: relative;
 }
 
 nav a {
@@ -481,27 +482,76 @@ nav a:hover,
 #profile-btn:hover {
   color: var(--accent);
 }
+
 #nav-username {
-    font-family: "Times New Roman", serif !important;
-    font-weight: 600;
+  font-family: "Times New Roman", serif !important;
+  font-weight: 600;
 }
 
 .profile-menu button,
 .profile-menu button span {
-    font-family: "Times New Roman", serif !important;
-}
-.profile-menu,
-#profile-btn {
-  position: relative !important;
-  z-index: 999 !important;
-  pointer-events: auto !important;
+  font-family: "Times New Roman", serif !important;
 }
 
-.right-menu nav {
-  z-index: 1 !important;
+/* CLEAN NAVBAR FIX FINAL */
+.right-menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  position: relative;
 }
 
-nav a,
-nav a::after {
+.nav-links {
+  pointer-events: none;
+}
+
+.nav-links a {
   pointer-events: auto;
+}
+
+.profile-menu {
+  position: relative;
+  z-index: 9999;
+  pointer-events: auto;
+}
+
+#profile-btn {
+  position: relative;
+  z-index: 10000;
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+}
+
+#profile-dropdown {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  z-index: 20000;
+  width: 170px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  padding: 8px 0;
+  display: none;
+  flex-direction: column;
+}
+
+#profile-dropdown.show {
+  display: flex;
+}
+
+#profile-dropdown a {
+  padding: 10px 16px;
+  font-size: 15px;
+  color: #333;
+  text-decoration: none;
+}
+
+#profile-dropdown a:hover {
+  background: #f2f2f2;
 }

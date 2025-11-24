@@ -69,7 +69,8 @@
     </div>
 
     <div class="right-menu">
-      <nav>
+
+      <nav class="nav-links">
         <a href="index.html"><i class="fa-solid fa-box"></i> Produk</a>
         <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Keranjang ( <span id="cart-count">0</span> )</a>
         <a href="checkout.html"><i class="fa-solid fa-credit-card"></i> Checkout</a>
@@ -186,7 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const data = await res.json();
-    alert(data.message);
 
     if (data.photoUrl) {
       document.getElementById("pfp").src = data.photoUrl;
@@ -202,9 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email })
     });
-
-    const data = await res.json();
-    alert(data.message);
 
     document.getElementById("pfp").src = "img/default-pfp.png";
     localStorage.removeItem("photoUrl");
@@ -227,7 +224,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const data = await res.json();
-    alert(data.message);
 
     if (res.ok) {
       localStorage.setItem("user", newUsername);
