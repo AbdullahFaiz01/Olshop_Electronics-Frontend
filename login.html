@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="id">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,98 +10,101 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<header class="site-header">
-  <div class="container header-inner">
+  <header class="site-header">
+    <div class="container header-inner">
 
-    <div class="logo-container">
-      <img src="img/Logo-ES.png" alt="ElectroStore Logo" class="logo-img" />
-      <h1 class="logo">ElectroStore</h1>
-    </div>
+      <div class="logo-container">
+        <img src="img/Logo-ES.png" alt="ElectroStore Logo" class="logo-img" />
+        <h1 class="logo">ElectroStore</h1>
+      </div>
 
-    <nav>
-      <a href="index.html"><i class="fa-solid fa-box"></i> Produk</a>
-      <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Keranjang (<span id="cart-count">0</span>)</a>
-      <a href="checkout.html"><i class="fa-solid fa-credit-card"></i> Checkout</a>
+      <nav>
+        <a href="index.html"><i class="fa-solid fa-box"></i> Produk</a>
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Keranjang (<span id="cart-count">0</span>)</a>
+        <a href="checkout.html"><i class="fa-solid fa-credit-card"></i> Checkout</a>
 
-      <div class="profile-menu" id="profile-area" style="display:none;">
-        <button id="profile-btn"><i class="fa-solid fa-user"></i> Profil</button>
-        <div class="dropdown" id="profile-dropdown">
-          <a href="profile.html">Profil Saya</a>
-          <a href="#" id="logout-nav">Logout</a>
+        <div class="profile-menu" id="profile-area" style="display:none;">
+          <button id="profile-btn"><i class="fa-solid fa-user"></i> Profil</button>
+          <div class="dropdown" id="profile-dropdown">
+            <a href="profile.html">Profil Saya</a>
+            <a href="#" id="logout-nav">Logout</a>
+          </div>
         </div>
-      </div>
 
-      <a href="login.html" id="login-link"><i class="fa-solid fa-user"></i> Login</a>
-    </nav>
+        <a href="login.html" id="login-link"><i class="fa-solid fa-user"></i> Login</a>
+      </nav>
 
-  </div>
-</header>
+    </div>
+  </header>
 
-<main class="container">
-  <section class="login-section">
-    <form id="login-form" class="login-box">
+  <main class="container">
+    <section class="login-section">
+      <form id="login-form" class="login-box">
 
-      <h2 style="text-align:center;">Masuk ke Akun Anda</h2>
+        <h2 style="text-align:center;">Masuk ke Akun Anda</h2>
 
-      <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
-      <input type="email" id="email" placeholder="Masukkan email" required />
+        <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
+        <input type="email" id="email" placeholder="Masukkan email" required />
 
-      <label for="password"><i class="fa-solid fa-lock"></i> Kata Sandi</label>
-      <input type="password" id="password" placeholder="Masukkan password" required />
+        <label for="password"><i class="fa-solid fa-lock"></i> Kata Sandi</label>
+        <input type="password" id="password" placeholder="Masukkan password" required />
 
-      <button type="submit" class="login-btn">
-        <i class="fa-solid fa-right-to-bracket"></i> Login
-      </button>
+        <button type="submit" class="login-btn">
+          <i class="fa-solid fa-right-to-bracket"></i> Login
+        </button>
 
-      <div class="login-footer">
-        Belum punya akun? <a href="register.html">Daftar sekarang</a>
-      </div>
+        <div class="login-footer">
+          Belum punya akun? <a href="register.html">Daftar sekarang</a>
+        </div>
 
-    </form>
-  </section>
-</main>
+      </form>
+    </section>
+  </main>
 
-<footer class="site-footer">
-  <div class="container">
-    <p>© <span id="year"></span> ElectroStore — Toko Elektronik Online</p>
-  </div>
-</footer>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> ElectroStore — Toko Elektronik Online</p>
+    </div>
+  </footer>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("year").textContent = new Date().getFullYear();
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("year").textContent = new Date().getFullYear();
 
-  const loginForm = document.getElementById("login-form");
+      const loginForm = document.getElementById("login-form");
 
-  loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
 
-    const res = await fetch("https://olshopelectronics-production.up.railway.app/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+        const res = await fetch("https://olshopelectronics-production.up.railway.app/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) return alert(data.message || "Login gagal!");
+
+        localStorage.setItem("user", data.username);
+        localStorage.setItem("email", data.email);
+
+        showToast(`👋 Selamat Datang, ${data.username || email.split("@")[0]}!`);
+
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 1500);
+      });
     });
-
-    const data = await res.json();
-
-    if (!res.ok) return alert(data.message || "Login gagal!");
-
-    localStorage.setItem("user", data.username);
-    localStorage.setItem("email", data.email);
-
-    if (data.photoUrl) localStorage.setItem("photoUrl", data.photoUrl);
-
-    window.location.href = "index.html";
-  });
-});
-</script>
-
+  </script>
+<div id="toast"></div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,104 +10,109 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
+
 <body>
 
-<header class="site-header">
-  <div class="container header-inner">
+  <header class="site-header">
+    <div class="container header-inner">
 
-    <div class="logo-container">
-      <img src="img/Logo-ES.png" alt="ElectroStore Logo" class="logo-img" />
-      <h1 class="logo">ElectroStore</h1>
+      <div class="logo-container">
+        <img src="img/Logo-ES.png" alt="ElectroStore Logo" class="logo-img" />
+        <h1 class="logo">ElectroStore</h1>
+      </div>
+
+      <nav>
+        <a href="index.html"><i class="fa-solid fa-box"></i> Produk</a>
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Keranjang (<span id="cart-count">0</span>)</a>
+        <a href="checkout.html"><i class="fa-solid fa-credit-card"></i> Checkout</a>
+
+        <div class="profile-menu" id="profile-area" style="display:none;">
+          <button id="profile-btn">
+            <img id="nav-pfp" class="nav-pfp" src="img/default-pfp.png">
+            <span id="nav-username"></span>
+            <i class="fa-solid fa-caret-down"></i>
+          </button>
+          <div class="dropdown" id="profile-dropdown">
+            <a href="profile.html">Profil Saya</a>
+            <a href="#" id="logout-btn">Logout</a>
+          </div>
+        </div>
+
+        <a href="login.html" id="login-link">
+          <i class="fa-solid fa-user"></i> Login
+        </a>
+      </nav>
+
     </div>
+  </header>
 
-    <nav>
-      <a href="index.html"><i class="fa-solid fa-box"></i> Produk</a>
-      <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Keranjang (<span id="cart-count">0</span>)</a>
-      <a href="checkout.html"><i class="fa-solid fa-credit-card"></i> Checkout</a>
+  <main class="container">
+    <section class="login-section">
+      <div class="login-box">
+        <h2>Daftar Akun Baru</h2>
 
-      <div class="profile-menu" id="profile-area" style="display:none;">
-        <button id="profile-btn">
-          <img id="nav-pfp" class="nav-pfp" src="img/default-pfp.png">
-          <span id="nav-username"></span>
-          <i class="fa-solid fa-caret-down"></i>
-        </button>
-        <div class="dropdown" id="profile-dropdown">
-          <a href="profile.html">Profil Saya</a>
-          <a href="#" id="logout-btn">Logout</a>
+        <form id="register-form">
+          <label for="username"><i class="fa-solid fa-user"></i> Username</label>
+          <input type="text" id="username" placeholder="Masukkan username" required />
+
+          <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
+          <input type="email" id="email" placeholder="Masukkan email" required />
+
+          <label for="password"><i class="fa-solid fa-lock"></i> Password</label>
+          <input type="password" id="password" placeholder="Masukkan password" required />
+
+          <button type="submit" class="login-btn">
+            <i class="fa-solid fa-user-plus"></i> Daftar
+          </button>
+        </form>
+
+        <div class="login-footer">
+          Sudah punya akun? <a href="login.html">Masuk di sini</a>
         </div>
       </div>
+    </section>
+  </main>
 
-      <a href="login.html" id="login-link">
-        <i class="fa-solid fa-user"></i> Login
-      </a>
-    </nav>
+  <footer class="site-footer">
+    <p>© <span id="year"></span> ElectroStore</p>
+  </footer>
 
-  </div>
-</header>
+  <script src="script.js"></script>
 
-<main class="container">
-  <section class="login-section">
-    <div class="login-box">
-      <h2>Daftar Akun Baru</h2>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
 
-      <form id="register-form">
-        <label for="username"><i class="fa-solid fa-user"></i> Username</label>
-        <input type="text" id="username" placeholder="Masukkan username" required />
+      document.getElementById("year").textContent = new Date().getFullYear();
 
-        <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
-        <input type="email" id="email" placeholder="Masukkan email" required />
+      const registerForm = document.getElementById("register-form");
 
-        <label for="password"><i class="fa-solid fa-lock"></i> Password</label>
-        <input type="password" id="password" placeholder="Masukkan password" required />
+      registerForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-        <button type="submit" class="login-btn">
-          <i class="fa-solid fa-user-plus"></i> Daftar
-        </button>
-      </form>
+        const username = document.getElementById("username").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
 
-      <div class="login-footer">
-        Sudah punya akun? <a href="login.html">Masuk di sini</a>
-      </div>
-    </div>
-  </section>
-</main>
+        const res = await fetch("https://olshopelectronics-production.up.railway.app/api/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, email, password })
+        });
+        if (!res.ok) {
+          showToast("❌ Registrasi gagal!\n" + (data.message || ""));
+          return;
+        }
+        const data = await res.json();
+        showToast("🎉 Registrasi Berhasil!\nSilakan login.");
 
-<footer class="site-footer">
-  <p>© <span id="year"></span> ElectroStore</p>
-</footer>
+        if (res.ok && data.message === "Registrasi berhasil!") {
+          window.location.href = "login.html";
+        }
+      });
 
-<script src="script.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  const registerForm = document.getElementById("register-form");
-
-  registerForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const username = document.getElementById("username").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-
-    const res = await fetch("https://olshopelectronics-production.up.railway.app/api/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, email, password })
     });
-
-    const data = await res.json();
-    alert(data.message);
-
-    if (res.ok && data.message === "Registrasi berhasil!") {
-      window.location.href = "login.html";
-    }
-  });
-
-});
-</script>
-
+  </script>
+<div id="toast"></div>
 </body>
+
 </html>
