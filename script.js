@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         window.location.href = "receipt.html";
-      }, 20000);
+      }, 40000);
 
       if (!res.ok) return;
 
@@ -328,7 +328,7 @@ function showToast(msg) {
 
   setTimeout(() => {
     t.classList.remove("show");
-  }, 2500);
+  }, 4000);
 }
 
 function logout() {
