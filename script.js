@@ -208,8 +208,15 @@ function renderCheckout() {
   let total = 0;
 
   if (!cart.length) {
-    list.innerHTML = "<p>Keranjang kosong.</p>";
-    summary.style.display = "none";
+    list.innerHTML = `
+    <div class="empty-cart-box slide-in">
+      <div class="empty-icon">📦</div>
+      <h3>Belum Ada Item Untuk Checkout</h3>
+      <p>Tambahkan produk ke keranjang terlebih dahulu sebelum melakukan checkout.</p>
+      <a href="index.html" class="big-shop-btn">Kembali Belanja</a>
+    </div>
+  `;
+    if (summary) summary.style.display = "none";
     return;
   }
 
