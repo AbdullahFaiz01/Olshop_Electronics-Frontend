@@ -91,7 +91,7 @@ function addToCart(id) {
 
   saveCart(cart);
   updateCartCount();
-  showToast("🛒 Produk ditambahkan ke keranjang");
+  showToast("🛒 Produk ditambahkan ke keranjang", 1000);
 }
 
 function renderProducts() {
@@ -284,11 +284,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const data = await res.json();
-      showToast("✅ Pembayaran Berhasil!\nPesanan sedang diproses…");
+      showToast("✅ Pembayaran Berhasil!\nPesanan sedang diproses…", 5000);
 
       setTimeout(() => {
         window.location.href = "receipt.html";
-      }, 40000);
+      }, 4000);
 
       if (!res.ok) return;
 
@@ -319,7 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function showToast(msg) {
+function showToast(msg, duration = 5000) {
   const t = document.getElementById("toast");
   if (!t) return;
 
@@ -328,7 +328,7 @@ function showToast(msg) {
 
   setTimeout(() => {
     t.classList.remove("show");
-  }, 4000);
+  }, duration);
 }
 
 function logout() {
