@@ -629,7 +629,8 @@ nav a:hover,
 #toast {
   position: fixed;
   top: 20px;
-  right: 20px;
+  left: 50%;
+  transform: translate(-50%, -20px);
   background: #2d50ee;
   color: white;
   padding: 14px 20px;
@@ -638,7 +639,6 @@ nav a:hover,
   font-weight: 600;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   opacity: 0;
-  transform: translateY(-20px);
   pointer-events: none;
   transition: opacity 0.4s ease, transform 0.4s ease;
   z-index: 2147483647;
@@ -646,5 +646,5 @@ nav a:hover,
 
 #toast.show {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(-50%, 0);
 }

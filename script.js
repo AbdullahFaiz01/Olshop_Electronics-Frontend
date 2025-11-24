@@ -284,7 +284,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const data = await res.json();
-      alert(data.message);
+      showToast("✅ Pembayaran Berhasil!\nPesanan sedang diproses…");
+
+      setTimeout(() => {
+        window.location.href = "receipt.html";
+      }, 1800);
 
       if (!res.ok) return;
 
