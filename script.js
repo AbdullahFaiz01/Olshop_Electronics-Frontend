@@ -18,6 +18,7 @@ const DEFAULT_ICON = "img/default-pfp.png";
 const formatIDR = n => "Rp " + n.toLocaleString("id-ID");
 const loadCart = () => JSON.parse(localStorage.getItem("cart") || "[]");
 const saveCart = c => localStorage.setItem("cart", JSON.stringify(c));
+
 const mustLogin = () => {
   const e = localStorage.getItem("email");
   if (!e) {
@@ -44,18 +45,16 @@ function updateNavbarPhoto() {
   const navPfp = document.getElementById("nav-pfp");
   const navUser = document.getElementById("nav-username");
 
-  if (!area || !login) return;
-
   if (!email) {
-    area.style.display = "none";
-    login.style.display = "inline-block";
+    if (area) area.style.display = "none";
+    if (login) login.style.display = "inline-block";
     if (navPfp) navPfp.src = DEFAULT_ICON;
     if (navUser) navUser.textContent = "";
     return;
   }
 
-  area.style.display = "flex";
-  login.style.display = "none";
+  if (area) area.style.display = "flex";
+  if (login) login.style.display = "none";
   if (navUser) navUser.textContent = username || email.split("@")[0];
   if (navPfp) navPfp.src = savedPhoto || DEFAULT_ICON;
 }
@@ -209,8 +208,10 @@ document.addEventListener("DOMContentLoaded", () => {
   updateNavbarPhoto();
   fetchNavbarUser();
 
-  const page = window.location.pathname.split("/").pop();
-  if (page === "index.html" || page === "") renderProducts();
+  let page = window.location.pathname.split("/").pop();
+  if (page === "") page = "index.html";
+
+  if (page === "index.html") renderProducts();
   if (page === "cart.html") renderCart();
   if (page === "checkout.html") renderCheckout();
 
