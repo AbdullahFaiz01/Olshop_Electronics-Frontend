@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Reset Password</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="login-section">
+  <div class="login-box">
+    <h2>Reset Password</h2>
+
+    <label>Password Baru</label>
+    <input type="password" id="new-pass" placeholder="Password baru">
+
+    <button class="login-btn" id="reset-btn">Reset Password</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="script.js"></script>
+<script>
+document.getElementById("reset-btn").onclick = async () => {
+  const password = document.getElementById("new-pass").value.trim();
+  const email = localStorage.getItem("resetEmail");
+
+  if (!password) return showToast("❌ Password tidak boleh kosong!", 2000);
+
+  const res = await fetch(`${API}/api/auth/reset-password`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) return showToast("❌ " + data.message, 2500);
+
+  showToast("✔️ Password berhasil diubah!", 2000);
+  localStorage.removeItem("resetEmail");
+
+  setTimeout(() => window.location.href = "login.html", 1500);
+};
+</script>
+
+</body>
+</html>
