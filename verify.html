@@ -34,15 +34,17 @@ document.getElementById("verify-btn").onclick = async () => {
 
   if (!otp) return showToast("❌ Kode OTP wajib diisi!", 2000);
 
-  const res = await fetch(`${API}/api/auth/verify-otp`, {
+  const res = await fetch(`${API}/api/reset-password`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, otp })
+    body: JSON.stringify({ email, code: otp, newPassword: null })
   });
 
   const data = await res.json();
 
   if (!res.ok) return showToast("❌ " + data.message, 2500);
+
+  localStorage.setItem("resetOTP", otp);
 
   showToast("✔️ OTP Valid!", 1500);
   setTimeout(() => window.location.href = "reset.html", 1200);

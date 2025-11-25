@@ -32,7 +32,7 @@ document.getElementById("forgot-btn").onclick = async () => {
 
   if (!email) return showToast("❌ Email tidak boleh kosong!", 2000);
 
-  const res = await fetch(`${API}/api/auth/send-otp`, {
+  const res = await fetch(`${API}/api/forgot-password`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email })
