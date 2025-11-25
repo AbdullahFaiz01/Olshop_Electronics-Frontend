@@ -113,6 +113,46 @@ function renderProducts() {
     list.appendChild(d);
   });
 }
+function setupSearch() {
+  const input = document.getElementById("search-input");
+  if (!input) return;
+
+  input.addEventListener("keyup", () => {
+    const keyword = input.value.toLowerCase();
+    const filtered = PRODUCTS.filter(p =>
+      p.title.toLowerCase().includes(keyword)
+    );
+
+    renderFilteredProducts(filtered);
+  });
+}
+
+function renderFilteredProducts(listProduk) {
+  const list = document.getElementById("product-list");
+  list.innerHTML = "";
+
+  listProduk.forEach(p => {
+    const d = document.createElement("div");
+    d.className = "card";
+    d.innerHTML = `
+      <img src="${p.img}">
+      <h3>${p.title}</h3>
+      <p>${formatIDR(p.price)}</p>
+      <button class="btn" onclick="addToCart(${p.id})">
+        <i class="fa-solid fa-cart-plus"></i> Tambah ke Keranjang
+      </button>`;
+    list.appendChild(d);
+  });
+
+  if (listProduk.length === 0) {
+    list.innerHTML = `
+      <div style="text-align:center; width:100%; padding:20px;">
+        <h3>😢 Produk tidak ditemukan</h3>
+        <p>Coba kata kunci lainnya</p>
+      </div>
+    `;
+  }
+}
 
 function updateQty(id, delta) {
   let cart = loadCart();
@@ -249,7 +289,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let page = window.location.pathname.split("/").pop();
   if (page === "") page = "index.html";
 
-  if (page === "index.html") renderProducts();
+  if (page === "index.html") {
+    renderProducts();
+    setupSearch();
+  }
   if (page === "cart.html") renderCart();
   if (page === "checkout.html") renderCheckout();
 

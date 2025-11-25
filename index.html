@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="id">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,76 +10,83 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<header class="site-header">
-  <div class="container header-inner">
+  <header class="site-header">
+    <div class="container header-inner">
 
-    <div class="logo-area">
-      <img src="img/Logo-ES.png" class="logo-img" alt="Logo ElectroStore">
-      <h1 class="logo">ElectroStore</h1>
-    </div>
-
-    <div class="right-menu">
-      <nav class="nav-links">
-        <a href="index.html" class="active">
-          <i class="fa-solid fa-box"></i> Produk
-        </a>
-
-        <a href="cart.html">
-          <i class="fa-solid fa-cart-shopping"></i>
-          Keranjang ( <span id="cart-count">0</span> )
-        </a>
-
-        <a href="checkout.html">
-          <i class="fa-solid fa-credit-card"></i> Checkout
-        </a>
-      </nav>
-
-      <div class="profile-menu" id="profile-area" style="display:none;">
-        <button id="profile-btn">
-          <img id="nav-pfp" class="nav-pfp" src="img/default-pfp.png">
-          <span id="nav-username"></span>
-          <i class="fa-solid fa-caret-down"></i>
-        </button>
-
-        <div class="dropdown" id="profile-dropdown">
-          <a href="profile.html">Profil Saya</a>
-          <a href="#" id="logout-btn">Logout</a>
-        </div>
+      <div class="logo-area">
+        <img src="img/Logo-ES.png" class="logo-img" alt="Logo ElectroStore">
+        <h1 class="logo">ElectroStore</h1>
       </div>
 
-      <a href="login.html" id="login-link" class="login-nav">
-        <i class="fa-solid fa-user fa-lg"></i> Login
-      </a>
+      <div class="right-menu">
+        <nav class="nav-links">
+          <a href="index.html" class="active">
+            <i class="fa-solid fa-box"></i> Produk
+          </a>
+
+          <a href="cart.html">
+            <i class="fa-solid fa-cart-shopping"></i>
+            Keranjang ( <span id="cart-count">0</span> )
+          </a>
+
+          <a href="checkout.html">
+            <i class="fa-solid fa-credit-card"></i> Checkout
+          </a>
+        </nav>
+
+        <div class="profile-menu" id="profile-area" style="display:none;">
+          <button id="profile-btn">
+            <img id="nav-pfp" class="nav-pfp" src="img/default-pfp.png">
+            <span id="nav-username"></span>
+            <i class="fa-solid fa-caret-down"></i>
+          </button>
+
+          <div class="dropdown" id="profile-dropdown">
+            <a href="profile.html">Profil Saya</a>
+            <a href="#" id="logout-btn">Logout</a>
+          </div>
+        </div>
+
+        <a href="login.html" id="login-link" class="login-nav">
+          <i class="fa-solid fa-user fa-lg"></i> Login
+        </a>
+
+      </div>
 
     </div>
+  </header>
 
-  </div>
-</header>
+  <main class="container">
+    <section class="hero">
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Cari produk..." />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
 
-<main class="container">
-  <section class="hero">
-    <h2>Produk Elektronik Terbaru</h2>
-    <p>Temukan produk terbaik hanya di ElectroStore</p>
-  </section>
+      <h2>Produk Elektronik Terbaru</h2>
+      <p>Temukan produk terbaik hanya di ElectroStore</p>
+    </section>
 
-  <section id="product-list" class="product-list"></section>
-</main>
+    <section id="product-list" class="product-list"></section>
+  </main>
 
-<footer class="site-footer">
-  <div class="container">
-    <p>© <span id="year"></span> ElectroStore — Toko Elektronik Online</p>
-  </div>
-</footer>
-<div id="toast"></div>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> ElectroStore — Toko Elektronik Online</p>
+    </div>
+  </footer>
+  <div id="toast"></div>
 
-<script src="script.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("year").textContent = new Date().getFullYear();
-});
-</script>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+  </script>
 
 </body>
+
 </html>
