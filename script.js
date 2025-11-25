@@ -77,7 +77,7 @@ async function fetchNavbarUser() {
 
     if (navUser) navUser.textContent = data.username;
     if (navPfp) navPfp.src = data.photoUrl || DEFAULT_ICON;
-  } catch { }
+  } catch {}
 }
 
 function addToCart(id) {
@@ -92,6 +92,31 @@ function addToCart(id) {
   saveCart(cart);
   updateCartCount();
   showToast("🛒 Produk ditambahkan ke keranjang", 900);
+}
+
+function showConfirm(message, yesCallback, noCallback) {
+  const html = `
+    <div class="confirm-overlay">
+      <div class="confirm-box">
+        <p>${message}</p>
+        <div class="confirm-buttons">
+          <button id="confirm-yes" class="confirm-yes">Ya</button>
+          <button id="confirm-no" class="confirm-no">Tidak</button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.insertAdjacentHTML("beforeend", html);
+
+  document.getElementById("confirm-yes").onclick = () => {
+    document.querySelector(".confirm-overlay").remove();
+    if (yesCallback) yesCallback();
+  };
+
+  document.getElementById("confirm-no").onclick = () => {
+    document.querySelector(".confirm-overlay").remove();
+    if (noCallback) noCallback();
+  };
 }
 
 function renderProducts() {
@@ -113,6 +138,7 @@ function renderProducts() {
     list.appendChild(d);
   });
 }
+
 function setupSearch() {
   const input = document.getElementById("search-input");
   if (!input) return;
@@ -122,7 +148,6 @@ function setupSearch() {
     const filtered = PRODUCTS.filter(p =>
       p.title.toLowerCase().includes(keyword)
     );
-
     renderFilteredProducts(filtered);
   });
 }
@@ -202,7 +227,6 @@ function renderCart() {
     if (summary) summary.style.display = "none";
     return;
   }
-
 
   list.innerHTML = "";
 
