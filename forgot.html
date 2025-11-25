@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <title>Lupa Password</title>
@@ -11,46 +12,47 @@
 
 <body>
 
-<div class="login-section">
-  <div class="login-box">
-    <h2>Lupa Password</h2>
+  <div class="login-section">
+    <div class="login-box">
+      <h2>Lupa Password</h2>
 
-    <label>Email</label>
-    <input type="email" id="forgot-email" placeholder="Masukkan email">
+      <label>Email</label>
+      <input type="email" id="forgot-email" placeholder="Masukkan email">
 
-    <button class="login-btn" id="forgot-btn">Kirim Kode</button>
+      <button class="login-btn" id="forgot-btn">Kirim Kode</button>
 
-    <p class="login-footer">
-      <a href="login.html">← Kembali ke Login</a>
-    </p>
+      <p class="login-footer">
+        <a href="login.html">← Kembali ke Login</a>
+      </p>
+    </div>
   </div>
-</div>
 
-<div id="toast"></div>
+  <div id="toast"></div>
 
-<script src="script.js"></script>
-<script>
-document.getElementById("forgot-btn").onclick = async () => {
-  const email = document.getElementById("forgot-email").value.trim();
+  <script src="script.js"></script>
+  <script>
+    document.getElementById("forgot-btn").onclick = async () => {
+      const email = document.getElementById("forgot-email").value.trim();
 
-  if (!email) return showToast("❌ Email tidak boleh kosong!", 2000);
+      if (!email) return showToast("❌ Email tidak boleh kosong!", 2000);
 
-  const res = await fetch(`${API}/api/forgot-password`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email })
-  });
+      const res = await fetch(`https://olshopelectronics-production.up.railway.app/api/forgot-password`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
 
-  const data = await res.json();
+      const data = await res.json();
 
-  if (!res.ok) return showToast("❌ " + data.message, 2500);
+      if (!res.ok) return showToast("❌ " + data.message, 2500);
 
-  localStorage.setItem("resetEmail", email);
+      localStorage.setItem("resetEmail", email);
 
-  showToast("📩 Kode OTP telah dikirim!", 2500);
-  setTimeout(() => window.location.href = "verify.html", 1200);
-};
-</script>
+      showToast("📩 Kode OTP telah dikirim!", 2500);
+      setTimeout(() => window.location.href = "verify.html", 1200);
+    };
+  </script>
 
 </body>
+
 </html>
