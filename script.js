@@ -331,7 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         window.location.href = "receipt.html";
-      }, 4000);
+      }, 5000);
 
       if (!res.ok) return;
 
