@@ -327,11 +327,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const data = await res.json();
-      showToast("✅ Pembayaran Berhasil!\nPesanan sedang diproses…", 5000);
+      showToast("✅ Pembayaran Berhasil!\nPesanan sedang diproses…", 7000);
 
       setTimeout(() => {
         window.location.href = "receipt.html";
-      }, 5000);
+      }, 7000);
 
       if (!res.ok) return;
 
