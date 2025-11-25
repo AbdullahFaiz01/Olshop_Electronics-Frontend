@@ -718,3 +718,10 @@ nav a:hover,
 
 .btn-yes:hover { background: #1e34a9; }
 .btn-no:hover { background: #ccc; }
+nav {
+  pointer-events: auto !important;
+}
+
+nav a {
+  pointer-events: auto !important;
+}
