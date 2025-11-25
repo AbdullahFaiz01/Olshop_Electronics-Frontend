@@ -77,7 +77,7 @@ async function fetchNavbarUser() {
 
     if (navUser) navUser.textContent = data.username;
     if (navPfp) navPfp.src = data.photoUrl || DEFAULT_ICON;
-  } catch {}
+  } catch { }
 }
 
 function addToCart(id) {
@@ -95,26 +95,28 @@ function addToCart(id) {
 }
 
 function showConfirm(message, yesCallback, noCallback) {
-  const html = `
-    <div class="confirm-overlay">
-      <div class="confirm-box">
-        <p>${message}</p>
-        <div class="confirm-buttons">
-          <button id="confirm-yes" class="confirm-yes">Ya</button>
-          <button id="confirm-no" class="confirm-no">Tidak</button>
-        </div>
+  const overlay = document.createElement("div");
+  overlay.className = "confirm-overlay";
+
+  overlay.innerHTML = `
+    <div class="confirm-content">
+      <p>${message}</p>
+      <div class="confirm-buttons">
+        <button id="confirm-yes" class="btn-yes">Ya</button>
+        <button id="confirm-no" class="btn-no">Tidak</button>
       </div>
     </div>
   `;
-  document.body.insertAdjacentHTML("beforeend", html);
+
+  document.body.appendChild(overlay);
 
   document.getElementById("confirm-yes").onclick = () => {
-    document.querySelector(".confirm-overlay").remove();
+    overlay.remove();
     if (yesCallback) yesCallback();
   };
 
   document.getElementById("confirm-no").onclick = () => {
-    document.querySelector(".confirm-overlay").remove();
+    overlay.remove();
     if (noCallback) noCallback();
   };
 }
