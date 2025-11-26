@@ -294,7 +294,7 @@
         const newUsername = document.getElementById("edit-username").value.trim();
         const newEmail = document.getElementById("edit-email").value.trim();
 
-        const res = await fetch("https://olshopelectronics-production-398.up.railway.app/api/user/update", {
+        const res = await fetch("https://olshopelectronics-production.up.railway.app/api/user/update", {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ oldEmail: email, newUsername, newEmail })
