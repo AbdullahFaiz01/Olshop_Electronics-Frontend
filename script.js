@@ -1,4 +1,4 @@
-const API = "https://olshopelectronics-production-398.up.railway.app";
+const API = "https://olshopelectronics-production-ee95.up.railway.app";
 
 const PRODUCTS = [
   { id: 1, title: "Headphone Wireless X200", price: 499000, img: "https://i0.wp.com/gotit.org.in/wp-content/uploads/2024/04/6-2.jpeg?fit=1000%2C1000&ssl=1" },
