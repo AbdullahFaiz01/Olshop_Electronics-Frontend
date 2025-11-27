@@ -77,7 +77,7 @@ async function fetchNavbarUser() {
 
     if (navUser) navUser.textContent = data.username;
     if (navPfp) navPfp.src = data.photoUrl || DEFAULT_ICON;
-  } catch { }
+  } catch {}
 }
 
 function addToCart(id) {
@@ -307,6 +307,32 @@ function renderCheckout() {
   totalEl.textContent = formatIDR(total);
 }
 
+function showErrorToast(msg, duration = 3000) {
+  const t = document.getElementById("errorToast");
+  t.textContent = msg;
+  t.classList.remove("hidden");
+  setTimeout(() => t.classList.add("show"), 20);
+  setTimeout(() => {
+    t.classList.remove("show");
+    setTimeout(() => t.classList.add("hidden"), 300);
+  }, duration);
+}
+
+function showOrderToast(order) {
+  const t = document.getElementById("orderToast");
+  document.getElementById("otNama").textContent = order.nama;
+  document.getElementById("otTotal").textContent = "Rp " + order.total.toLocaleString("id-ID");
+  document.getElementById("otJumlah").textContent = order.jumlah + " item";
+  document.getElementById("otWaktu").textContent = order.waktu;
+  document.getElementById("otOrder").textContent = order.orderId;
+  t.classList.remove("hidden");
+  setTimeout(() => t.classList.add("show"), 50);
+  setTimeout(() => {
+    t.classList.remove("show");
+    setTimeout(() => t.classList.add("hidden"), 400);
+  }, 7000);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
   updateNavbarPhoto();
@@ -339,12 +365,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const cart = loadCart();
       const email = localStorage.getItem("email");
 
+      if (!nama || !alamat || !telepon) return showErrorToast("⚠️ Mohon lengkapi semua data pengiriman.");
+      if (!/^[0-9]+$/.test(telepon)) return showErrorToast("⚠️ Nomor telepon hanya boleh angka!");
+      if (telepon.length < 9) return showErrorToast("⚠️ Nomor telepon tidak valid!");
+
       const items = cart.map(i => {
         const p = PRODUCTS.find(x => x.id === i.id);
         return { title: p.title, qty: i.qty, price: p.price };
       });
 
       const total = items.reduce((a, b) => a + b.price * b.qty, 0);
+      const jumlahItem = cart.reduce((a, b) => a + b.qty, 0);
 
       const res = await fetch(`${API}/api/orders`, {
         method: "POST",
@@ -352,22 +383,33 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify({ userEmail: email, nama, alamat, telepon, items, total })
       });
 
+      if (!res.ok) return showErrorToast("❌ Terjadi kesalahan saat membuat pesanan!");
+
       const data = await res.json();
-      showToast("✅ Pembayaran Berhasil!\nPesanan sedang diproses…", 7000);
 
-      setTimeout(() => {
-        window.location.href = "receipt.html";
-      }, 7000);
-
-      if (!res.ok) return;
+      showOrderToast({
+        nama,
+        total,
+        jumlah: jumlahItem,
+        waktu: new Date().toLocaleString("id-ID"),
+        orderId: data.orderId || "INV-" + Date.now()
+      });
 
       localStorage.setItem("lastOrder", JSON.stringify({
-        userEmail: email, nama, alamat, telepon, items, total,
+        userEmail: email,
+        nama,
+        alamat,
+        telepon,
+        items,
+        total,
         createdAt: new Date().toISOString()
       }));
 
       localStorage.removeItem("cart");
-      window.location.href = "receipt.html";
+
+      setTimeout(() => {
+        window.location.href = "receipt.html";
+      }, 7000);
     };
   }
 
@@ -391,10 +433,8 @@ document.addEventListener("DOMContentLoaded", () => {
 function showToast(msg, duration = 5000) {
   const t = document.getElementById("toast");
   if (!t) return;
-
   t.textContent = msg;
   t.classList.add("show");
-
   setTimeout(() => {
     t.classList.remove("show");
   }, duration);
