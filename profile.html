@@ -20,7 +20,6 @@
       text-align: center;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     }
-
     .pfp {
       width: 120px;
       height: 120px;
@@ -30,7 +29,6 @@
       margin-bottom: 10px;
       background: #eee;
     }
-
     .upload-btn {
       display: block;
       width: 100%;
@@ -43,87 +41,33 @@
       cursor: pointer;
       font-weight: bold;
     }
-
-    .upload-btn:hover {
-      background: #ff6633;
+    .upload-btn:hover { background: #ff6633; }
+    .profile-info p { margin: 6px 0; font-size: 16px; }
+    .btn-edit, .btn-logout {
+      width: 100%; padding: 10px; border-radius: 8px;
+      font-weight: bold; cursor: pointer; border: none; margin-top: 10px;
     }
-
-    .profile-info p {
-      margin: 6px 0;
-      font-size: 16px;
-    }
-
-    .btn-edit,
-    .btn-logout {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      border: none;
-      margin-top: 10px;
-    }
-
-    .btn-edit {
-      background: #0275d8;
-      color: white;
-    }
-
-    .btn-edit:hover {
-      background: #025aa5;
-    }
-
-    .btn-logout {
-      background: #d9534f;
-      color: white;
-    }
-
-    .btn-logout:hover {
-      background: #c9302c;
-    }
-
+    .btn-edit { background: #0275d8; color: white; }
+    .btn-edit:hover { background: #025aa5; }
+    .btn-logout { background: #d9534f; color: white; }
+    .btn-logout:hover { background: #c9302c; }
     .modal-bg {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
+      position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6);
+      display: none; justify-content: center; align-items: center;
     }
-
     .modal-box {
-      background: white;
-      padding: 20px;
-      width: 350px;
-      border-radius: 12px;
+      background: white; padding: 20px; width: 350px; border-radius: 12px;
     }
-
     .modal-box input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 12px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+      width: 100%; padding: 10px; margin-bottom: 12px;
+      border-radius: 6px; border: 1px solid #ccc;
     }
-
-    .btn-save,
-    .btn-close {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      font-weight: bold;
-      margin-top: 8px;
-      color: white;
+    .btn-save, .btn-close {
+      width: 100%; padding: 10px; border-radius: 8px;
+      border: none; font-weight: bold; margin-top: 8px; color: white;
     }
-
-    .btn-save {
-      background: #28a745;
-    }
-
-    .btn-close {
-      background: #6c757d;
-    }
+    .btn-save { background: #28a745; }
+    .btn-close { background: #6c757d; }
   </style>
 </head>
 
@@ -138,7 +82,6 @@
       </div>
 
       <div class="right-menu">
-
         <nav class="nav-links">
           <a href="index.html"><i class="fa-solid fa-box"></i> Produk</a>
           <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Keranjang ( <span id="cart-count">0</span> )</a>
@@ -332,7 +275,7 @@
       <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
     </a>
     <a href="profile.html" class="bn-item" id="bn-profile">
-      <i class="fa-solid fa-user"></i><span>Akun</span>
+      <i class="fa-solid fa-user"></i><span id="bn-profile-text">Akun</span>
     </a>
   </div>
 

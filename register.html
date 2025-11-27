@@ -88,7 +88,7 @@
     <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
   </a>
   <a href="profile.html" class="bn-item" id="bn-profile">
-    <i class="fa-solid fa-user"></i><span>Akun</span>
+    <i class="fa-solid fa-user"></i><span id="bn-profile-text">Akun</span>
   </a>
 </div>
 
@@ -113,10 +113,12 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, email, password })
         });
+        
         if (!res.ok) {
           showToast("❌ Registrasi gagal!\n" + (data.message || ""));
           return;
         }
+        
         const data = await res.json();
         showToast("🎉 Registrasi Berhasil!\nSilakan login.", 1500);
 

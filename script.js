@@ -434,3 +434,16 @@ function logout() {
   localStorage.removeItem("cart");
   window.location.href = "login.html";
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const email = localStorage.getItem("email");
+  const txt = document.getElementById("bn-profile-text");
+
+  if (!txt) return;
+
+  if (!email) {
+    txt.textContent = "Login";
+  } else {
+    txt.textContent = "Akun";
+  }
+});

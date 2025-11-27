@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="id">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,20 +29,11 @@
       transition: .3s ease;
       z-index: 99999;
     }
-    .toast.show {
-      opacity: 1;
-      transform: translateX(50%) translateY(0);
-    }
-    .toast .icon {
-      background: white;
-      color: black;
-      padding: 3px 6px;
-      border-radius: 4px;
-      font-weight: bold;
-    }
-    .toast.success { background: #1a4cff; }
-    .toast.error { background: #e53935; }
-    .hidden { display: none; }
+    .toast.show { opacity: 1; transform: translateX(50%) translateY(0); }
+    .toast .icon { background:white;color:black;padding:3px 6px;border-radius:4px;font-weight:bold; }
+    .toast.success { background:#1a4cff; }
+    .toast.error { background:#e53935; }
+    .hidden { display:none; }
   </style>
 </head>
 
@@ -137,7 +129,7 @@
     <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
   </a>
   <a href="profile.html" class="bn-item" id="bn-profile">
-    <i class="fa-solid fa-user"></i><span>Akun</span>
+    <i class="fa-solid fa-user"></i><span id="bn-profile-text">Akun</span>
   </a>
 </div>
 
