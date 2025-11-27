@@ -437,13 +437,16 @@ function logout() {
 
 document.addEventListener("DOMContentLoaded", () => {
   const email = localStorage.getItem("email");
-  const txt = document.getElementById("bn-profile-text");
+  const profileBtn = document.getElementById("bn-profile");
+  const profileText = document.getElementById("bn-profile-text");
 
-  if (!txt) return;
+  if (!profileBtn) return;
 
   if (!email) {
-    txt.textContent = "Login";
+    profileText.textContent = "Login";
+    profileBtn.href = "login.html";
   } else {
-    txt.textContent = "Akun";
+    profileText.textContent = "Akun";
+    profileBtn.href = "profile.html";
   }
 });
