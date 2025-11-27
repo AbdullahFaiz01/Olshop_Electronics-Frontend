@@ -55,7 +55,7 @@
 
   <section id="checkout-list" class="checkout-list"></section>
 
-  <div id="checkout-summary" class="checkout-summary">
+  <div id="checkout-summary" class="checkout-summary" style="padding-bottom:80px;">
     <h3>Total: <span id="checkout-total">Rp 0</span></h3>
 
     <div class="checkout-form">
@@ -81,6 +81,7 @@
   </div>
 </footer>
 
+<!-- BOTTOM NAVBAR -->
 <div class="bottom-nav">
   <a href="index.html" class="bn-item" id="bn-home">
     <i class="fa-solid fa-store"></i><span>Produk</span>
@@ -100,7 +101,7 @@
 
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
-document.getElementById("bn-checkout").classList.add("active");
+document.getElementById("bn-checkout")?.classList.add("active");
 </script>
 
 </body>
