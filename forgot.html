@@ -12,8 +12,8 @@
 
 <body>
 
-  <div class="login-section">
-    <div class="auth-container auth-box login-box">
+  <main class="auth-container">
+    <div class="auth-box login-box">
       <h2>Lupa Password</h2>
 
       <label>Email</label>
@@ -25,24 +25,24 @@
         <a href="login.html">← Kembali ke Login</a>
       </p>
     </div>
-  </div>
+  </main>
 
   <div id="toast"></div>
 
   <div class="bottom-nav">
-  <a href="index.html" class="bn-item" id="bn-home">
-    <i class="fa-solid fa-store"></i><span>Produk</span>
-  </a>
-  <a href="cart.html" class="bn-item" id="bn-cart">
-    <i class="fa-solid fa-cart-shopping"></i><span>Keranjang</span>
-  </a>
-  <a href="checkout.html" class="bn-item" id="bn-checkout">
-    <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
-  </a>
-  <a href="profile.html" class="bn-item" id="bn-profile">
-    <i class="fa-solid fa-user"></i><span id="bn-profile-text">Akun</span>
-  </a>
-</div>
+    <a href="index.html" class="bn-item" id="bn-home">
+      <i class="fa-solid fa-store"></i><span>Produk</span>
+    </a>
+    <a href="cart.html" class="bn-item" id="bn-cart">
+      <i class="fa-solid fa-cart-shopping"></i><span>Keranjang</span>
+    </a>
+    <a href="checkout.html" class="bn-item" id="bn-checkout">
+      <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
+    </a>
+    <a href="profile.html" class="bn-item" id="bn-profile">
+      <i class="fa-solid fa-user"></i><span id="bn-profile-text">Akun</span>
+    </a>
+  </div>
 
   <script src="script.js"></script>
   <script>
@@ -70,7 +70,7 @@
 
   <script>
     const path = window.location.pathname.split("/").pop();
-  
+
     if (path === "index.html") document.getElementById("bn-home")?.classList.add("active");
     else if (path === "cart.html") document.getElementById("bn-cart")?.classList.add("active");
     else if (path === "checkout.html") document.getElementById("bn-checkout")?.classList.add("active");
