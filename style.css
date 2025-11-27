@@ -772,3 +772,42 @@ nav a,
 #bn-profile-text {
   display: block !important;
 }
+
+.auth-container {
+  max-width: 420px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+@media (max-width: 480px) {
+  .auth-container {
+    margin-top: 80px !important;
+    margin-bottom: 80px !important;
+    padding: 22px !important;
+  }
+
+  .login-box, .auth-box {
+    width: 100% !important;
+    padding: 22px !important;
+    border-radius: 14px !important;
+  }
+
+  .login-box input,
+  .auth-box input {
+    height: 48px;
+    font-size: 15px;
+  }
+
+  .login-btn {
+    height: 48px;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  h2 {
+    font-size: 22px !important;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+}
