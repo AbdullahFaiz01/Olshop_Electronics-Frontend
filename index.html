@@ -105,17 +105,16 @@
   <script src="script.js"></script>
 
   <script>
-    const page = location.pathname.split("/").pop();
-    if (page === "index.html" || page === "") document.getElementById("bn-home").classList.add("active");
-    if (page === "cart.html") document.getElementById("bn-cart").classList.add("active");
-    if (page === "checkout.html") document.getElementById("bn-checkout").classList.add("active");
-    if (page === "profile.html") document.getElementById("bn-profile").classList.add("active");
-
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      const path = window.location.pathname.split("/").pop();
+      if (path === "index.html") document.getElementById("bn-home")?.classList.add("active");
+      else if (path === "cart.html") document.getElementById("bn-cart")?.classList.add("active");
+      else if (path === "checkout.html") document.getElementById("bn-checkout")?.classList.add("active");
+      else if (path === "profile.html") document.getElementById("bn-profile")?.classList.add("active");
     });
   </script>
 
 </body>
-
 </html>
