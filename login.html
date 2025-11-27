@@ -27,7 +27,9 @@
         <a href="checkout.html"><i class="fa-solid fa-credit-card"></i> Checkout</a>
 
         <div class="profile-menu" id="profile-area" style="display:none;">
-          <button id="profile-btn"><i class="fa-solid fa-user"></i> Profil</button>
+          <button id="profile-btn">
+            <i class="fa-solid fa-user"></i> Profil
+          </button>
           <div class="dropdown" id="profile-dropdown">
             <a href="profile.html">Profil Saya</a>
             <a href="#" id="logout-nav">Logout</a>
@@ -40,32 +42,30 @@
     </div>
   </header>
 
-  <main class="container">
-    <section class="login-section">
-      <form id="login-form" class="auth-container auth-box login-box">
+  <main class="auth-container">
+    <form id="login-form" class="auth-box login-box">
 
-        <h2 style="text-align:center;">Masuk ke Akun Anda</h2>
+      <h2>Masuk ke Akun Anda</h2>
 
-        <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
-        <input type="email" id="email" placeholder="Masukkan email" required />
+      <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
+      <input type="email" id="email" placeholder="Masukkan email" required />
 
-        <label for="password"><i class="fa-solid fa-lock"></i> Kata Sandi</label>
-        <input type="password" id="password" placeholder="Masukkan password" required />
+      <label for="password"><i class="fa-solid fa-lock"></i> Kata Sandi</label>
+      <input type="password" id="password" placeholder="Masukkan password" required />
 
-        <button type="submit" class="login-btn">
-          <i class="fa-solid fa-right-to-bracket"></i> Login
-        </button>
+      <button type="submit" class="login-btn">
+        <i class="fa-solid fa-right-to-bracket"></i> Login
+      </button>
 
-        <p class="login-footer">
-          <a href="forgot.html">Lupa kata sandi?</a>
-        </p>
+      <p class="login-footer">
+        <a href="forgot.html">Lupa kata sandi?</a>
+      </p>
 
-        <div class="login-footer">
-          Belum punya akun? <a href="register.html">Daftar sekarang</a>
-        </div>
+      <div class="login-footer">
+        Belum punya akun? <a href="register.html">Daftar sekarang</a>
+      </div>
 
-      </form>
-    </section>
+    </form>
   </main>
 
   <footer class="site-footer">
@@ -73,21 +73,21 @@
       <p>© <span id="year"></span> ElectroStore — Toko Elektronik Online</p>
     </div>
   </footer>
-  
+
   <div class="bottom-nav">
-  <a href="index.html" class="bn-item" id="bn-home">
-    <i class="fa-solid fa-store"></i><span>Produk</span>
-  </a>
-  <a href="cart.html" class="bn-item" id="bn-cart">
-    <i class="fa-solid fa-cart-shopping"></i><span>Keranjang</span>
-  </a>
-  <a href="checkout.html" class="bn-item" id="bn-checkout">
-    <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
-  </a>
-  <a href="profile.html" class="bn-item" id="bn-profile">
-    <i class="fa-solid fa-user"></i><span id="bn-profile-text">Akun</span>
-  </a>
-</div>
+    <a href="index.html" class="bn-item" id="bn-home">
+      <i class="fa-solid fa-store"></i><span>Produk</span>
+    </a>
+    <a href="cart.html" class="bn-item" id="bn-cart">
+      <i class="fa-solid fa-cart-shopping"></i><span>Keranjang</span>
+    </a>
+    <a href="checkout.html" class="bn-item" id="bn-checkout">
+      <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
+    </a>
+    <a href="profile.html" class="bn-item" id="bn-profile">
+      <i class="fa-solid fa-user"></i><span id="bn-profile-text">Akun</span>
+    </a>
+  </div>
 
   <script src="script.js"></script>
 
@@ -127,6 +127,7 @@
       });
     });
   </script>
+
   <div id="toast"></div>
 </body>
 

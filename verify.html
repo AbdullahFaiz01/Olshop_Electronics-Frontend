@@ -2,19 +2,22 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Verifikasi OTP</title>
+
   <link rel="icon" type="image/png" href="img/favicon.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css">
+
   <style>
-    .otp-box { display: flex; gap: 10px; justify-content: center; margin: 15px 0; }
+    .otp-box { display: flex; gap: 10px; justify-content: center; margin: 20px 0; }
     .otp-input {
-      width: 45px;
-      height: 50px;
+      width: 48px;
+      height: 52px;
       font-size: 22px;
       text-align: center;
       border: 2px solid #ccc;
-      border-radius: 8px;
+      border-radius: 10px;
     }
     .otp-input:focus {
       border-color: #3b82ff;
@@ -36,8 +39,9 @@
 
 <body>
 
-<div class="login-section">
-  <div class="auth-container auth-box login-box verify-box">
+<main class="auth-container">
+  <div class="auth-box login-box verify-box">
+
     <h2>Verifikasi OTP</h2>
 
     <label>Kode OTP</label>
@@ -58,8 +62,9 @@
     <p class="login-footer">
       <a href="forgot.html">← Ubah Email</a>
     </p>
+
   </div>
-</div>
+</main>
 
 <div id="toast"></div>
 
@@ -73,13 +78,11 @@ let timeLeft = 300;
 
 function startTimer() {
   resendBtn.classList.add("disabled");
-
   const timer = setInterval(() => {
     timeLeft--;
     let m = Math.floor(timeLeft / 60);
     let s = timeLeft % 60;
     resendBtn.textContent = `Kirim ulang OTP (${m}:${s.toString().padStart(2, "0")})`;
-
     if (timeLeft <= 0) {
       clearInterval(timer);
       resendBtn.textContent = "Kirim ulang OTP";
@@ -87,7 +90,6 @@ function startTimer() {
     }
   }, 1000);
 }
-
 startTimer();
 
 resendBtn.onclick = async () => {
@@ -105,7 +107,6 @@ resendBtn.onclick = async () => {
   if (!res.ok) return showToast("❌ " + data.message, 2500);
 
   showToast("📩 Kode OTP baru dikirim!", 2000);
-
   timeLeft = 300;
   startTimer();
 };
@@ -144,7 +145,6 @@ verifyBtn.onclick = async () => {
 
   localStorage.setItem("resetOTP", otp);
   showToast("✔️ OTP Valid!", 1500);
-
   setTimeout(() => window.location.href = "reset.html", 1200);
 };
 </script>
@@ -160,13 +160,12 @@ verifyBtn.onclick = async () => {
     <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
   </a>
   <a href="profile.html" class="bn-item" id="bn-profile">
-    <i class="fa-solid fa-user"></i><span>Akun</span>
+    <i class="fa-solid fa-user"></i><span id="bn-profile-text">Akun</span>
   </a>
 </div>
 
 <script>
   const path = window.location.pathname.split("/").pop();
-
   if (path === "index.html") document.getElementById("bn-home")?.classList.add("active");
   else if (path === "cart.html") document.getElementById("bn-cart")?.classList.add("active");
   else if (path === "checkout.html") document.getElementById("bn-checkout")?.classList.add("active");
