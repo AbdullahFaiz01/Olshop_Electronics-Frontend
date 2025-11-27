@@ -37,7 +37,7 @@ document.getElementById("verify-btn").onclick = async () => {
 
   if (!otp) return showToast("❌ Kode OTP wajib diisi!", 2000);
 
-  const res = await fetch(`https://olshopelectronics-production-ee95.up.railway.app/api/verify-reset-code`, {
+  const res = await fetch(`https://olshopelectronics-production-398b.up.railway.app/api/verify-reset-code`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, code: otp })

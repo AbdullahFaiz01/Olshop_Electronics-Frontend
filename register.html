@@ -93,7 +93,7 @@
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value.trim();
 
-        const res = await fetch("https://olshopelectronics-production.up.railway.app/api/register", {
+        const res = await fetch("https://olshopelectronics-production-398b.up.railway.app/api/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, email, password })
