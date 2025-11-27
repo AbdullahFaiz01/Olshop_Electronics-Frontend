@@ -325,7 +325,6 @@ nav a.active {
   text-decoration: none;
   font-weight: 600;
 }
-
 .site-footer {
   text-align: center;
   color: var(--muted);
@@ -577,7 +576,6 @@ nav a,
     width: 90%;
   }
 }
-
 @media (max-width:768px) {
   .header-inner {
     flex-direction: column;
@@ -769,6 +767,7 @@ nav a,
     font-size: 20px;
   }
 }
+
 #bn-profile-text {
   display: block !important;
 }
@@ -809,5 +808,56 @@ nav a,
     font-size: 22px !important;
     text-align: center;
     margin-bottom: 15px;
+  }
+}
+@media (max-width: 480px) {
+
+  .site-header {
+    display: none !important;
+  }
+
+  .auth-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    min-height: 100vh !important;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .auth-box,
+  .login-box,
+  .register-box,
+  .forgot-box,
+  .reset-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 0 !important;
+    padding: 30px 20px !important;
+    box-shadow: none !important;
+  }
+
+  .auth-box h2 {
+    font-size: 24px !important;
+    text-align: center !important;
+    margin-bottom: 25px !important;
+  }
+
+  .auth-box input {
+    height: 48px !important;
+    font-size: 16px !important;
+  }
+
+  .auth-box button,
+  .login-btn {
+    height: 48px !important;
+    font-size: 16px !important;
+  }
+
+  .site-footer {
+    display: none !important;
   }
 }
