@@ -116,7 +116,6 @@ nav a.active {
 
 .text-checkout {
   text-align: center;
-  justify-content: center;
   font-size: 18px;
   color: #555;
   margin-top: 40px;
@@ -242,7 +241,7 @@ nav a.active {
 .checkout-form textarea:focus {
   border-color: var(--accent);
   background: #fff;
-  box-shadow: 0 0 5px rgba(238, 77, 45, 0.3);
+  box-shadow: 0 0 5px rgba(238,77,45,0.3);
   outline: none;
 }
 
@@ -252,7 +251,7 @@ nav a.active {
   margin-top: 10px;
 }
 
-@media (max-width: 600px) {
+@media (max-width:600px) {
   .checkout-form {
     grid-template-columns: 1fr;
   }
@@ -452,7 +451,6 @@ nav a,
   border-radius: 10px;
   font-size: 16px;
   font-weight: 700;
-  text-decoration: none;
 }
 
 .big-shop-btn:hover {
@@ -511,7 +509,7 @@ nav a,
 
 .search-box input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 6px rgba(45, 80, 238, 0.25);
+  box-shadow: 0 0 6px rgba(45,80,238,0.25);
 }
 
 .search-box i {
@@ -568,25 +566,19 @@ nav a,
 .btn-yes:hover { background: #1e34a9; }
 .btn-no:hover { background: #ccc; }
 
-nav {
-  pointer-events: auto !important;
-}
-
-nav a {
-  pointer-events: auto !important;
-}
-
+nav,
+nav a,
 .nav-links {
   pointer-events: auto !important;
 }
 
-@media (max-width: 992px) {
+@media (max-width:992px) {
   .container {
     width: 90%;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width:768px) {
   .header-inner {
     flex-direction: column;
     text-align: center;
@@ -598,7 +590,7 @@ nav a {
     gap: 10px;
   }
   #product-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2,1fr);
     gap: 12px;
   }
   .card img {
@@ -607,9 +599,6 @@ nav a {
   .login-box {
     width: 90%;
     padding: 20px;
-  }
-  .profile-menu button {
-    font-size: 14px;
   }
   .card.checkout-item,
   #cart-list .card {
@@ -624,7 +613,7 @@ nav a {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width:480px) {
   body {
     font-size: 14px;
   }
@@ -640,9 +629,6 @@ nav a {
     padding: 12px 0;
     gap: 6px;
   }
-  .logo-area {
-    justify-content: center;
-  }
   .logo-img {
     width: 42px;
     height: 42px;
@@ -653,94 +639,43 @@ nav a {
   .right-menu {
     flex-direction: column;
     gap: 5px;
-    width: 100%;
-  }
-  .nav-links {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    gap: 0;
-    padding: 0 5px;
   }
   .nav-links a {
     font-size: 13px;
     gap: 4px;
     padding: 6px 4px;
-    display: flex;
-    align-items: center;
-  }
-  .nav-links a i {
-    font-size: 16px;
-  }
-  #profile-btn,
-  .login-nav {
-    font-size: 13px;
-    gap: 5px;
-  }
-  .nav-pfp {
-    width: 22px;
-    height: 22px;
   }
   #product-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2,1fr);
     gap: 10px;
-  }
-  .card {
-    padding: 10px;
   }
   .card img {
     height: 120px;
   }
+  .btn,
+  .login-btn,
   input,
   textarea {
-    font-size: 14px;
-    padding: 10px;
-  }
-  .btn,
-  .login-btn {
     font-size: 14px;
     padding: 10px;
   }
   #checkout-summary {
     padding: 15px;
   }
-  .cart-info p,
-  .cart-info h3 {
-    font-size: 14px;
-  }
-  #toast,
-  .err-toast,
-  .order-toast {
+  #toast {
     width: 90%;
     right: 50%;
     transform: translateX(50%);
     font-size: 14px;
     padding: 10px 15px;
   }
-  .order-toast {
-    width: 92%;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .otp-box {
-    gap: 6px;
-  }
-  .otp-input {
-    width: 38px;
-    height: 45px;
-    font-size: 20px;
-  }
-  .resend-btn {
-    font-size: 13px;
-  }
 }
 
-@media (max-width: 480px) {
+@media (max-width:480px) {
   .site-header {
     padding: 8px 0;
   }
   .header-inner {
-    flex-direction: column;
     gap: 4px;
     padding: 6px 0 !important;
   }
@@ -751,16 +686,15 @@ nav a {
   .logo {
     font-size: 20px;
   }
-  .nav-links a {
-    display: none !important;
-  }
-  .login-nav,
-  #profile-area {
+  nav a,
+  .nav-links,
+  #profile-area,
+  .login-nav {
     display: none !important;
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width:350px) {
   .otp-input {
     width: 32px;
     height: 38px;
@@ -775,7 +709,7 @@ nav a {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: #ffffff;
+  background: #fff;
   border-top: 1px solid #ddd;
   display: none;
   justify-content: space-around;
@@ -802,11 +736,36 @@ nav a {
   color: var(--accent);
 }
 
-@media (max-width: 768px) {
+@media (max-width:768px) {
   .bottom-nav {
     display: flex;
   }
   body {
     padding-bottom: 70px !important;
+  }
+}
+
+@media (max-width: 480px) {
+
+  nav a,
+  #profile-area,
+  #login-link,
+  .profile-menu {
+    display: none !important;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px 0 !important;
+  }
+
+  .logo-img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .logo {
+    font-size: 20px;
   }
 }
