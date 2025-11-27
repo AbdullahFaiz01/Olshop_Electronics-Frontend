@@ -19,6 +19,10 @@
     <label>Kode OTP</label>
     <input type="text" id="otp" placeholder="Masukkan kode 6 digit">
 
+    <p id="otp-timer" style="text-align:center; margin-top:10px; font-size:14px; color:#444;">
+      Kode berlaku selama: <span id="timer-text">05:00</span>
+    </p>
+
     <button class="login-btn" id="verify-btn">Verifikasi</button>
 
     <p class="login-footer">
@@ -30,7 +34,37 @@
 <div id="toast"></div>
 
 <script src="script.js"></script>
+
 <script>
+let waktu = 300;
+const timerText = document.getElementById("timer-text");
+const btnVerify = document.getElementById("verify-btn");
+
+function startOTPTimer() {
+  const interval = setInterval(() => {
+    let menit = Math.floor(waktu / 60);
+    let detik = waktu % 60;
+
+    if (detik < 10) detik = "0" + detik;
+    if (menit < 10) menit = "0" + menit;
+
+    timerText.textContent = `${menit}:${detik}`;
+
+    if (waktu <= 0) {
+      clearInterval(interval);
+      timerText.textContent = "Kode OTP kedaluwarsa";
+      timerText.style.color = "#d32f2f";
+      btnVerify.disabled = true;
+      btnVerify.style.background = "#999";
+      btnVerify.style.cursor = "not-allowed";
+    }
+
+    waktu--;
+  }, 1000);
+}
+
+document.addEventListener("DOMContentLoaded", startOTPTimer);
+
 document.getElementById("verify-btn").onclick = async () => {
   const otp = document.getElementById("otp").value.trim();
   const email = localStorage.getItem("resetEmail");
