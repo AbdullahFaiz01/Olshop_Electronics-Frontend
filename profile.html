@@ -223,7 +223,7 @@
         return;
       }
 
-      fetch("https://olshopelectronics-production.up.railway.app/api/user/" + email)
+      fetch("https://olshopelectronics-production-398b.up.railway.app/api/user/" + email)
         .then(res => res.json())
         .then(data => {
           document.getElementById("username").textContent = data.username;
@@ -250,7 +250,7 @@
         formData.append("photo", file);
         formData.append("email", email);
 
-        const res = await fetch("https://olshopelectronics-production.up.railway.app/api/user/photo", {
+        const res = await fetch("https://olshopelectronics-production-398b.up.railway.app/api/user/photo", {
           method: "POST",
           body: formData
         });
@@ -268,7 +268,7 @@
         showConfirm(
           "Yakin ingin menghapus foto profil?",
           async () => {
-            await fetch("https://olshopelectronics-production.up.railway.app/api/user/photo", {
+            await fetch("https://olshopelectronics-production-398b.up.railway.app/api/user/photo", {
               method: "DELETE",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ email })
