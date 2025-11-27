@@ -307,30 +307,26 @@ function renderCheckout() {
   totalEl.textContent = formatIDR(total);
 }
 
-function showErrorToast(msg, duration = 3000) {
-  const t = document.getElementById("errorToast");
-  t.textContent = msg;
+function showSuccessToast(msg) {
+  const t = document.getElementById("toastSuccess");
+  document.getElementById("successMsg").textContent = msg;
   t.classList.remove("hidden");
   setTimeout(() => t.classList.add("show"), 20);
   setTimeout(() => {
     t.classList.remove("show");
     setTimeout(() => t.classList.add("hidden"), 300);
-  }, duration);
+  }, 4000);
 }
 
-function showOrderToast(order) {
-  const t = document.getElementById("orderToast");
-  document.getElementById("otNama").textContent = order.nama;
-  document.getElementById("otTotal").textContent = "Rp " + order.total.toLocaleString("id-ID");
-  document.getElementById("otJumlah").textContent = order.jumlah + " item";
-  document.getElementById("otWaktu").textContent = order.waktu;
-  document.getElementById("otOrder").textContent = order.orderId;
+function showErrorToast(msg) {
+  const t = document.getElementById("toastError");
+  document.getElementById("errorMsg").textContent = msg;
   t.classList.remove("hidden");
-  setTimeout(() => t.classList.add("show"), 50);
+  setTimeout(() => t.classList.add("show"), 20);
   setTimeout(() => {
     t.classList.remove("show");
-    setTimeout(() => t.classList.add("hidden"), 400);
-  }, 7000);
+    setTimeout(() => t.classList.add("hidden"), 300);
+  }, 3500);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -365,9 +361,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const cart = loadCart();
       const email = localStorage.getItem("email");
 
-      if (!nama || !alamat || !telepon) return showErrorToast("⚠️ Mohon lengkapi semua data pengiriman.");
-      if (!/^[0-9]+$/.test(telepon)) return showErrorToast("⚠️ Nomor telepon hanya boleh angka!");
-      if (telepon.length < 9) return showErrorToast("⚠️ Nomor telepon tidak valid!");
+      if (!nama || !alamat || !telepon) return showErrorToast("Mohon lengkapi semua data pengiriman.");
+      if (!/^[0-9]+$/.test(telepon)) return showErrorToast("Nomor telepon hanya boleh angka!");
+      if (telepon.length < 9) return showErrorToast("Nomor telepon tidak valid!");
 
       const items = cart.map(i => {
         const p = PRODUCTS.find(x => x.id === i.id);
@@ -375,7 +371,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const total = items.reduce((a, b) => a + b.price * b.qty, 0);
-      const jumlahItem = cart.reduce((a, b) => a + b.qty, 0);
 
       const res = await fetch(`${API}/api/orders`, {
         method: "POST",
@@ -383,17 +378,9 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify({ userEmail: email, nama, alamat, telepon, items, total })
       });
 
-      if (!res.ok) return showErrorToast("❌ Terjadi kesalahan saat membuat pesanan!");
+      if (!res.ok) return showErrorToast("Terjadi kesalahan saat membuat pesanan.");
 
-      const data = await res.json();
-
-      showOrderToast({
-        nama,
-        total,
-        jumlah: jumlahItem,
-        waktu: new Date().toLocaleString("id-ID"),
-        orderId: data.orderId || "INV-" + Date.now()
-      });
+      showSuccessToast("Pembayaran Berhasil! Pesanan sedang diproses…");
 
       localStorage.setItem("lastOrder", JSON.stringify({
         userEmail: email,
@@ -409,7 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         window.location.href = "receipt.html";
-      }, 7000);
+      }, 4000);
     };
   }
 
