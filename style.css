@@ -811,34 +811,3 @@ nav a,
     margin-bottom: 15px;
   }
 }
-
-@media (max-width: 480px) {
-  .auth-wrapper {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 20px !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-  }
-
-  .auth-title {
-    font-size: 24px !important;
-    text-align: center !important;
-  }
-
-  .auth-wrapper input {
-    height: 48px !important;
-    font-size: 16px !important;
-  }
-
-  .auth-wrapper button {
-    height: 48px !important;
-    font-size: 16px !important;
-  }
-
-  .auth-container {
-    padding: 0 !important;
-    margin-top: 20px !important;
-  }
-}
