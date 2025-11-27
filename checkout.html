@@ -61,6 +61,9 @@
     .ot-sub { margin-bottom: 6px; opacity: .9; }
     .ot-details p { margin: 3px 0; font-size: 13px; }
     .hidden { display: none; }
+
+    #checkout-summary { padding-bottom: 130px; position: relative; }
+    #checkout-btn { position: relative; z-index: 999999; }
   </style>
 </head>
 
@@ -133,6 +136,21 @@
   </div>
 </footer>
 
+<div class="bottom-nav">
+  <a href="index.html" class="bn-item" id="bn-home">
+    <i class="fa-solid fa-store"></i><span>Produk</span>
+  </a>
+  <a href="cart.html" class="bn-item" id="bn-cart">
+    <i class="fa-solid fa-cart-shopping"></i><span>Keranjang</span>
+  </a>
+  <a href="checkout.html" class="bn-item" id="bn-checkout">
+    <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
+  </a>
+  <a href="profile.html" class="bn-item" id="bn-profile">
+    <i class="fa-solid fa-user"></i><span>Akun</span>
+  </a>
+</div>
+
 <div id="errorToast" class="err-toast hidden"></div>
 
 <div id="orderToast" class="order-toast hidden">
@@ -154,6 +172,7 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("year").textContent = new Date().getFullYear();
+  document.getElementById("bn-checkout")?.classList.add("active");
 });
 </script>
 
