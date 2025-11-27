@@ -8,41 +8,6 @@
   <link rel="icon" type="image/png" href="img/favicon.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
-
-  <style>
-    .toast {
-      position: fixed;
-      top: 20px;
-      right: 50%;
-      transform: translateX(50%) translateY(-20px);
-      padding: 12px 20px;
-      border-radius: 12px;
-      min-width: 380px;
-      color: white;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-      opacity: 0;
-      transition: .3s ease;
-      z-index: 99999;
-    }
-    .toast.show {
-      opacity: 1;
-      transform: translateX(50%) translateY(0);
-    }
-    .toast .icon {
-      background: white;
-      color: black;
-      padding: 3px 6px;
-      border-radius: 4px;
-      font-weight: bold;
-    }
-    .toast.success { background: #1a4cff; }
-    .toast.error { background: #e53935; }
-    .hidden { display: none; }
-  </style>
 </head>
 
 <body>
@@ -116,21 +81,26 @@
   </div>
 </footer>
 
-<div id="toastSuccess" class="toast success hidden">
-  <span class="icon">✔</span>
-  <span id="successMsg"></span>
-</div>
-
-<div id="toastError" class="toast error hidden">
-  <span class="icon">⚠</span>
-  <span id="errorMsg"></span>
+<div class="bottom-nav">
+  <a href="index.html" class="bn-item" id="bn-home">
+    <i class="fa-solid fa-store"></i><span>Produk</span>
+  </a>
+  <a href="cart.html" class="bn-item" id="bn-cart">
+    <i class="fa-solid fa-cart-shopping"></i><span>Keranjang</span>
+  </a>
+  <a href="checkout.html" class="bn-item" id="bn-checkout">
+    <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
+  </a>
+  <a href="profile.html" class="bn-item" id="bn-profile">
+    <i class="fa-solid fa-user"></i><span>Akun</span>
+  </a>
 </div>
 
 <script src="script.js"></script>
+
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("year").textContent = new Date().getFullYear();
-});
+document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("bn-checkout").classList.add("active");
 </script>
 
 </body>
