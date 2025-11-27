@@ -74,28 +74,45 @@
     </div>
   </footer>
 
-  <div class="bottom-nav">
-    <a href="index.html" class="bn-item" id="bn-home">
-      <i class="fa-solid fa-store"></i><span>Produk</span>
-    </a>
-    <a href="cart.html" class="bn-item" id="bn-cart">
-      <i class="fa-solid fa-cart-shopping"></i><span>Keranjang</span>
-    </a>
-    <a href="checkout.html" class="bn-item" id="bn-checkout">
-      <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
-    </a>
-    <a href="profile.html" class="bn-item" id="bn-profile">
-      <i class="fa-solid fa-user"></i><span>Akun</span>
-    </a>
-  </div>
-
   <script src="script.js"></script>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-    document.getElementById("bn-home").classList.add("active");
-  </script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("year").textContent = new Date().getFullYear();
 
+      const loginForm = document.getElementById("login-form");
+
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        const res = await fetch("https://olshopelectronics-production-398b.up.railway.app/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          showToast("❌ Email atau password salah!", 1500);
+          return;
+        }
+
+        localStorage.setItem("user", data.username);
+        localStorage.setItem("email", data.email);
+
+        showToast(`👋 Selamat Datang, ${data.username || email.split("@")[0]}!`);
+
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 1500);
+      });
+    }); 
+  </script>
+  <div id="toast"></div>
 </body>
 
 </html>

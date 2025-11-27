@@ -77,28 +77,42 @@
     <p>© <span id="year"></span> ElectroStore</p>
   </footer>
 
-  <div class="bottom-nav">
-    <a href="index.html" class="bn-item" id="bn-home">
-      <i class="fa-solid fa-store"></i><span>Produk</span>
-    </a>
-    <a href="cart.html" class="bn-item" id="bn-cart">
-      <i class="fa-solid fa-cart-shopping"></i><span>Keranjang</span>
-    </a>
-    <a href="checkout.html" class="bn-item" id="bn-checkout">
-      <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
-    </a>
-    <a href="profile.html" class="bn-item" id="bn-profile">
-      <i class="fa-solid fa-user"></i><span>Akun</span>
-    </a>
-  </div>
-
   <script src="script.js"></script>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-    document.getElementById("bn-home").classList.add("active");
-  </script>
+    document.addEventListener("DOMContentLoaded", () => {
 
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const registerForm = document.getElementById("register-form");
+
+      registerForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById("username").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        const res = await fetch("https://olshopelectronics-production-398b.up.railway.app/api/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, email, password })
+        });
+        if (!res.ok) {
+          showToast("❌ Registrasi gagal!\n" + (data.message || ""));
+          return;
+        }
+        const data = await res.json();
+        showToast("🎉 Registrasi Berhasil!\nSilakan login.", 1500);
+
+        if (res.ok && data.message === "Registrasi berhasil!") {
+          window.location.href = "login.html";
+        }
+      });
+
+    });
+  </script>
+<div id="toast"></div>
 </body>
 
 </html>
