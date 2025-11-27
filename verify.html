@@ -37,10 +37,8 @@
 <body>
 
 <div class="login-section">
-  <div class="auth-container">
-  <div class="auth-wrapper">
-
-    <h2 class="auth-title">Verifikasi OTP</h2>
+  <div class="auth-container auth-box login-box">
+    <h2>Verifikasi OTP</h2>
 
     <label>Kode OTP</label>
 
@@ -53,14 +51,13 @@
       <input maxlength="1" class="otp-input" id="otp6">
     </div>
 
-    <div id="resend" class="resend-btn disabled">Kirim ulang OTP (5:00)</div>
+    <div class="resend-btn disabled" id="resend">Kirim ulang OTP (5:00)</div>
 
-    <button id="verify-btn" class="login-btn">Verifikasi</button>
+    <button class="login-btn" id="verify-btn">Verifikasi</button>
 
     <p class="login-footer">
       <a href="forgot.html">← Ubah Email</a>
     </p>
-
   </div>
 </div>
 

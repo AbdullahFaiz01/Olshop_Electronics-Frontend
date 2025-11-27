@@ -12,26 +12,14 @@
 <body>
 
 <div class="login-section">
-  <div class="auth-container">
-  <form id="reset-form" class="auth-wrapper">
+  <div class="auth-container auth-box login-box">
+    <h2>Reset Password</h2>
 
-    <h2 class="auth-title">Buat Password Baru</h2>
+    <label>Password Baru</label>
+    <input type="password" id="new-pass" placeholder="Password baru">
 
-    <label for="password"><i class="fa-solid fa-lock"></i> Password Baru</label>
-    <input type="password" id="password" placeholder="Masukkan password baru" required />
-
-    <label for="confirm"><i class="fa-solid fa-lock"></i> Ulangi Password</label>
-    <input type="password" id="confirm" placeholder="Ulangi password baru" required />
-
-    <button type="submit" class="login-btn">
-      <i class="fa-solid fa-key"></i> Simpan Password
-    </button>
-
-    <p class="login-footer">
-      <a href="login.html">← Kembali ke Login</a>
-    </p>
-
-  </form>
+    <button class="login-btn" id="reset-btn">Reset Password</button>
+  </div>
 </div>
 
 <div id="toast"></div>

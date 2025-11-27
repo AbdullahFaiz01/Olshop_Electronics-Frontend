@@ -13,75 +13,69 @@
 <body>
 
   <div class="login-section">
-    <div class="auth-container">
-      <form id="forgot-form" class="auth-wrapper">
+    <div class="auth-container auth-box login-box">
+      <h2>Lupa Password</h2>
 
-        <h2 class="auth-title">Lupa Kata Sandi</h2>
+      <label>Email</label>
+      <input type="email" id="forgot-email" placeholder="Masukkan email">
 
-        <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
-        <input type="email" id="email" placeholder="Masukkan email Anda" required />
+      <button class="login-btn" id="forgot-btn">Kirim Kode</button>
 
-        <button type="submit" class="login-btn">
-          <i class="fa-solid fa-paper-plane"></i> Kirim Kode OTP
-        </button>
-
-        <div class="login-footer">
-          <a href="login.html">← Kembali ke Login</a>
-        </div>
-
-      </form>
+      <p class="login-footer">
+        <a href="login.html">← Kembali ke Login</a>
+      </p>
     </div>
+  </div>
 
-    <div id="toast"></div>
+  <div id="toast"></div>
 
-    <div class="bottom-nav">
-      <a href="index.html" class="bn-item" id="bn-home">
-        <i class="fa-solid fa-store"></i><span>Produk</span>
-      </a>
-      <a href="cart.html" class="bn-item" id="bn-cart">
-        <i class="fa-solid fa-cart-shopping"></i><span>Keranjang</span>
-      </a>
-      <a href="checkout.html" class="bn-item" id="bn-checkout">
-        <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
-      </a>
-      <a href="profile.html" class="bn-item" id="bn-profile">
-        <i class="fa-solid fa-user"></i><span id="bn-profile-text">Akun</span>
-      </a>
-    </div>
+  <div class="bottom-nav">
+  <a href="index.html" class="bn-item" id="bn-home">
+    <i class="fa-solid fa-store"></i><span>Produk</span>
+  </a>
+  <a href="cart.html" class="bn-item" id="bn-cart">
+    <i class="fa-solid fa-cart-shopping"></i><span>Keranjang</span>
+  </a>
+  <a href="checkout.html" class="bn-item" id="bn-checkout">
+    <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
+  </a>
+  <a href="profile.html" class="bn-item" id="bn-profile">
+    <i class="fa-solid fa-user"></i><span id="bn-profile-text">Akun</span>
+  </a>
+</div>
 
-    <script src="script.js"></script>
-    <script>
-      document.getElementById("forgot-btn").onclick = async () => {
-        const email = document.getElementById("forgot-email").value.trim();
+  <script src="script.js"></script>
+  <script>
+    document.getElementById("forgot-btn").onclick = async () => {
+      const email = document.getElementById("forgot-email").value.trim();
 
-        if (!email) return showToast("❌ Email tidak boleh kosong!", 2000);
+      if (!email) return showToast("❌ Email tidak boleh kosong!", 2000);
 
-        const res = await fetch(`https://olshopelectronics-production-398b.up.railway.app/api/forgot-password`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email })
-        });
+      const res = await fetch(`https://olshopelectronics-production-398b.up.railway.app/api/forgot-password`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
 
-        const data = await res.json();
+      const data = await res.json();
 
-        if (!res.ok) return showToast("❌ " + data.message, 2500);
+      if (!res.ok) return showToast("❌ " + data.message, 2500);
 
-        localStorage.setItem("resetEmail", email);
+      localStorage.setItem("resetEmail", email);
 
-        showToast("📩 Kode OTP telah dikirim!", 2500);
-        setTimeout(() => window.location.href = "verify.html", 1200);
-      };
-    </script>
+      showToast("📩 Kode OTP telah dikirim!", 2500);
+      setTimeout(() => window.location.href = "verify.html", 1200);
+    };
+  </script>
 
-    <script>
-      const path = window.location.pathname.split("/").pop();
-
-      if (path === "index.html") document.getElementById("bn-home")?.classList.add("active");
-      else if (path === "cart.html") document.getElementById("bn-cart")?.classList.add("active");
-      else if (path === "checkout.html") document.getElementById("bn-checkout")?.classList.add("active");
-      else if (path === "profile.html") document.getElementById("bn-profile")?.classList.add("active");
-    </script>
+  <script>
+    const path = window.location.pathname.split("/").pop();
+  
+    if (path === "index.html") document.getElementById("bn-home")?.classList.add("active");
+    else if (path === "cart.html") document.getElementById("bn-cart")?.classList.add("active");
+    else if (path === "checkout.html") document.getElementById("bn-checkout")?.classList.add("active");
+    else if (path === "profile.html") document.getElementById("bn-profile")?.classList.add("active");
+  </script>
 
 </body>
-
 </html>
