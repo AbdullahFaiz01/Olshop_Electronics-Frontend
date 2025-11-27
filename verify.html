@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,6 +40,7 @@
 
 <body>
 
+  <!-- HEADER SAMA DENGAN login.html -->
   <header class="site-header">
     <div class="container header-inner">
 
@@ -47,138 +49,128 @@
         <h1 class="logo">ElectroStore</h1>
       </div>
 
-<main class="auth-container">
-  <div class="auth-box login-box verify-box">
+      <nav>
+        <a href="index.html"><i class="fa-solid fa-box"></i> Produk</a>
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Keranjang (<span id="cart-count">0</span>)</a>
+        <a href="checkout.html"><i class="fa-solid fa-credit-card"></i> Checkout</a>
+        <a href="login.html"><i class="fa-solid fa-user"></i> Login</a>
+      </nav>
 
-    <h2>Verifikasi OTP</h2>
-
-    <label>Kode OTP</label>
-
-    <div class="otp-box">
-      <input maxlength="1" class="otp-input" id="otp1">
-      <input maxlength="1" class="otp-input" id="otp2">
-      <input maxlength="1" class="otp-input" id="otp3">
-      <input maxlength="1" class="otp-input" id="otp4">
-      <input maxlength="1" class="otp-input" id="otp5">
-      <input maxlength="1" class="otp-input" id="otp6">
     </div>
+  </header>
 
-    <div class="resend-btn disabled" id="resend">Kirim ulang OTP (5:00)</div>
+  <main class="auth-container">
+    <div class="auth-box login-box verify-box">
 
-    <button class="login-btn" id="verify-btn">Verifikasi</button>
+      <h2>Verifikasi OTP</h2>
 
-    <p class="login-footer">
-      <a href="forgot.html">← Ubah Email</a>
-    </p>
+      <label>Kode OTP</label>
 
-  </div>
-</main>
+      <div class="otp-box">
+        <input maxlength="1" class="otp-input" id="otp1">
+        <input maxlength="1" class="otp-input" id="otp2">
+        <input maxlength="1" class="otp-input" id="otp3">
+        <input maxlength="1" class="otp-input" id="otp4">
+        <input maxlength="1" class="otp-input" id="otp5">
+        <input maxlength="1" class="otp-input" id="otp6">
+      </div>
 
-<div id="toast"></div>
+      <div class="resend-btn disabled" id="resend">Kirim ulang OTP (5:00)</div>
 
-<script src="script.js"></script>
+      <button class="login-btn" id="verify-btn">Verifikasi</button>
 
-<script>
-const inputs = [...document.querySelectorAll(".otp-input")];
-const resendBtn = document.getElementById("resend");
-const verifyBtn = document.getElementById("verify-btn");
-let timeLeft = 300;
+      <p class="login-footer">
+        <a href="forgot.html">← Ubah Email</a>
+      </p>
+    </div>
+  </main>
 
-function startTimer() {
-  resendBtn.classList.add("disabled");
-  const timer = setInterval(() => {
-    timeLeft--;
-    let m = Math.floor(timeLeft / 60);
-    let s = timeLeft % 60;
-    resendBtn.textContent = `Kirim ulang OTP (${m}:${s.toString().padStart(2, "0")})`;
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-      resendBtn.textContent = "Kirim ulang OTP";
-      resendBtn.classList.remove("disabled");
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> ElectroStore — Toko Elektronik Online</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    const inputs = [...document.querySelectorAll(".otp-input")];
+    const resendBtn = document.getElementById("resend");
+    const verifyBtn = document.getElementById("verify-btn");
+    let timeLeft = 300;
+
+    function startTimer() {
+      resendBtn.classList.add("disabled");
+      const timer = setInterval(() => {
+        timeLeft--;
+        let m = Math.floor(timeLeft / 60);
+        let s = timeLeft % 60;
+        resendBtn.textContent = `Kirim ulang OTP (${m}:${s.toString().padStart(2, "0")})`;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          resendBtn.textContent = "Kirim ulang OTP";
+          resendBtn.classList.remove("disabled");
+        }
+      }, 1000);
     }
-  }, 1000);
-}
-startTimer();
+    startTimer();
 
-resendBtn.onclick = async () => {
-  if (resendBtn.classList.contains("disabled")) return;
+    resendBtn.onclick = async () => {
+      if (resendBtn.classList.contains("disabled")) return;
 
-  const email = localStorage.getItem("resetEmail");
+      const email = localStorage.getItem("resetEmail");
 
-  const res = await fetch(`https://olshopelectronics-production-398b.up.railway.app/api/forgot-password`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email })
-  });
+      const res = await fetch(`https://olshopelectronics-production-398b.up.railway.app/api/forgot-password`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
 
-  const data = await res.json();
-  if (!res.ok) return showToast("❌ " + data.message, 2500);
+      const data = await res.json();
+      if (!res.ok) return showToast("❌ " + data.message, 2500);
 
-  showToast("📩 Kode OTP baru dikirim!", 2000);
-  timeLeft = 300;
-  startTimer();
-};
+      showToast("📩 Kode OTP baru dikirim!", 2000);
+      timeLeft = 300;
+      startTimer();
+    };
 
-function getOTP() {
-  return inputs.map(i => i.value).join("");
-}
-
-inputs.forEach((input, index) => {
-  input.addEventListener("input", () => {
-    if (input.value !== "" && index < 5) inputs[index + 1].focus();
-    if (getOTP().length === 6) verifyBtn.click();
-  });
-
-  input.addEventListener("keydown", e => {
-    if (e.key === "Backspace" && input.value === "" && index > 0) {
-      inputs[index - 1].focus();
+    function getOTP() {
+      return inputs.map(i => i.value).join("");
     }
-  });
-});
 
-verifyBtn.onclick = async () => {
-  const otp = getOTP();
-  const email = localStorage.getItem("resetEmail");
+    inputs.forEach((input, index) => {
+      input.addEventListener("input", () => {
+        if (input.value !== "" && index < 5) inputs[index + 1].focus();
+        if (getOTP().length === 6) verifyBtn.click();
+      });
 
-  if (otp.length < 6) return showToast("❌ Kode OTP belum lengkap!", 2000);
+      input.addEventListener("keydown", e => {
+        if (e.key === "Backspace" && input.value === "" && index > 0) {
+          inputs[index - 1].focus();
+        }
+      });
+    });
 
-  const res = await fetch(`https://olshopelectronics-production-398b.up.railway.app/api/verify-reset-code`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, code: otp })
-  });
+    verifyBtn.onclick = async () => {
+      const otp = getOTP();
+      const email = localStorage.getItem("resetEmail");
 
-  const data = await res.json();
-  if (!res.ok) return showToast("❌ " + data.message, 2500);
+      if (otp.length < 6) return showToast("❌ Kode OTP belum lengkap!", 2000);
 
-  localStorage.setItem("resetOTP", otp);
-  showToast("✔️ OTP Valid!", 1500);
-  setTimeout(() => window.location.href = "reset.html", 1200);
-};
-</script>
+      const res = await fetch(`https://olshopelectronics-production-398b.up.railway.app/api/verify-reset-code`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, code: otp })
+      });
 
-<div class="bottom-nav">
-  <a href="index.html" class="bn-item" id="bn-home">
-    <i class="fa-solid fa-store"></i><span>Produk</span>
-  </a>
-  <a href="cart.html" class="bn-item" id="bn-cart">
-    <i class="fa-solid fa-cart-shopping"></i><span>Keranjang</span>
-  </a>
-  <a href="checkout.html" class="bn-item" id="bn-checkout">
-    <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
-  </a>
-  <a href="profile.html" class="bn-item" id="bn-profile">
-    <i class="fa-solid fa-user"></i><span id="bn-profile-text">Akun</span>
-  </a>
-</div>
+      const data = await res.json();
+      if (!res.ok) return showToast("❌ " + data.message, 2500);
 
-<script>
-  const path = window.location.pathname.split("/").pop();
-  if (path === "index.html") document.getElementById("bn-home")?.classList.add("active");
-  else if (path === "cart.html") document.getElementById("bn-cart")?.classList.add("active");
-  else if (path === "checkout.html") document.getElementById("bn-checkout")?.classList.add("active");
-  else if (path === "profile.html") document.getElementById("bn-profile")?.classList.add("active");
-</script>
+      localStorage.setItem("resetOTP", otp);
+      showToast("✔️ OTP Valid!", 1500);
+      setTimeout(() => window.location.href = "reset.html", 1200);
+    };
+  </script>
 
 </body>
 </html>
