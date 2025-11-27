@@ -725,3 +725,131 @@ nav {
 nav a {
   pointer-events: auto !important;
 }
+@media (max-width: 992px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  #product-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .card img {
+    height: 140px;
+  }
+  .login-box {
+    width: 90%;
+    padding: 20px;
+  }
+  .profile-menu button {
+    font-size: 14px;
+  }
+  .card.checkout-item,
+  #cart-list .card {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+  #cart-list img,
+  .checkout-item img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  h1, h2, h3 {
+    font-size: 18px;
+  }
+  .container {
+    width: 95%;
+  }
+  .nav-links a {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+  .logo-img {
+    width: 45px;
+  }
+  .logo {
+    font-size: 20px;
+  }
+  #product-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .card {
+    padding: 10px;
+  }
+  .card img {
+    height: 120px;
+  }
+  input,
+  textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+  .btn,
+  .login-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+  #checkout-summary {
+    padding: 15px;
+  }
+  .cart-info p,
+  .cart-info h3 {
+    font-size: 14px;
+  }
+  #toast,
+  .err-toast,
+  .order-toast {
+    width: 90%;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+  .order-toast {
+    width: 92%;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .otp-box {
+    gap: 6px;
+  }
+  .otp-input {
+    width: 38px;
+    height: 45px;
+    font-size: 20px;
+  }
+  .resend-btn {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 350px) {
+  .otp-input {
+    width: 32px;
+    height: 38px;
+  }
+  .card img {
+    height: 100px;
+  }
+}
