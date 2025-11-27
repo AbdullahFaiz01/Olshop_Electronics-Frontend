@@ -779,7 +779,6 @@ nav a {
     height: 100px;
   }
 }
-
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -820,12 +819,4 @@ nav a {
   body {
     padding-bottom: 70px !important;
   }
-}
-#checkout-btn {
-  position: relative;
-  z-index: 1;
-}
-
-.checkout-summary {
-  padding-bottom: 90px !important;
 }
