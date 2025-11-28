@@ -11,7 +11,13 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    .otp-box { display: flex; gap: 10px; justify-content: center; margin: 20px 0; }
+    .otp-box {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
     .otp-input {
       width: 48px;
       height: 52px;
@@ -20,10 +26,12 @@
       border: 2px solid #ccc;
       border-radius: 10px;
     }
+
     .otp-input:focus {
       border-color: #3b82ff;
       outline: none;
     }
+
     .resend-btn {
       margin-top: 10px;
       text-align: center;
@@ -31,6 +39,7 @@
       cursor: pointer;
       color: #3b82ff;
     }
+
     .resend-btn.disabled {
       color: gray;
       pointer-events: none;
@@ -94,7 +103,7 @@
       <p>© <span id="year"></span> ElectroStore — Toko Elektronik Online</p>
     </div>
   </footer>
-  
+
   <div id="toast"></div>
 
   <script src="script.js"></script>
@@ -111,7 +120,9 @@
         timeLeft--;
         let m = Math.floor(timeLeft / 60);
         let s = timeLeft % 60;
-        resendBtn.textContent = `Kirim ulang OTP (${m}:${s.toString().padStart(2, "0")})`;
+        resendBtn.textContent = `Kirim ulang OTP (${m}:${s
+          .toString()
+          .padStart(2, "0")})`;
         if (timeLeft <= 0) {
           clearInterval(timer);
           resendBtn.textContent = "Kirim ulang OTP";
@@ -126,11 +137,14 @@
 
       const email = localStorage.getItem("resetEmail");
 
-      const res = await fetch(`https://olshopelectronics-production-398b.up.railway.app/api/forgot-password`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email })
-      });
+      const res = await fetch(
+        `https://olshopelectronics-production-398b.up.railway.app/api/forgot-password`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        }
+      );
 
       const data = await res.json();
       if (!res.ok) return showToast("❌ " + data.message, 2500);
@@ -141,16 +155,26 @@
     };
 
     function getOTP() {
-      return inputs.map(i => i.value).join("");
+      return inputs.map((i) => i.value).join("");
+    }
+
+    /* 🔥 FUNGSI BARU — TURUNKAN KEYBOARD MOBILE */
+    function closeKeyboard() {
+      inputs.forEach((i) => i.blur());
+      document.activeElement.blur();
     }
 
     inputs.forEach((input, index) => {
       input.addEventListener("input", () => {
         if (input.value !== "" && index < 5) inputs[index + 1].focus();
-        if (getOTP().length === 6) verifyBtn.click();
+
+        if (getOTP().length === 6) {
+          closeKeyboard(); // 🔥 keyboard turun otomatis
+          setTimeout(() => verifyBtn.click(), 100);
+        }
       });
 
-      input.addEventListener("keydown", e => {
+      input.addEventListener("keydown", (e) => {
         if (e.key === "Backspace" && input.value === "" && index > 0) {
           inputs[index - 1].focus();
         }
@@ -158,25 +182,33 @@
     });
 
     verifyBtn.onclick = async () => {
+      closeKeyboard(); // 🔥 keyboard turun sebelum toast tampil
+
       const otp = getOTP();
       const email = localStorage.getItem("resetEmail");
 
-      if (otp.length < 6) return showToast("❌ Kode OTP belum lengkap!", 2000);
+      if (otp.length < 6)
+        return showToast("❌ Kode OTP belum lengkap!", 2000);
 
-      const res = await fetch(`https://olshopelectronics-production-398b.up.railway.app/api/verify-reset-code`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, code: otp })
-      });
+      const res = await fetch(
+        `https://olshopelectronics-production-398b.up.railway.app/api/verify-reset-code`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, code: otp })
+        }
+      );
 
       const data = await res.json();
       if (!res.ok) return showToast("❌ " + data.message, 2500);
 
       localStorage.setItem("resetOTP", otp);
       showToast("✔️ OTP Valid!", 1500);
-      setTimeout(() => window.location.href = "reset.html", 1200);
+
+      setTimeout(() => (window.location.href = "reset.html"), 1200);
     };
   </script>
 
 </body>
+
 </html>
