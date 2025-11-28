@@ -396,7 +396,6 @@ nav a.active {
   position: relative;
 }
 
-/* FIX — MENGHAPUS !important YANG MERUSAK LOGIN/PROFILE */
 nav a,
 #profile-btn {
   display: inline-flex;
@@ -408,7 +407,6 @@ nav a,
   padding: 6px 8px;
 }
 
-/* LOGIN NAV FIX */
 .login-nav {
   display: inline-flex;
   align-items: center;

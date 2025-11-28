@@ -48,7 +48,7 @@ function updateNavbarPhoto() {
 
   if (!email) {
     if (area) area.style.display = "none";
-    if (login) login.classList.add("hidden");
+    if (login) login.style.display = "inline-flex";
     if (navUser) navUser.textContent = "";
 
     if (bnProfile && bnProfileText) {
@@ -66,7 +66,7 @@ function updateNavbarPhoto() {
   }
 
   if (area) area.style.display = "flex";
-  if (login) login.classList.add("hidden");
+  if (login) login.style.display = "none";
 
   const displayName = username || email.split("@")[0];
   if (navUser) navUser.textContent = displayName;
