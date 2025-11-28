@@ -24,129 +24,150 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
       opacity: 0;
       transition: .3s ease;
       z-index: 99999;
     }
-    .toast.show { opacity: 1; transform: translateX(50%) translateY(0); }
-    .toast .icon { background:white;color:black;padding:3px 6px;border-radius:4px;font-weight:bold; }
-    .toast.success { background:#1a4cff; }
-    .toast.error { background:#e53935; }
-    .hidden { display:none; }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(50%) translateY(0);
+    }
+
+    .toast .icon {
+      background: white;
+      color: black;
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .toast.success {
+      background: #1a4cff;
+    }
+
+    .toast.error {
+      background: #e53935;
+    }
+
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 
-<body>
+<body class="page-checkout">
 
-<header class="site-header">
-  <div class="container header-inner">
-    <body class="page-checkout">
+  <header class="site-header">
+    <div class="container header-inner">
 
-    <div class="logo-area">
-      <img src="img/Logo-ES.png" alt="ElectroStore Logo" class="logo-img" />
-      <h1 class="logo">ElectroStore</h1>
-    </div>
-
-    <div class="right-menu">
-      <nav class="nav-links">
-        <a href="index.html"><i class="fa-solid fa-box"></i> Produk</a>
-        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Keranjang ( <span id="cart-count">0</span> )</a>
-        <a href="checkout.html" class="active"><i class="fa-solid fa-credit-card"></i> Checkout</a>
-      </nav>
-
-      <div class="profile-menu" id="profile-area" style="display:none;">
-        <button id="profile-btn">
-          <img id="nav-pfp" class="nav-pfp" src="img/default-pfp.png">
-          <span id="nav-username"></span>
-          <i class="fa-solid fa-caret-down"></i>
-        </button>
-        <div class="dropdown" id="profile-dropdown">
-          <a href="profile.html">Profil Saya</a>
-          <a href="#" id="logout-btn">Logout</a>
-        </div>
+      <div class="logo-area">
+        <img src="img/Logo-ES.png" alt="ElectroStore Logo" class="logo-img" />
+        <h1 class="logo">ElectroStore</h1>
       </div>
 
-      <a href="login.html" id="login-link" class="login-nav">
-        <i class="fa-solid fa-user"></i> Login
-      </a>
+      <div class="right-menu">
+        <nav class="nav-links">
+          <a href="index.html"><i class="fa-solid fa-box"></i> Produk</a>
+          <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Keranjang ( <span id="cart-count">0</span>
+            )</a>
+          <a href="checkout.html" class="active"><i class="fa-solid fa-credit-card"></i> Checkout</a>
+        </nav>
 
+        <div class="profile-menu" id="profile-area" style="display:none;">
+          <button id="profile-btn">
+            <img id="nav-pfp" class="nav-pfp" src="img/default-pfp.png">
+            <span id="nav-username"></span>
+            <i class="fa-solid fa-caret-down"></i>
+          </button>
+          <div class="dropdown" id="profile-dropdown">
+            <a href="profile.html">Profil Saya</a>
+            <a href="#" id="logout-btn">Logout</a>
+          </div>
+        </div>
+
+        <a href="login.html" id="login-link" class="login-nav">
+          <i class="fa-solid fa-user"></i> Login
+        </a>
+
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<main class="container">
-  <section class="hero">
-    <h2>Checkout</h2>
-    <p>Isi data pengiriman dan konfirmasi pesanan Anda.</p>
-  </section>
+  <main class="container">
+    <section class="hero">
+      <h2>Checkout</h2>
+      <p>Isi data pengiriman dan konfirmasi pesanan Anda.</p>
+    </section>
 
-  <section id="checkout-list" class="checkout-list"></section>
+    <section id="checkout-list" class="checkout-list"></section>
 
-  <div id="checkout-summary" class="checkout-summary">
-    <h3>Total: <span id="checkout-total">Rp 0</span></h3>
+    <div id="checkout-summary" class="checkout-summary">
+      <h3>Total: <span id="checkout-total">Rp 0</span></h3>
 
-    <div class="checkout-form">
-      <label for="nama">Nama Lengkap:</label>
-      <input type="text" id="nama" placeholder="Masukkan Nama Lengkap">
+      <div class="checkout-form">
+        <label for="nama">Nama Lengkap:</label>
+        <input type="text" id="nama" placeholder="Masukkan Nama Lengkap">
 
-      <label for="alamat">Alamat Lengkap:</label>
-      <textarea id="alamat" placeholder="Masukkan Alamat Lengkap"></textarea>
+        <label for="alamat">Alamat Lengkap:</label>
+        <textarea id="alamat" placeholder="Masukkan Alamat Lengkap"></textarea>
 
-      <label for="telepon">Nomor Telepon:</label>
-      <input type="text" id="telepon" placeholder="Masukkan Nomor Telepon">
+        <label for="telepon">Nomor Telepon:</label>
+        <input type="text" id="telepon" placeholder="Masukkan Nomor Telepon">
+      </div>
+
+      <button id="checkout-btn" class="btn">
+        <i class="fa-solid fa-credit-card"></i> Bayar Sekarang
+      </button>
     </div>
+  </main>
 
-    <button id="checkout-btn" class="btn">
-      <i class="fa-solid fa-credit-card"></i> Bayar Sekarang
-    </button>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> ElectroStore — Toko Elektronik Online</p>
+    </div>
+  </footer>
+
+  <div id="toastSuccess" class="toast success hidden">
+    <span class="icon">✔</span>
+    <span id="successMsg"></span>
   </div>
-</main>
 
-<footer class="site-footer">
-  <div class="container">
-    <p>© <span id="year"></span> ElectroStore — Toko Elektronik Online</p>
+  <div id="toastError" class="toast error hidden">
+    <span class="icon">⚠</span>
+    <span id="errorMsg"></span>
   </div>
-</footer>
 
-<div id="toastSuccess" class="toast success hidden">
-  <span class="icon">✔</span>
-  <span id="successMsg"></span>
-</div>
+  <div class="bottom-nav">
+    <a href="index.html" class="bn-item" id="bn-home">
+      <i class="fa-solid fa-store"></i><span>Produk</span>
+    </a>
+    <a href="cart.html" class="bn-item" id="bn-cart">
+      <i class="fa-solid fa-cart-shopping"></i><span>Keranjang</span>
+    </a>
+    <a href="checkout.html" class="bn-item" id="bn-checkout">
+      <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
+    </a>
+    <a href="profile.html" class="bn-item" id="bn-profile">
+      <i class="fa-solid fa-user"></i><span id="bn-profile-text">Akun</span>
+    </a>
+  </div>
 
-<div id="toastError" class="toast error hidden">
-  <span class="icon">⚠</span>
-  <span id="errorMsg"></span>
-</div>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("year").textContent = new Date().getFullYear();
 
-<div class="bottom-nav">
-  <a href="index.html" class="bn-item" id="bn-home">
-    <i class="fa-solid fa-store"></i><span>Produk</span>
-  </a>
-  <a href="cart.html" class="bn-item" id="bn-cart">
-    <i class="fa-solid fa-cart-shopping"></i><span>Keranjang</span>
-  </a>
-  <a href="checkout.html" class="bn-item" id="bn-checkout">
-    <i class="fa-solid fa-credit-card"></i><span>Checkout</span>
-  </a>
-  <a href="profile.html" class="bn-item" id="bn-profile">
-    <i class="fa-solid fa-user"></i><span id="bn-profile-text">Akun</span>
-  </a>
-</div>
+      const path = window.location.pathname.split("/").pop();
 
-<script src="script.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  const path = window.location.pathname.split("/").pop();
-  
-  if (path === "index.html") document.getElementById("bn-home")?.classList.add("active");
-  else if (path === "cart.html") document.getElementById("bn-cart")?.classList.add("active");
-  else if (path === "checkout.html") document.getElementById("bn-checkout")?.classList.add("active");
-  else if (path === "profile.html") document.getElementById("bn-profile")?.classList.add("active");
-});
-</script>
+      if (path === "index.html") document.getElementById("bn-home")?.classList.add("active");
+      else if (path === "cart.html") document.getElementById("bn-cart")?.classList.add("active");
+      else if (path === "checkout.html") document.getElementById("bn-checkout")?.classList.add("active");
+      else if (path === "profile.html") document.getElementById("bn-profile")?.classList.add("active");
+    });
+  </script>
 
 </body>
+
 </html>
