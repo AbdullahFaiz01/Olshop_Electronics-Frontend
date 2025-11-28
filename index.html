@@ -13,48 +13,31 @@
 
 <body class="page-shop"> 
 
-  <header class="site-header">
+ <header class="site-header">
     <div class="container header-inner">
 
-      <div class="logo-area">
-        <img src="img/Logo-ES.png" class="logo-img" alt="Logo ElectroStore">
+      <div class="logo-container">
+        <img src="img/Logo-ES.png" alt="ElectroStore Logo" class="logo-img" />
         <h1 class="logo">ElectroStore</h1>
       </div>
 
-      <div class="right-menu">
-        <nav class="nav-links">
-          <a href="index.html" class="active">
-            <i class="fa-solid fa-box"></i> Produk
-          </a>
-
-          <a href="cart.html">
-            <i class="fa-solid fa-cart-shopping"></i>
-            Keranjang ( <span id="cart-count">0</span> )
-          </a>
-
-          <a href="checkout.html">
-            <i class="fa-solid fa-credit-card"></i> Checkout
-          </a>
-        </nav>
+      <nav>
+        <a href="index.html"><i class="fa-solid fa-box"></i> Produk</a>
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Keranjang (<span id="cart-count">0</span>)</a>
+        <a href="checkout.html"><i class="fa-solid fa-credit-card"></i> Checkout</a>
 
         <div class="profile-menu" id="profile-area" style="display:none;">
           <button id="profile-btn">
-            <img id="nav-pfp" class="nav-pfp" src="img/default-pfp.png">
-            <span id="nav-username"></span>
-            <i class="fa-solid fa-caret-down"></i>
+            <i class="fa-solid fa-user"></i> Profil
           </button>
-
           <div class="dropdown" id="profile-dropdown">
             <a href="profile.html">Profil Saya</a>
-            <a href="#" id="logout-btn">Logout</a>
+            <a href="#" id="logout-nav">Logout</a>
           </div>
         </div>
 
-        <a href="login.html" id="login-link">
-          <i class="fa-solid fa-user fa-lg"></i> Login
-        </a>
-
-      </div>
+        <a href="login.html" id="login-link"><i class="fa-solid fa-user"></i> Login</a>
+      </nav>
 
     </div>
   </header>
