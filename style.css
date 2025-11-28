@@ -354,6 +354,18 @@ nav a.active {
   color: var(--muted);
 }
 
+#nav-username {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: var(--muted) !important;
+  line-height: 1 !important;
+}
+        
+#profile-btn i {
+  font-size: 16px !important;
+  color: var(--muted) !important;
+}
+
 #profile-btn:hover {
   color: var(--accent);
 }
