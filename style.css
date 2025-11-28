@@ -369,15 +369,14 @@ nav a.active {
 }
 
 nav a,
-.login-nav,
 #profile-btn {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--muted);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 8px;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  text-decoration: none !important;
+  color: var(--muted) !important;
+  font-weight: 600 !important;
+  padding: 6px 8px !important;
 }
 
 .nav-pfp {
@@ -386,6 +385,7 @@ nav a,
   border-radius: 50%;
   object-fit: cover;
 }
+
 .user-icon {
   font-size: 18px;
   width: 25px;
