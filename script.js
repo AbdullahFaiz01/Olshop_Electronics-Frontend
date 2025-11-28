@@ -361,12 +361,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const cart = loadCart();
       const email = localStorage.getItem("email");
 
-      if (!nama || !alamat || !telepon)
-        return showErrorToast("Mohon lengkapi semua data pengiriman.");
-      if (!/^[0-9]+$/.test(telepon))
-        return showErrorToast("Nomor telepon hanya boleh angka!");
-      if (telepon.length < 9)
-        return showErrorToast("Nomor telepon tidak valid!");
+      if (!nama || !alamat || !telepon) return showErrorToast("Mohon lengkapi semua data pengiriman.");
+      if (!/^[0-9]+$/.test(telepon)) return showErrorToast("Nomor telepon hanya boleh angka!");
+      if (telepon.length < 9) return showErrorToast("Nomor telepon tidak valid!");
 
       const items = cart.map(i => {
         const p = PRODUCTS.find(x => x.id === i.id);
@@ -381,8 +378,7 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify({ userEmail: email, nama, alamat, telepon, items, total })
       });
 
-      if (!res.ok)
-        return showErrorToast("Terjadi kesalahan saat membuat pesanan.");
+      if (!res.ok) return showErrorToast("Terjadi kesalahan saat membuat pesanan.");
 
       showSuccessToast("Pembayaran Berhasil! Pesanan sedang diproses…");
 
@@ -419,18 +415,38 @@ document.addEventListener("DOMContentLoaded", () => {
       drop.classList.remove("show");
     }
   });
+});
 
+function showToast(msg, duration = 5000) {
+  const t = document.getElementById("toast");
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => {
+    t.classList.remove("show");
+  }, duration);
+}
+
+function logout() {
+  localStorage.removeItem("email");
+  localStorage.removeItem("user");
+  localStorage.removeItem("photoUrl");
+  localStorage.removeItem("cart");
+  window.location.href = "login.html";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
   const email = localStorage.getItem("email");
   const profileBtn = document.getElementById("bn-profile");
   const profileText = document.getElementById("bn-profile-text");
 
-  if (profileBtn && profileText) {
-    if (!email) {
-      profileText.textContent = "Login";
-      profileBtn.href = "login.html";
-    } else {
-      profileText.textContent = "Akun";
-      profileBtn.href = "profile.html";
-    }
+  if (!profileBtn) return;
+
+  if (!email) {
+    profileText.textContent = "Login";
+    profileBtn.href = "login.html";
+  } else {
+    profileText.textContent = "Akun";
+    profileBtn.href = "profile.html";
   }
 });
