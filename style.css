@@ -778,7 +778,6 @@ nav a,
 }
 
 @media (max-width:480px) {
-
   .site-header,
   .site-footer {
     display: none !important;
@@ -874,42 +873,46 @@ nav a,
     font-size: 18px !important;
   }
 }
-body.page-shop .site-header,
-body.page-cart .site-header,
-body.page-checkout .site-header {
-  display: block !important;
-}
 
-body.page-shop .header-inner,
-body.page-cart .header-inner,
-body.page-checkout .header-inner {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  padding: 10px 15px !important;
-  flex-direction: row !important;
-}
+/* Only for mobile page-shop, page-cart, page-checkout */
+@media(max-width:480px){
+  body.page-shop .site-header,
+  body.page-cart .site-header,
+  body.page-checkout .site-header{
+    display:block !important;
+  }
 
-body.page-shop .logo-container,
-body.page-cart .logo-container,
-body.page-checkout .logo-container {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 0;
-}
+  body.page-shop .header-inner,
+  body.page-cart .header-inner,
+  body.page-checkout .header-inner{
+    display:flex !important;
+    flex-direction:row !important;
+    justify-content:space-between !important;
+    align-items:center !important;
+    padding:10px 15px !important;
+  }
 
-body.page-shop .logo-container img,
-body.page-cart .logo-container img,
-body.page-checkout .logo-container img {
-  width: 38px !important;
-  height: auto !important;
-}
+  body.page-shop .logo-container,
+  body.page-cart .logo-container,
+  body.page-checkout .logo-container{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin:0;
+  }
 
-body.page-shop .logo,
-body.page-cart .logo,
-body.page-checkout .logo {
-  font-size: 20px !important;
-  font-weight: 700 !important;
-  color: var(--accent) !important;
+  body.page-shop .logo-container img,
+  body.page-cart .logo-container img,
+  body.page-checkout .logo-container img{
+    width:38px !important;
+    height:auto !important;
+  }
+
+  body.page-shop .logo,
+  body.page-cart .logo,
+  body.page-checkout .logo{
+    font-size:20px !important;
+    font-weight:700 !important;
+    color:var(--accent) !important;
+  }
 }
