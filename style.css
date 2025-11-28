@@ -929,3 +929,12 @@ body.page-login .logo-img {
 body.page-login .logo {
   font-size: 24px !important;
 }
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .mobile-only {
+    display: flex !important;
+  }
+}

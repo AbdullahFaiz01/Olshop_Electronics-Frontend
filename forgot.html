@@ -35,7 +35,7 @@
     <div class="auth-box login-box forgot-box">
       <h2>Lupa Password</h2>
 
-      <label>Email</label>
+      <label for="forgot-email">Email</label>
       <input type="email" id="forgot-email" placeholder="Masukkan email">
 
       <button class="login-btn" id="forgot-btn">Kirim Kode</button>
@@ -54,6 +54,8 @@
 
   <script src="script.js"></script>
   <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
     document.getElementById("forgot-btn").onclick = async () => {
       const email = document.getElementById("forgot-email").value.trim();
 
