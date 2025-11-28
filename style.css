@@ -916,3 +916,16 @@ nav a,
     color:var(--accent) !important;
   }
 }
+
+body.page-login .site-header {
+  display: block !important;
+}
+
+body.page-login .logo-img {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+body.page-login .logo {
+  font-size: 24px !important;
+}
