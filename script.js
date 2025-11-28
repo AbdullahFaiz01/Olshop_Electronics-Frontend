@@ -48,7 +48,7 @@ function updateNavbarPhoto() {
 
   if (!email) {
     if (area) area.style.display = "none";
-    if (login) login.style.display = "inline-block";
+    if (login) login.classList.add("hidden");
     if (navUser) navUser.textContent = "";
 
     if (bnProfile && bnProfileText) {

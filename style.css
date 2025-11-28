@@ -396,16 +396,30 @@ nav a.active {
   position: relative;
 }
 
+/* FIX — MENGHAPUS !important YANG MERUSAK LOGIN/PROFILE */
 nav a,
-.login-nav,
 #profile-btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  text-decoration: none !important;
-  color: var(--muted) !important;
-  font-weight: 600 !important;
-  padding: 6px 8px !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 6px 8px;
+}
+
+/* LOGIN NAV FIX */
+.login-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 8px;
+}
+
+.login-nav:hover {
+  color: var(--accent);
 }
 
 .nav-pfp {
@@ -592,7 +606,7 @@ nav a,
 nav,
 nav a,
 .nav-links {
-  pointer-events: auto !important;
+  pointer-events: auto;
 }
 
 @media (max-width:992px) {
@@ -1179,36 +1193,13 @@ body.page-login .logo {
   color: var(--muted);
 }
 
-.login-nav {
-  display: inline-flex;
-  align-items: center !important;
-  gap: 6px !important;
-  line-height: 1 !important;
-}
-
 .login-nav i {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
   font-size: 18px;
-}
-
-.login-nav {
-  color: var(--muted) !important;
-  text-decoration: none !important;
-}
-
-.login-nav:hover {
-  color: var(--accent) !important;
-  text-decoration: none !important;
-}
-
-.login-nav:visited {
-  color: var(--muted) !important;
-  text-decoration: none !important;
-
 }
 
 nav a:focus,
@@ -1217,7 +1208,7 @@ nav a:focus-visible,
 .login-nav:focus,
 .login-nav:active,
 .login-nav:focus-visible {
-  outline: 2px solid #2d50ee !important;
+  outline: 2px solid #2d50ee;
   border-radius: 4px;
   background-color: rgba(45, 80, 238, 0.08);
 }
