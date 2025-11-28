@@ -961,3 +961,12 @@ body.page-login .logo {
   font-size: 16px;
   border-radius: 8px;
 }
+
+@media (max-width:480px) {
+  .checkout-list img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
