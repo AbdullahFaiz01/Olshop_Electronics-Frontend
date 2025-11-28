@@ -68,11 +68,24 @@
       </div>
 
       <div class="right-menu">
+
         <nav class="nav-links">
-          <a href="index.html"><i class="fa-solid fa-box"></i> Produk</a>
-          <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Keranjang ( <span id="cart-count">0</span>
-            )</a>
-          <a href="checkout.html" class="active"><i class="fa-solid fa-credit-card"></i> Checkout</a>
+          <a href="index.html">
+            <i class="fa-solid fa-box"></i> Produk
+          </a>
+
+          <a href="cart.html">
+            <i class="fa-solid fa-cart-shopping"></i>
+            Keranjang ( <span id="cart-count">0</span> )
+          </a>
+
+          <a href="checkout.html" class="active">
+            <i class="fa-solid fa-credit-card"></i> Checkout
+          </a>
+
+          <a href="login.html" id="login-link" class="login-nav">
+            <i class="fa-solid fa-user fa-lg"></i> Login
+          </a>
         </nav>
 
         <div class="profile-menu" id="profile-area" style="display:none;">
@@ -81,17 +94,15 @@
             <span id="nav-username"></span>
             <i class="fa-solid fa-caret-down"></i>
           </button>
+
           <div class="dropdown" id="profile-dropdown">
             <a href="profile.html">Profil Saya</a>
             <a href="#" id="logout-btn">Logout</a>
           </div>
         </div>
 
-        <a href="login.html" id="login-link" class="login-nav">
-          <i class="fa-solid fa-user"></i> Login
-        </a>
-
       </div>
+
     </div>
   </header>
 
@@ -155,10 +166,10 @@
   </div>
 
   <script src="script.js"></script>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("year").textContent = new Date().getFullYear();
-
       const path = window.location.pathname.split("/").pop();
 
       if (path === "index.html") document.getElementById("bn-home")?.classList.add("active");
