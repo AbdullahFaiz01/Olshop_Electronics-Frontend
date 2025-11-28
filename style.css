@@ -369,6 +369,7 @@ nav a.active {
 }
 
 nav a,
+.login-nav,
 #profile-btn {
   display: inline-flex !important;
   align-items: center !important;
@@ -1042,4 +1043,18 @@ body.page-login .logo { font-size: 24px !important; }
   width: 20px;
   height: 20px;
   font-size: 18px;
+}
+.login-nav {
+  color: var(--muted) !important;
+  text-decoration: none !important;
+}
+
+.login-nav:hover {
+  color: var(--accent) !important;
+  text-decoration: none !important;
+}
+
+.login-nav:visited {
+  color: var(--muted) !important;
+  text-decoration: none !important;
 }
