@@ -205,6 +205,7 @@ nav a.active {
   align-items: center;
   margin: 0 auto;
 }
+
 .checkout-form label {
   font-weight: 600;
   color: #333;
@@ -324,19 +325,12 @@ nav a.active {
   font-weight: 600;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 3px;
   padding: 4px 6px;
   color: var(--muted);
 }
 
 #profile-btn:hover { color: var(--accent); }
-
-#profile-btn img {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  object-fit: cover;
-}
 
 .dropdown {
   position: absolute;
@@ -374,19 +368,16 @@ nav a.active {
   position: relative;
 }
 
-.login-nav {
-  display: inline-flex !important;
-  align-items: center;
-  gap: 6px;
+nav a,
+.login-nav,
+#profile-btn {
+  font-size: 16px;
   font-weight: 600;
   color: var(--muted);
-  text-decoration: none !important;
-  padding: 8px 10px !important;
-  line-height: 1 !important;
-}
-
-.login-nav i {
-  font-size: 18px !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
 }
 
 .nav-pfp {
@@ -395,6 +386,7 @@ nav a.active {
   border-radius: 50%;
   object-fit: cover;
 }
+
 .empty-cart-box {
   width: 100%;
   max-width: 420px;
@@ -439,12 +431,19 @@ nav a.active {
   transform: translateY(-2px);
 }
 
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in { animation: slideIn 0.5s ease forwards; }
+
 #toast {
   position: fixed;
   top: 20px;
   left: 50%;
   transform: translate(-50%, -20px);
-  background: var(--accent);
+  background: #2d50ee;
   color: white;
   padding: 16px 28px;
   border-radius: 12px;
@@ -493,12 +492,356 @@ nav a.active {
   font-size: 18px;
 }
 
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+}
+
+.confirm-content {
+  background: white;
+  padding: 25px;
+  width: 300px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.confirm-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-yes {
+  background: #2d50ee;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-no {
+  background: #ddd;
+  color: #333;
+  padding: 8px 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-yes:hover { background: #1e34a9; }
+.btn-no:hover { background: #ccc; }
+
+nav,
+nav a,
+.nav-links { pointer-events: auto !important; }
+
+@media (max-width:992px) {
+  .container { width: 90%; }
+}
+
+@media (max-width:768px) {
+  .header-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  #product-list {
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+  }
+  .card img { height: 140px; }
+  .login-box {
+    width: 90%;
+    padding: 20px;
+  }
+  .card.checkout-item,
+  #cart-list .card {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+  #cart-list img,
+  .checkout-item img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width:480px) {
+  body { font-size: 14px; }
+  h1, h2, h3 { font-size: 18px; }
+  .container { width: 95%; }
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 0;
+    gap: 6px;
+  }
+  .logo-img {
+    width: 42px;
+    height: 42px;
+  }
+  .logo { font-size: 22px; }
+  .right-menu {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .nav-links a {
+    font-size: 13px;
+    gap: 4px;
+    padding: 6px 4px;
+  }
+  #product-list {
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+  }
+  .card img { height: 120px; }
+  .btn,
+  .login-btn,
+  input,
+  textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+  #checkout-summary { padding: 15px; }
+  #toast {
+    width: 90%;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width:480px) {
+  .site-header { padding: 8px 0; }
+  .header-inner {
+    gap: 4px;
+    padding: 6px 0 !important;
+  }
+  .logo-img {
+    width: 36px;
+    height: 36px;
+  }
+  .logo { font-size: 20px; }
+  nav a,
+  .nav-links,
+  #profile-area,
+  .login-nav {
+    display: none !important;
+  }
+}
+
+@media (max-width:350px) {
+  .otp-input {
+    width: 32px;
+    height: 38px;
+  }
+  .card img { height: 100px; }
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  display: none;
+  justify-content: space-around;
+  padding: 8px 0;
+  z-index: 9999;
+}
+
+.bottom-nav .bn-item {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.bottom-nav .bn-item i { font-size: 18px; }
+
+.bottom-nav .bn-item.active,
+.bottom-nav .bn-item:hover {
+  color: var(--accent);
+}
+
+@media (max-width:768px) {
+  .bottom-nav { display: flex; }
+  body { padding-bottom: 70px !important; }
+}
+
+@media (max-width:480px) {
+  nav a,
+  #profile-area,
+  #login-link,
+  .profile-menu { display: none !important; }
+  .header-inner {
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px 0 !important;
+  }
+  .logo-img {
+    width: 38px;
+    height: 38px;
+  }
+  .logo { font-size: 20px; }
+}
+
+#bn-profile-text { display: block !important; }
+
 .auth-container {
   max-width: 420px;
   width: 100%;
   margin: 40px auto;
   padding: 20px;
 }
+
+@media (max-width:480px) {
+  .site-header,
+  .site-footer { display: none !important; }
+  .login-section,
+  .auth-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 40px 20px 80px 20px !important;
+    margin: 0 !important;
+    min-height: 100vh !important;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: #fff !important;
+    flex-direction: column;
+  }
+  .login-box,
+  .auth-box,
+  .register-box,
+  .forgot-box,
+  .verify-box,
+  .reset-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    padding: 25px 0 0 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+  }
+  .login-box h2,
+  .auth-box h2 {
+    font-size: 26px !important;
+    margin-bottom: 20px !important;
+    text-align: left !important;
+    font-weight: 700 !important;
+  }
+  .login-box input,
+  .auth-box input {
+    height: 50px !important;
+    font-size: 16px !important;
+    background: #fafafa !important;
+    border-radius: 8px !important;
+  }
+  .login-btn {
+    height: 50px !important;
+    width: 100% !important;
+    font-size: 16px !important;
+    border-radius: 8px !important;
+    margin-top: 10px !important;
+  }
+  .login-footer {
+    text-align: left !important;
+    font-size: 14px !important;
+    margin-top: 10px !important;
+  }
+  .login-footer a {
+    color: #0d6efd !important;
+    font-weight: 600 !important;
+  }
+  .auth-logo-wrapper {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto 24px auto;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+  }
+  .auth-logo-wrapper img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+  }
+}
+
+@media (max-width:350px) {
+  .otp-input {
+    width: 34px !important;
+    height: 40px !important;
+    font-size: 18px !important;
+  }
+}
+
+@media(max-width:480px){
+  body.page-shop .site-header,
+  body.page-cart .site-header,
+  body.page-checkout .site-header { display:block !important; }
+  body.page-shop .header-inner,
+  body.page-cart .header-inner,
+  body.page-checkout .header-inner {
+    display:flex !important;
+    flex-direction:row !important;
+    justify-content:space-between !important;
+    align-items:center !important;
+    padding:10px 15px !important;
+  }
+  body.page-shop .logo-container,
+  body.page-cart .logo-container,
+  body.page-checkout .logo-container {
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin:0;
+  }
+  body.page-shop .logo-container img,
+  body.page-cart .logo-container img,
+  body.page-checkout .logo-container img {
+    width:38px !important;
+    height:auto !important;
+  }
+  body.page-shop .logo,
+  body.page-cart .logo,
+  body.page-checkout .logo {
+    font-size:20px !important;
+    font-weight:700 !important;
+    color:var(--accent) !important;
+  }
+}
+
+body.page-login .site-header { display: block !important; }
+
+body.page-login .logo-img {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+body.page-login .logo { font-size: 24px !important; }
 
 .mobile-only { display: none; }
 
