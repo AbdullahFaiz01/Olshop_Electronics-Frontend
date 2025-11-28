@@ -1018,3 +1018,13 @@ body.page-login .logo { font-size: 24px !important; }
 
   .otp-input:focus { border-color: #4d7cff !important; }
 }
+
+.user-icon {
+  font-size: 16px !important;   
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--muted);
+}
