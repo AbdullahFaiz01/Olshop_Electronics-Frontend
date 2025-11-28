@@ -325,6 +325,7 @@ nav a.active {
   text-decoration: none;
   font-weight: 600;
 }
+
 .site-footer {
   text-align: center;
   color: var(--muted);
@@ -576,6 +577,7 @@ nav a,
     width: 90%;
   }
 }
+
 @media (max-width:768px) {
   .header-inner {
     flex-direction: column;
@@ -743,26 +745,22 @@ nav a,
   }
 }
 
-@media (max-width: 480px) {
-
+@media (max-width:480px) {
   nav a,
   #profile-area,
   #login-link,
   .profile-menu {
     display: none !important;
   }
-
   .header-inner {
     flex-direction: column;
     gap: 4px;
     padding: 6px 0 !important;
   }
-
   .logo-img {
     width: 38px;
     height: 38px;
   }
-
   .logo {
     font-size: 20px;
   }
@@ -779,94 +777,10 @@ nav a,
   padding: 20px;
 }
 
-@media (max-width: 480px) {
-  .auth-container {
-    margin-top: 80px !important;
-    margin-bottom: 80px !important;
-    padding: 22px !important;
-  }
+/* MOBILE AUTH LAYOUT + LOGO */
+@media (max-width:480px) {
 
-  .login-box, .auth-box {
-    width: 100% !important;
-    padding: 22px !important;
-    border-radius: 14px !important;
-  }
-
-  .login-box input,
-  .auth-box input {
-    height: 48px;
-    font-size: 15px;
-  }
-
-  .login-btn {
-    height: 48px;
-    font-size: 16px;
-    margin-top: 10px;
-  }
-
-  h2 {
-    font-size: 22px !important;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-}
-@media (max-width: 480px) {
-
-  .site-header {
-    display: none !important;
-  }
-
-  .auth-container {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 20px !important;
-    min-height: 100vh !important;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .auth-box,
-  .login-box,
-  .register-box,
-  .forgot-box,
-  .reset-box {
-    width: 100% !important;
-    max-width: 100% !important;
-    border-radius: 0 !important;
-    padding: 30px 20px !important;
-    box-shadow: none !important;
-  }
-
-  .auth-box h2 {
-    font-size: 24px !important;
-    text-align: center !important;
-    margin-bottom: 25px !important;
-  }
-
-  .auth-box input {
-    height: 48px !important;
-    font-size: 16px !important;
-  }
-
-  .auth-box button,
-  .login-btn {
-    height: 48px !important;
-    font-size: 16px !important;
-  }
-
-  .site-footer {
-    display: none !important;
-  }
-}
-@media (max-width: 480px) {
-
-  .site-header {
-    display: none !important;
-  }
-
+  .site-header,
   .site-footer {
     display: none !important;
   }
@@ -875,110 +789,14 @@ nav a,
   .auth-container {
     width: 100% !important;
     max-width: 100% !important;
-    padding: 40px 0 80px 0 !important; 
-    margin: 0 !important;
-    min-height: 100vh !important;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-
-  .login-box,
-  .auth-box,
-  .forgot-box,
-  .verify-box,
-  .reset-box {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-    padding: 25px 20px !important; /* Full kiri-kanan */
-    box-shadow: none !important;
-    background: #fff !important;
-  }
-
-  .login-box h2,
-  .auth-box h2 {
-    font-size: 24px !important;
-    margin-bottom: 25px !important;
-    text-align: left !important;
-  }
-
-  .login-box input,
-  .auth-box input {
-    height: 48px !important;
-    font-size: 16px !important;
-  }
-
-  .login-btn {
-    height: 48px !important;
-    font-size: 16px !important;
-    width: 100% !important;
-    margin-top: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .site-header {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    padding: 14px 0 !important;
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 9999;
-  }
-
-  .header-inner {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    width: 100%;
-  }
-
-  nav,
-  nav a,
-  #profile-area,
-  .profile-menu,
-  .login-nav {
-    display: none !important;
-  }
-
-  .logo-area,
-  .logo-container {
-    justify-content: center !important;
-    width: 100%;
-  }
-
-  .logo-img {
-    width: 60px !important;
-    height: 60px !important;
-    object-fit: cover;
-  }
-
-  .logo {
-    display: none !important;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .login-section,
-  .auth-container {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 120px 20px 80px 20px !important;
+    padding: 40px 20px 80px 20px !important;
     margin: 0 !important;
     min-height: 100vh !important;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     background: #fff !important;
+    flex-direction: column;
   }
 
   .login-box,
@@ -991,7 +809,7 @@ nav a,
     max-width: 100% !important;
     margin: 0 !important;
     border-radius: 0 !important;
-    padding: 25px 20px !important;
+    padding: 25px 0 0 0 !important;
     box-shadow: none !important;
     background: #fff !important;
   }
@@ -1030,9 +848,27 @@ nav a,
     color: #0d6efd !important;
     font-weight: 600 !important;
   }
+
+  .auth-logo-wrapper {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto 24px auto;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+  }
+
+  .auth-logo-wrapper img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+  }
 }
 
-@media (max-width: 350px) {
+@media (max-width:350px) {
   .otp-input {
     width: 34px !important;
     height: 40px !important;
