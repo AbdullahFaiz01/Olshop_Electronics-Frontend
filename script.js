@@ -13,8 +13,6 @@ const PRODUCTS = [
   { id: 10, title: "Router WiFi TP-Link AC1200", price: 599000, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSULkC6or6Oj8ZycP43uLYjIFUBegYKsNgy0g&s" }
 ];
 
-const DEFAULT_ICON = "img/default-pfp.png";
-
 const formatIDR = n => "Rp " + n.toLocaleString("id-ID");
 const loadCart = () => JSON.parse(localStorage.getItem("cart") || "[]");
 const saveCart = c => localStorage.setItem("cart", JSON.stringify(c));
@@ -48,7 +46,6 @@ function updateNavbarPhoto() {
   if (!email) {
     if (area) area.style.display = "none";
     if (login) login.style.display = "inline-block";
-    if (navPfp) navPfp.src = DEFAULT_ICON;
     if (navUser) navUser.textContent = "";
     return;
   }
@@ -56,7 +53,14 @@ function updateNavbarPhoto() {
   if (area) area.style.display = "flex";
   if (login) login.style.display = "none";
   if (navUser) navUser.textContent = username || email.split("@")[0];
-  if (navPfp) navPfp.src = savedPhoto || DEFAULT_ICON;
+
+  if (navPfp) {
+    if (savedPhoto) {
+      navPfp.outerHTML = `<img id="nav-pfp" class="nav-pfp" src="${savedPhoto}">`;
+    } else {
+      navPfp.outerHTML = `<i id="nav-pfp" class="fa-solid fa-user user-icon"></i>`;
+    }
+  }
 }
 
 async function fetchNavbarUser() {
@@ -71,13 +75,9 @@ async function fetchNavbarUser() {
 
     if (data.username) localStorage.setItem("user", data.username);
     if (data.photoUrl) localStorage.setItem("photoUrl", data.photoUrl);
-
-    const navPfp = document.getElementById("nav-pfp");
-    const navUser = document.getElementById("nav-username");
-
-    if (navUser) navUser.textContent = data.username;
-    if (navPfp) navPfp.src = data.photoUrl || DEFAULT_ICON;
-  } catch {}
+    else localStorage.removeItem("photoUrl");
+      updateNavbarPhoto();
+  } catch { }
 }
 
 function addToCart(id) {
