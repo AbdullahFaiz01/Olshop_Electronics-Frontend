@@ -43,22 +43,58 @@ function updateNavbarPhoto() {
   const navPfp = document.getElementById("nav-pfp");
   const navUser = document.getElementById("nav-username");
 
+  const bnProfile = document.getElementById("bn-profile");
+  const bnProfileText = document.getElementById("bn-profile-text");
+
   if (!email) {
     if (area) area.style.display = "none";
     if (login) login.style.display = "inline-block";
     if (navUser) navUser.textContent = "";
+
+    if (bnProfile && bnProfileText) {
+      bnProfile.href = "login.html";
+      bnProfileText.textContent = "Login";
+      const iconEl = bnProfile.querySelector("i, img");
+      if (iconEl) {
+        iconEl.outerHTML = '<i class="fa-solid fa-user"></i>';
+      } else {
+        bnProfile.insertAdjacentHTML("afterbegin", '<i class="fa-solid fa-user"></i>');
+      }
+    }
+
     return;
   }
 
   if (area) area.style.display = "flex";
   if (login) login.style.display = "none";
-  if (navUser) navUser.textContent = username || email.split("@")[0];
+
+  const displayName = username || email.split("@")[0];
+  if (navUser) navUser.textContent = displayName;
 
   if (navPfp) {
     if (savedPhoto) {
       navPfp.outerHTML = `<img id="nav-pfp" class="nav-pfp" src="${savedPhoto}">`;
     } else {
       navPfp.outerHTML = `<i id="nav-pfp" class="fa-solid fa-user user-icon"></i>`;
+    }
+  }
+
+  if (bnProfile && bnProfileText) {
+    bnProfile.href = "profile.html";
+    bnProfileText.textContent = displayName;
+    const existingIcon = bnProfile.querySelector("i, img");
+    if (savedPhoto) {
+      if (existingIcon) {
+        existingIcon.outerHTML = `<img class="nav-pfp" src="${savedPhoto}">`;
+      } else {
+        bnProfile.insertAdjacentHTML("afterbegin", `<img class="nav-pfp" src="${savedPhoto}">`);
+      }
+    } else {
+      if (existingIcon) {
+        existingIcon.outerHTML = '<i class="fa-solid fa-user"></i>';
+      } else {
+        bnProfile.insertAdjacentHTML("afterbegin", '<i class="fa-solid fa-user"></i>');
+      }
     }
   }
 }
@@ -76,8 +112,8 @@ async function fetchNavbarUser() {
     if (data.username) localStorage.setItem("user", data.username);
     if (data.photoUrl) localStorage.setItem("photoUrl", data.photoUrl);
     else localStorage.removeItem("photoUrl");
-      updateNavbarPhoto();
-  } catch { }
+    updateNavbarPhoto();
+  } catch {}
 }
 
 function addToCart(id) {
@@ -436,17 +472,5 @@ function logout() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const email = localStorage.getItem("email");
-  const profileBtn = document.getElementById("bn-profile");
-  const profileText = document.getElementById("bn-profile-text");
-
-  if (!profileBtn) return;
-
-  if (!email) {
-    profileText.textContent = "Login";
-    profileBtn.href = "login.html";
-  } else {
-    profileText.textContent = "Akun";
-    profileBtn.href = "profile.html";
-  }
+  updateNavbarPhoto();
 });
