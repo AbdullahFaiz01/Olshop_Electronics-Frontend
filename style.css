@@ -782,7 +782,6 @@ nav a,
   .site-footer {
     display: none !important;
   }
-
   .login-section,
   .auth-container {
     width: 100% !important;
@@ -796,7 +795,6 @@ nav a,
     background: #fff !important;
     flex-direction: column;
   }
-
   .login-box,
   .auth-box,
   .register-box,
@@ -811,7 +809,6 @@ nav a,
     box-shadow: none !important;
     background: #fff !important;
   }
-
   .login-box h2,
   .auth-box h2 {
     font-size: 26px !important;
@@ -819,7 +816,6 @@ nav a,
     text-align: left !important;
     font-weight: 700 !important;
   }
-
   .login-box input,
   .auth-box input {
     height: 50px !important;
@@ -827,7 +823,6 @@ nav a,
     background: #fafafa !important;
     border-radius: 8px !important;
   }
-
   .login-btn {
     height: 50px !important;
     width: 100% !important;
@@ -835,18 +830,15 @@ nav a,
     border-radius: 8px !important;
     margin-top: 10px !important;
   }
-
   .login-footer {
     text-align: left !important;
     font-size: 14px !important;
     margin-top: 10px !important;
   }
-
   .login-footer a {
     color: #0d6efd !important;
     font-weight: 600 !important;
   }
-
   .auth-logo-wrapper {
     width: 96px;
     height: 96px;
@@ -858,7 +850,6 @@ nav a,
     margin: 10px auto 24px auto;
     box-shadow: 0 3px 12px rgba(0,0,0,0.12);
   }
-
   .auth-logo-wrapper img {
     width: 80%;
     height: 80%;
@@ -874,14 +865,12 @@ nav a,
   }
 }
 
-/* Only for mobile page-shop, page-cart, page-checkout */
 @media(max-width:480px){
   body.page-shop .site-header,
   body.page-cart .site-header,
   body.page-checkout .site-header{
     display:block !important;
   }
-
   body.page-shop .header-inner,
   body.page-cart .header-inner,
   body.page-checkout .header-inner{
@@ -891,7 +880,6 @@ nav a,
     align-items:center !important;
     padding:10px 15px !important;
   }
-
   body.page-shop .logo-container,
   body.page-cart .logo-container,
   body.page-checkout .logo-container{
@@ -900,14 +888,12 @@ nav a,
     gap:6px;
     margin:0;
   }
-
   body.page-shop .logo-container img,
   body.page-cart .logo-container img,
   body.page-checkout .logo-container img{
     width:38px !important;
     height:auto !important;
   }
-
   body.page-shop .logo,
   body.page-cart .logo,
   body.page-checkout .logo{
@@ -929,6 +915,7 @@ body.page-login .logo-img {
 body.page-login .logo {
   font-size: 24px !important;
 }
+
 .mobile-only {
   display: none;
 }
@@ -937,4 +924,40 @@ body.page-login .logo {
   .mobile-only {
     display: flex !important;
   }
+}
+.reset-box {
+  background: #fff;
+  padding: 30px 30px 35px 30px;
+  border-radius: 22px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 420px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reset-box h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.reset-box input {
+  width: 100%;
+  height: 46px;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+}
+
+.reset-box .login-btn {
+  width: 100%;
+  height: 48px;
+  font-size: 16px;
+  border-radius: 8px;
 }

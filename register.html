@@ -126,10 +126,12 @@
           return;
         }
 
-        showToast("🎉 Registrasi Berhasil!\nSilakan login.", 4000);
+        showToast("🎉 Registrasi Berhasil!\nSilakan login.", 3500);
 
         if (res.ok && data.message === "Registrasi berhasil!") {
-          window.location.href = "login.html";
+          setTimeout(() => {
+            window.location.href = "login.html";
+          }, 2500);
         }
       });
 
