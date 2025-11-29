@@ -1325,3 +1325,93 @@ nav a:focus-visible,
   font-family: "Times New Roman", Times, serif !important;
   line-height: 1.1;
 }
+
+/* ======= MOBILE FULLSCREEN STYLE (SEPERTI CODASHOP) ======= */
+@media (max-width: 480px) {
+
+  /* Hilangkan header di mobile */
+  .site-header {
+    display: none !important;
+  }
+
+  /* Hilangkan footer biar full-screen */
+  .site-footer {
+    display: none !important;
+  }
+
+  /* Atur container biar full, tanpa margin */
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 10px 12px !important;
+    margin: 0 !important;
+  }
+
+  /* Hapus spacing hero */
+  .hero {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  /* Search box rapat ke atas seperti Codashop */
+  .search-box {
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+    width: 100% !important;
+  }
+
+  /* Judul & subjudul lebih padat */
+  .hero h2 {
+    font-size: 22px !important;
+    margin: 10px 0 5px 0 !important;
+  }
+
+  .hero p {
+    font-size: 14px !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* Produk tampil seperti Codashop (kotak lebih besar & rapat) */
+  #product-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .card {
+    border-radius: 14px !important;
+    padding: 10px !important;
+  }
+
+  .card img {
+    height: 150px !important;
+    border-radius: 12px !important;
+  }
+
+  .card h3 {
+    font-size: 14px !important;
+    margin-top: 8px !important;
+    height: auto !important;
+  }
+
+  .card p {
+    font-size: 13px !important;
+  }
+
+  .card .btn {
+    width: 100% !important;
+    font-size: 13px !important;
+    padding: 10px !important;
+  }
+
+  /* Bottom nav tetap & rapi */
+  .bottom-nav {
+    display: flex !important;
+    padding: 10px 0 !important;
+    border-top: 1px solid #ddd !important;
+  }
+
+  .bottom-nav .bn-item span {
+    font-size: 13px !important;
+  }
+}
