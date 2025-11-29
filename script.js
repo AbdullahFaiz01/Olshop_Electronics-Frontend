@@ -41,8 +41,15 @@ function updateCartCount() {
 function updateNavbarPhoto() {
   const isMobile = window.innerWidth <= 768;
   if (isMobile) {
+    const bnProfile = document.getElementById("bn-profile");
+    if (bnProfile) {
+      const dupIcons = bnProfile.querySelectorAll("img.nav-pfp, i.fa-user");
+      dupIcons.forEach((el, index) => {
+        if (index > 0) el.remove(); 
+      });
+    }
   }
-  
+
   const email = localStorage.getItem("email");
   const username = localStorage.getItem("user");
   const savedPhoto = localStorage.getItem("photoUrl");
