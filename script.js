@@ -39,6 +39,7 @@ function updateCartCount() {
 }
 
 function updateNavbarPhoto() {
+  const isMobile = window.innerWidth <= 768;
   const email = localStorage.getItem("email");
   const username = localStorage.getItem("user");
   const savedPhoto = localStorage.getItem("photoUrl");
@@ -70,8 +71,8 @@ function updateNavbarPhoto() {
     return;
   }
 
-  if (area) area.style.display = "flex";
-  if (login) login.style.display = "none";
+  if (area && !isMobile) area.style.display = "flex";
+  if (login && !isMobile) login.style.display = "none";
 
   const displayName = username || email.split("@")[0];
   if (navUser) navUser.textContent = displayName;
@@ -79,7 +80,9 @@ function updateNavbarPhoto() {
   const pfpWrapper = document.getElementById("nav-pfp-wrapper");
   if (pfpWrapper) {
     if (savedPhoto) {
-      pfpWrapper.innerHTML = `<img class="nav-pfp" src="${savedPhoto}">`;
+      if (!isMobile) {
+        pfpWrapper.innerHTML = `<img class="nav-pfp" src="${savedPhoto}">`;
+      }
     } else {
       pfpWrapper.innerHTML = `<i class="fa-solid fa-user user-icon"></i>`;
     }
@@ -93,7 +96,9 @@ function updateNavbarPhoto() {
       if (existingIcon) {
         existingIcon.outerHTML = `<img class="nav-pfp" src="${savedPhoto}">`;
       } else {
-        bnProfile.insertAdjacentHTML("afterbegin", `<img class="nav-pfp" src="${savedPhoto}">`);
+        if (!isMobile) {
+          bnProfile.insertAdjacentHTML("afterbegin", `<img class="nav-pfp" src="${savedPhoto}">`);
+        }
       }
     } else {
       if (existingIcon) {
