@@ -40,6 +40,9 @@ function updateCartCount() {
 
 function updateNavbarPhoto() {
   const isMobile = window.innerWidth <= 768;
+  if (isMobile) {
+  }
+  
   const email = localStorage.getItem("email");
   const username = localStorage.getItem("user");
   const savedPhoto = localStorage.getItem("photoUrl");
