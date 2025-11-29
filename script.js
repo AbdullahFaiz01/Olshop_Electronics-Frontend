@@ -10,7 +10,12 @@ const PRODUCTS = [
   { id: 7, title: "Monitor Gaming 24 inci 144Hz", price: 1990000, img: "https://technokomputerbali.com/img/item/210930154041.jpg" },
   { id: 8, title: "Webcam HD 1080p", price: 299000, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdNOIPxq9CVldN-J2_owXndbXCZS6T4oGJrQ&s" },
   { id: 9, title: "Power Bank Anker 10000mAh", price: 399000, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTswxIfbxMBJ6O1NV7uby6h5IKwE7hEtV4CbA&s" },
-  { id: 10, title: "Router WiFi TP-Link AC1200", price: 599000, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSULkC6or6Oj8ZycP43uLYjIFUBegYKsNgy0g&s" }
+  { id: 10, title: "Router WiFi TP-Link AC1200", price: 599000, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSULkC6or6Oj8ZycP43uLYjIFUBegYKsNgy0g&s" },
+  { id: 11, title: "SSD Samsung 1TB", price: 1299000, img: "https://down-id.img.susercontent.com/file/id-11134207-81ztj-medrcnj8bsau3c" },
+  { id: 12, title: "Kamera Aksi GoPro Hero 9", price: 3499000, img: "https://sewakameramedan.id/public/uploads/all/VPMtHmxhmFBvDgEdL79Sc545BWHMUjQZWScPmMD1.jpg" },
+  {id: 13, title: "Tablet Samsung Galaxy Tab A7", price: 2999000, img: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/104/MTA-142754369/samsung_samsung_galaxy_tab_a7_lite_full01_l6ua7u1a.jpg" },
+  {id: 14, title: "Smartphone Xiaomi Redmi Note 10", price: 2499000, img: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//106/MTA-36397744/xiaomi_xiaomi_-_redmi_note_10_pro_kapasitas_6gb-128gb_dan_8gb-128gb_-__garansi_resmi_full06_br8tqoi1.jpg" },
+  {id: 15, title: "Earbuds True Wireless QCY T13", price: 399000, img: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/97/MTA-183079202/br-m036969-12766_tws-qcy-t13-anc-tws-wireless-earbuds-original_full01-2e52304a.webp" }
 ];
 
 const formatIDR = n => "Rp " + n.toLocaleString("id-ID");

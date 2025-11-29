@@ -1266,3 +1266,14 @@ nav a:focus-visible,
   object-fit: cover !important;
   border-radius: 50% !important;
 }
+#profile-btn,
+#profile-btn * {
+  font-family: "Times New Roman", Times, serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: var(--muted) !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+}
