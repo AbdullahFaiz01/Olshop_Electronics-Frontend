@@ -1284,3 +1284,24 @@ nav a:focus-visible,
   font-size: 13px !important;
   color: var(--muted) !important;
 }
+
+
+@media (max-width:768px) {
+  nav,
+  nav a,
+  .nav-links,
+  #profile-area,
+  .profile-menu,
+  .login-nav,
+  #login-link,
+  #profile-btn,
+  #nav-username,
+  .nav-pfp,
+  .user-icon {
+    display:none !important;
+    visibility:hidden !important;
+    opacity:0 !important;
+    pointer-events:none !important;
+    height:0 !important;
+  }
+}
