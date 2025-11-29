@@ -1234,18 +1234,9 @@ nav a:focus-visible,
   border-radius: 4px;
   background-color: rgba(45, 80, 238, 0.08);
 }
-/* Samakan style icon user dengan nav kiri */
-#nav-pfp,
-.user-icon {
-  font-size: 16px !important;
-  color: var(--muted) !important;
-  width: 20px !important;
-  height: 20px !important;
-  display: inline-flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-}
 
+#profile-btn span,
+#profile-btn #nav-username,
 #nav-username,
 .login-nav,
 #bn-profile-text {
@@ -1255,21 +1246,8 @@ nav a:focus-visible,
   line-height: 1 !important;
 }
 
-.nav-pfp {
-  width: 22px !important;
-  height: 22px !important;
-  border-radius: 50% !important;
-  object-fit: cover !important;
-}
-
-#profile-btn span,
-#profile-btn #nav-username {
-  font-size: 15px !important;
-  font-weight: 600 !important;
-  color: var(--muted) !important;
-  line-height: 1 !important;
-}
-
+#nav-pfp,
+.user-icon,
 #profile-btn i.fa-user,
 #nav-pfp.fa-user,
 .user-icon.fa-user {
@@ -1280,4 +1258,11 @@ nav a:focus-visible,
   display: inline-flex !important;
   justify-content: center !important;
   align-items: center !important;
+}
+
+.nav-pfp {
+  width: 22px !important;
+  height: 22px !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
 }

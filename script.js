@@ -48,7 +48,7 @@ function updateNavbarPhoto() {
 
   if (!email) {
     if (area) area.style.display = "none";
-    if (login) login.style.display = "inline-flex";
+    if (login) login.style.display = "inline-block";
     if (navUser) navUser.textContent = "";
 
     if (bnProfile && bnProfileText) {
@@ -470,7 +470,3 @@ function logout() {
   localStorage.removeItem("cart");
   window.location.href = "login.html";
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  updateNavbarPhoto();
-});
