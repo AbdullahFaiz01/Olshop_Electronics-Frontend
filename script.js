@@ -40,83 +40,46 @@ function updateCartCount() {
 
 function updateNavbarPhoto() {
   const isMobile = window.innerWidth <= 768;
-  if (isMobile) {
-    const bnProfile = document.getElementById("bn-profile");
-    if (bnProfile) {
-      const dupIcons = bnProfile.querySelectorAll("img.nav-pfp, i.fa-user");
-      dupIcons.forEach((el, index) => {
-        if (index > 0) el.remove(); 
-      });
-    }
-  }
-
   const email = localStorage.getItem("email");
   const username = localStorage.getItem("user");
   const savedPhoto = localStorage.getItem("photoUrl");
 
   const area = document.getElementById("profile-area");
   const login = document.getElementById("login-link");
-  const navPfp = document.getElementById("nav-pfp");
   const navUser = document.getElementById("nav-username");
+  const pfpWrapper = document.getElementById("nav-pfp-wrapper");
 
   const bnProfile = document.getElementById("bn-profile");
   const bnProfileText = document.getElementById("bn-profile-text");
 
-  if (!email) {
-    if (area) area.style.display = "none";
-    if (login) login.style.display = "inline-block";
-    if (navUser) navUser.textContent = "";
-
-    if (bnProfile && bnProfileText) {
+  if (isMobile) {
+    if (!email) {
       bnProfile.href = "login.html";
       bnProfileText.textContent = "Login";
-      const iconEl = bnProfile.querySelector("i, img");
-      if (iconEl) {
-        iconEl.outerHTML = '<i class="fa-solid fa-user"></i>';
-      } else {
-        bnProfile.insertAdjacentHTML("afterbegin", '<i class="fa-solid fa-user"></i>');
-      }
+    } else {
+      bnProfile.href = "profile.html";
+      bnProfileText.textContent = "Profil";
     }
-
     return;
   }
 
-  if (area && !isMobile) area.style.display = "flex";
-  if (login && !isMobile) login.style.display = "none";
-
-  const displayName = username || email.split("@")[0];
-  if (navUser) navUser.textContent = displayName;
-
-  const pfpWrapper = document.getElementById("nav-pfp-wrapper");
-  if (pfpWrapper) {
-    if (savedPhoto) {
-      if (!isMobile) {
-        pfpWrapper.innerHTML = `<img class="nav-pfp" src="${savedPhoto}">`;
-      }
-    } else {
-      pfpWrapper.innerHTML = `<i class="fa-solid fa-user user-icon"></i>`;
-    }
+  if (!email) {
+    area.style.display = "none";
+    login.style.display = "inline-block";
+    navUser.textContent = "";
+    return;
   }
 
-  if (bnProfile && bnProfileText) {
-    bnProfile.href = "profile.html";
-    bnProfileText.textContent = displayName;
-    const existingIcon = bnProfile.querySelector(".nav-pfp");
-    if (savedPhoto) {
-      if (existingIcon) {
-        existingIcon.outerHTML = `<img class="nav-pfp" src="${savedPhoto}">`;
-      } else {
-        if (!isMobile) {
-          bnProfile.insertAdjacentHTML("afterbegin", `<img class="nav-pfp" src="${savedPhoto}">`);
-        }
-      }
-    } else {
-      if (existingIcon) {
-        existingIcon.outerHTML = '<i class="fa-solid fa-user"></i>';
-      } else {
-        bnProfile.insertAdjacentHTML("afterbegin", '<i class="fa-solid fa-user"></i>');
-      }
-    }
+  area.style.display = "flex";
+  login.style.display = "none";
+
+  const displayName = username || email.split("@")[0];
+  navUser.textContent = displayName;
+
+  if (savedPhoto) {
+    pfpWrapper.innerHTML = `<img class="nav-pfp" src="${savedPhoto}">`;
+  } else {
+    pfpWrapper.innerHTML = `<i class="fa-solid fa-user user-icon"></i>`;
   }
 }
 
@@ -127,25 +90,19 @@ async function fetchNavbarUser() {
   try {
     const res = await fetch(`${API}/api/user/${encodeURIComponent(email)}`);
     if (!res.ok) return;
-
     const data = await res.json();
-
     if (data.username) localStorage.setItem("user", data.username);
     if (data.photoUrl) localStorage.setItem("photoUrl", data.photoUrl);
-    else localStorage.removeItem("photoUrl");
     updateNavbarPhoto();
-  } catch { }
+  } catch {}
 }
 
 function addToCart(id) {
   if (!mustLogin()) return;
-
   let cart = loadCart();
   const found = cart.find(i => i.id === id);
-
   if (found) found.qty++;
   else cart.push({ id, qty: 1 });
-
   saveCart(cart);
   updateCartCount();
   showToast("🛒 Produk ditambahkan ke keranjang", 900);
@@ -154,7 +111,6 @@ function addToCart(id) {
 function showConfirm(message, yesCallback, noCallback) {
   const overlay = document.createElement("div");
   overlay.className = "confirm-overlay";
-
   overlay.innerHTML = `
     <div class="confirm-content">
       <p>${message}</p>
@@ -162,16 +118,12 @@ function showConfirm(message, yesCallback, noCallback) {
         <button id="confirm-yes" class="btn-yes">Ya</button>
         <button id="confirm-no" class="btn-no">Tidak</button>
       </div>
-    </div>
-  `;
-
+    </div>`;
   document.body.appendChild(overlay);
-
   document.getElementById("confirm-yes").onclick = () => {
     overlay.remove();
     if (yesCallback) yesCallback();
   };
-
   document.getElementById("confirm-no").onclick = () => {
     overlay.remove();
     if (noCallback) noCallback();
@@ -181,9 +133,7 @@ function showConfirm(message, yesCallback, noCallback) {
 function renderProducts() {
   const list = document.getElementById("product-list");
   if (!list) return;
-
   list.innerHTML = "";
-
   PRODUCTS.forEach(p => {
     const d = document.createElement("div");
     d.className = "card";
@@ -201,12 +151,9 @@ function renderProducts() {
 function setupSearch() {
   const input = document.getElementById("search-input");
   if (!input) return;
-
   input.addEventListener("keyup", () => {
     const keyword = input.value.toLowerCase();
-    const filtered = PRODUCTS.filter(p =>
-      p.title.toLowerCase().includes(keyword)
-    );
+    const filtered = PRODUCTS.filter(p => p.title.toLowerCase().includes(keyword));
     renderFilteredProducts(filtered);
   });
 }
@@ -214,7 +161,6 @@ function setupSearch() {
 function renderFilteredProducts(listProduk) {
   const list = document.getElementById("product-list");
   list.innerHTML = "";
-
   listProduk.forEach(p => {
     const d = document.createElement("div");
     d.className = "card";
@@ -227,29 +173,21 @@ function renderFilteredProducts(listProduk) {
       </button>`;
     list.appendChild(d);
   });
-
   if (listProduk.length === 0) {
     list.innerHTML = `
       <div style="text-align:center; width:100%; padding:20px;">
         <h3>😢 Produk tidak ditemukan</h3>
         <p>Coba kata kunci lainnya</p>
-      </div>
-    `;
+      </div>`;
   }
 }
 
 function updateQty(id, delta) {
   let cart = loadCart();
   const item = cart.find(i => i.id === id);
-
   if (!item) return;
-
   item.qty += delta;
-
-  if (item.qty <= 0) {
-    cart = cart.filter(i => i.id !== id);
-  }
-
+  if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
   saveCart(cart);
   renderCart();
   updateCartCount();
@@ -264,16 +202,12 @@ function removeItem(id) {
 
 function renderCart() {
   if (!mustLogin()) return;
-
   const list = document.getElementById("cart-list");
   const totalEl = document.getElementById("cart-total");
   const summary = document.getElementById("cart-summary");
-
   if (!list) return;
-
   const cart = loadCart();
   let total = 0;
-
   if (!cart.length) {
     list.innerHTML = `
     <div class="empty-cart-box slide-in">
@@ -281,55 +215,45 @@ function renderCart() {
       <h3>Keranjang Anda Kosong</h3>
       <p>Yuk lanjutkan belanja untuk menemukan produk terbaik!</p>
       <a href="index.html" class="big-shop-btn">Mulai Belanja</a>
-    </div>
-  `;
-    if (summary) summary.style.display = "none";
+    </div>`;
+    summary.style.display = "none";
     return;
   }
-
   list.innerHTML = "";
-
   cart.forEach(item => {
     const p = PRODUCTS.find(x => x.id === item.id);
     const sub = p.price * item.qty;
     total += sub;
-
-    const d = document.createElement("div");
-    d.className = "card";
-    d.innerHTML = `
-      <img src="${p.img}">
-      <div class="cart-info">
-        <h3>${p.title}</h3>
-        <p>${formatIDR(p.price)}</p>
-        <p>Jumlah:
-          <button onclick="updateQty(${p.id}, -1)">-</button>
-          ${item.qty}
-          <button onclick="updateQty(${p.id}, 1)">+</button>
-        </p>
-        <strong>${formatIDR(sub)}</strong>
-      </div>
-      <button class="btn-danger" onclick="removeItem(${p.id})">
-        <i class="fa-solid fa-trash"></i> Hapus
-      </button>`;
-    list.appendChild(d);
+    list.innerHTML += `
+      <div class="card">
+        <img src="${p.img}">
+        <div class="cart-info">
+          <h3>${p.title}</h3>
+          <p>${formatIDR(p.price)}</p>
+          <p>Jumlah:
+            <button onclick="updateQty(${p.id}, -1)">-</button>
+            ${item.qty}
+            <button onclick="updateQty(${p.id}, 1)">+</button>
+          </p>
+          <strong>${formatIDR(sub)}</strong>
+        </div>
+        <button class="btn-danger" onclick="removeItem(${p.id})">
+          <i class="fa-solid fa-trash"></i> Hapus
+        </button>
+      </div>`;
   });
-
   totalEl.textContent = formatIDR(total);
   summary.style.display = "block";
 }
 
 function renderCheckout() {
   if (!mustLogin()) return;
-
   const list = document.getElementById("checkout-list");
   const totalEl = document.getElementById("checkout-total");
   const summary = document.getElementById("checkout-summary");
-
   if (!list) return;
-
   const cart = loadCart();
   let total = 0;
-
   if (!cart.length) {
     list.innerHTML = `
     <div class="empty-cart-box slide-in">
@@ -337,19 +261,15 @@ function renderCheckout() {
       <h3>Belum Ada Item Untuk Checkout</h3>
       <p>Tambahkan produk ke keranjang terlebih dahulu sebelum melakukan checkout.</p>
       <a href="index.html" class="big-shop-btn">Kembali Belanja</a>
-    </div>
-  `;
-    if (summary) summary.style.display = "none";
+    </div>`;
+    summary.style.display = "none";
     return;
   }
-
   list.innerHTML = "";
-
   cart.forEach(item => {
     const p = PRODUCTS.find(x => x.id === item.id);
     const sub = p.price * item.qty;
     total += sub;
-
     list.innerHTML += `
       <div class="card checkout-item">
         <img src="${p.img}">
@@ -360,7 +280,6 @@ function renderCheckout() {
         </div>
       </div>`;
   });
-
   totalEl.textContent = formatIDR(total);
 }
 
@@ -418,9 +337,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const cart = loadCart();
       const email = localStorage.getItem("email");
 
-      if (!nama || !alamat || !telepon) return showErrorToast("Mohon lengkapi semua data pengiriman.");
-      if (!/^[0-9]+$/.test(telepon)) return showErrorToast("Nomor telepon hanya boleh angka!");
-      if (telepon.length < 9) return showErrorToast("Nomor telepon tidak valid!");
+      if (!nama || !alamat || !telepon)
+        return showErrorToast("Mohon lengkapi semua data pengiriman.");
+      if (!/^[0-9]+$/.test(telepon))
+        return showErrorToast("Nomor telepon hanya boleh angka!");
+      if (telepon.length < 9)
+        return showErrorToast("Nomor telepon tidak valid!");
 
       const items = cart.map(i => {
         const p = PRODUCTS.find(x => x.id === i.id);
@@ -463,9 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", (e) => {
     const btn = document.getElementById("profile-btn");
     const drop = document.getElementById("profile-dropdown");
-
     if (!btn || !drop) return;
-
     if (btn.contains(e.target)) {
       drop.classList.toggle("show");
     } else if (!drop.contains(e.target)) {
