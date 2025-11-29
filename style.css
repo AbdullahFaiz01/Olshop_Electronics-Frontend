@@ -1266,17 +1266,21 @@ nav a:focus-visible,
   object-fit: cover !important;
   border-radius: 50% !important;
 }
-#profile-btn {
+
+#profile-btn span#nav-username {
   font-family: "Times New Roman", Times, serif !important;
   font-size: 15px !important;
   font-weight: 600 !important;
   color: var(--muted) !important;
-  line-height: 1 !important;
+}
+
+#profile-btn img {
+  display: inline-flex;
 }
 
 #profile-btn i {
   font-family: "Font Awesome 6 Free" !important;
   font-weight: 900 !important;
-  font-size: 14px !important;
+  font-size: 13px !important;
   color: var(--muted) !important;
 }
