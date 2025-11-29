@@ -13,9 +13,9 @@ const PRODUCTS = [
   { id: 10, title: "Router WiFi TP-Link AC1200", price: 599000, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSULkC6or6Oj8ZycP43uLYjIFUBegYKsNgy0g&s" },
   { id: 11, title: "SSD Samsung 1TB", price: 1299000, img: "https://down-id.img.susercontent.com/file/id-11134207-81ztj-medrcnj8bsau3c" },
   { id: 12, title: "Kamera Aksi GoPro Hero 9", price: 3499000, img: "https://sewakameramedan.id/public/uploads/all/VPMtHmxhmFBvDgEdL79Sc545BWHMUjQZWScPmMD1.jpg" },
-  {id: 13, title: "Tablet Samsung Galaxy Tab A7", price: 2999000, img: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/104/MTA-142754369/samsung_samsung_galaxy_tab_a7_lite_full01_l6ua7u1a.jpg" },
-  {id: 14, title: "Smartphone Xiaomi Redmi Note 10", price: 2499000, img: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//106/MTA-36397744/xiaomi_xiaomi_-_redmi_note_10_pro_kapasitas_6gb-128gb_dan_8gb-128gb_-__garansi_resmi_full06_br8tqoi1.jpg" },
-  {id: 15, title: "Earbuds True Wireless QCY T13", price: 399000, img: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/97/MTA-183079202/br-m036969-12766_tws-qcy-t13-anc-tws-wireless-earbuds-original_full01-2e52304a.webp" }
+  { id: 13, title: "Tablet Samsung Galaxy Tab A7", price: 2999000, img: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/104/MTA-142754369/samsung_samsung_galaxy_tab_a7_lite_full01_l6ua7u1a.jpg" },
+  { id: 14, title: "Smartphone Xiaomi Redmi Note 10", price: 2499000, img: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//106/MTA-36397744/xiaomi_xiaomi_-_redmi_note_10_pro_kapasitas_6gb-128gb_dan_8gb-128gb_-__garansi_resmi_full06_br8tqoi1.jpg" },
+  { id: 15, title: "Earbuds True Wireless QCY T13", price: 399000, img: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/97/MTA-183079202/br-m036969-12766_tws-qcy-t13-anc-tws-wireless-earbuds-original_full01-2e52304a.webp" }
 ];
 
 const formatIDR = n => "Rp " + n.toLocaleString("id-ID");
@@ -76,18 +76,19 @@ function updateNavbarPhoto() {
   const displayName = username || email.split("@")[0];
   if (navUser) navUser.textContent = displayName;
 
-  if (navPfp) {
+  const pfpWrapper = document.getElementById("nav-pfp-wrapper");
+  if (pfpWrapper) {
     if (savedPhoto) {
-      navPfp.outerHTML = `<img id="nav-pfp" class="nav-pfp" src="${savedPhoto}">`;
+      pfpWrapper.innerHTML = `<img class="nav-pfp" src="${savedPhoto}">`;
     } else {
-      navPfp.outerHTML = `<i id="nav-pfp" class="fa-solid fa-user user-icon"></i>`;
+      pfpWrapper.innerHTML = `<i class="fa-solid fa-user user-icon"></i>`;
     }
   }
 
   if (bnProfile && bnProfileText) {
     bnProfile.href = "profile.html";
     bnProfileText.textContent = displayName;
-    const existingIcon = bnProfile.querySelector("i, img");
+    const existingIcon = bnProfile.querySelector(".nav-pfp");
     if (savedPhoto) {
       if (existingIcon) {
         existingIcon.outerHTML = `<img class="nav-pfp" src="${savedPhoto}">`;
@@ -118,7 +119,7 @@ async function fetchNavbarUser() {
     if (data.photoUrl) localStorage.setItem("photoUrl", data.photoUrl);
     else localStorage.removeItem("photoUrl");
     updateNavbarPhoto();
-  } catch {}
+  } catch { }
 }
 
 function addToCart(id) {
