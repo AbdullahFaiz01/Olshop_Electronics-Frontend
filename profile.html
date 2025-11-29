@@ -20,6 +20,7 @@
       text-align: center;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     }
+
     .pfp {
       width: 120px;
       height: 120px;
@@ -29,6 +30,7 @@
       margin-bottom: 10px;
       background: #eee;
     }
+
     .upload-btn {
       display: block;
       width: 100%;
@@ -41,33 +43,87 @@
       cursor: pointer;
       font-weight: bold;
     }
-    .upload-btn:hover { background: #ff6633; }
-    .profile-info p { margin: 6px 0; font-size: 16px; }
-    .btn-edit, .btn-logout {
-      width: 100%; padding: 10px; border-radius: 8px;
-      font-weight: bold; cursor: pointer; border: none; margin-top: 10px;
+
+    .upload-btn:hover {
+      background: #ff6633;
     }
-    .btn-edit { background: #0275d8; color: white; }
-    .btn-edit:hover { background: #025aa5; }
-    .btn-logout { background: #d9534f; color: white; }
-    .btn-logout:hover { background: #c9302c; }
+
+    .profile-info p {
+      margin: 6px 0;
+      font-size: 16px;
+    }
+
+    .btn-edit,
+    .btn-logout {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      margin-top: 10px;
+    }
+
+    .btn-edit {
+      background: #0275d8;
+      color: white;
+    }
+
+    .btn-edit:hover {
+      background: #025aa5;
+    }
+
+    .btn-logout {
+      background: #d9534f;
+      color: white;
+    }
+
+    .btn-logout:hover {
+      background: #c9302c;
+    }
+
     .modal-bg {
-      position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6);
-      display: none; justify-content: center; align-items: center;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
     }
+
     .modal-box {
-      background: white; padding: 20px; width: 350px; border-radius: 12px;
+      background: white;
+      padding: 20px;
+      width: 350px;
+      border-radius: 12px;
     }
+
     .modal-box input {
-      width: 100%; padding: 10px; margin-bottom: 12px;
-      border-radius: 6px; border: 1px solid #ccc;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
     }
-    .btn-save, .btn-close {
-      width: 100%; padding: 10px; border-radius: 8px;
-      border: none; font-weight: bold; margin-top: 8px; color: white;
+
+    .btn-save,
+    .btn-close {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      margin-top: 8px;
+      color: white;
     }
-    .btn-save { background: #28a745; }
-    .btn-close { background: #6c757d; }
+
+    .btn-save {
+      background: #28a745;
+    }
+
+    .btn-close {
+      background: #6c757d;
+    }
   </style>
 </head>
 
@@ -178,8 +234,15 @@
 
           if (data.photoUrl) {
             document.getElementById("pfp").src = data.photoUrl;
+            document.getElementById("nav-pfp").outerHTML =
+              `<img id="nav-pfp" class="nav-pfp" src="${data.photoUrl}">`;
             localStorage.setItem("photoUrl", data.photoUrl);
+          } else {
+            document.getElementById("pfp").src = "img/default-pfp.png";
+            document.getElementById("nav-pfp").outerHTML =
+              `<i id="nav-pfp" class="fa-solid fa-user user-icon"></i>`;
           }
+
         });
 
       document.getElementById("upload-btn").onclick = () =>
@@ -261,7 +324,7 @@
       document.getElementById("logout-btn").onclick = logout;
     });
   </script>
-  
+
   <div id="toast"></div>
 
   <div class="bottom-nav">
@@ -289,4 +352,5 @@
   </script>
 
 </body>
+
 </html>
