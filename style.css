@@ -354,6 +354,18 @@ nav a.active {
   color: var(--muted);
 }
 
+#profile-btn {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: var(--muted) !important;
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
 #nav-username {
   font-size: 15px !important;
   font-weight: 600 !important;
@@ -1248,4 +1260,24 @@ nav a:focus-visible,
   height: 22px !important;
   border-radius: 50% !important;
   object-fit: cover !important;
+}
+
+#profile-btn span,
+#profile-btn #nav-username {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: var(--muted) !important;
+  line-height: 1 !important;
+}
+
+#profile-btn i.fa-user,
+#nav-pfp.fa-user,
+.user-icon.fa-user {
+  font-size: 16px !important;
+  width: 20px !important;
+  height: 20px !important;
+  color: var(--muted) !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
