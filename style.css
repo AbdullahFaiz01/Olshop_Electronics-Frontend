@@ -1385,20 +1385,6 @@ nav a:focus-visible,
     margin-bottom: 4px !important;
   }
 
-  .card .btn {
-    background: #6c8bff !important;
-    padding: 4px 5px !important;
-    border-radius: 6px !important;
-    font-size: 10px !important;
-    font-weight: 700 !important;
-    width: 100% !important;
-    height: 26px !important; 
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    margin-top: 6px !important;
-  }
-
   .card .btn i {
     font-size: 11px !important;
     margin-right: 3px !important;
@@ -1416,4 +1402,26 @@ nav a:focus-visible,
   .bottom-nav .bn-item.active {
     color: #6c8bff !important;
   }
+}
+#product-list .card .btn {
+    width: 90% !important;
+    height: 34px !important;
+    background: #3f66ff !important;
+    border-radius: 10px !important;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: row !important;
+
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    margin: 8px auto 0 auto !important;
+
+    gap: 6px !important;
+    text-align: center !important;
+}
+
+#product-list .card .btn i {
+    font-size: 15px !important;
 }
