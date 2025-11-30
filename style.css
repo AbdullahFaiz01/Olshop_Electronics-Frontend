@@ -1549,13 +1549,11 @@ nav a:focus-visible,
   }
 
 }
-/* ================================ */
-/*  FIX BUTTON TAMBAH KE KERANJANG  */
-/* ================================ */
+
 @media (max-width:480px) {
 
   .card .btn {
-    width: 85% !important;         /* lebih pendek, tidak full */
+    width: 85% !important;         
     margin: 6px auto 0 auto !important;
     height: 28px !important;
     font-size: 11px !important;
@@ -1566,9 +1564,7 @@ nav a:focus-visible,
     font-size: 12px !important;
   }
 }
-/* ========================== */
-/*   CART PAGE FULL DARK     */
-/* ========================== */
+
 @media (max-width:480px) {
 
   body.page-cart {
@@ -1607,7 +1603,6 @@ nav a:focus-visible,
     color: #6c8bff !important;
   }
 
-  /* Tombol hapus */
   #cart-list .btn-danger {
     width: 90% !important;
     margin: 10px auto !important;
