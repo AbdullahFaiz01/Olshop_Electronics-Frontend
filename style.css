@@ -77,7 +77,6 @@ nav a:hover,
 nav a.active {
   color: var(--accent);
 }
-
 .hero {
   text-align: center;
   padding: 40px 0;
@@ -202,7 +201,6 @@ nav a.active {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
-
 .checkout-form {
   width: 100%;
   max-width: 700px;
@@ -372,7 +370,7 @@ nav a.active {
   color: var(--muted) !important;
   line-height: 1 !important;
 }
-        
+
 #profile-btn i {
   font-size: 16px !important;
   color: var(--muted) !important;
@@ -381,7 +379,6 @@ nav a.active {
 #profile-btn:hover {
   color: var(--accent);
 }
-
 .dropdown {
   position: absolute;
   top: 40px;
@@ -574,7 +571,6 @@ nav a,
   color: #666;
   font-size: 18px;
 }
-
 .confirm-overlay {
   position: fixed;
   inset: 0;
@@ -787,7 +783,6 @@ nav a,
     height: 100px;
   }
 }
-
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -1006,7 +1001,6 @@ nav a,
     color: var(--accent) !important;
   }
 }
-
 body.page-login .site-header {
   display: block !important;
 }
@@ -1204,7 +1198,6 @@ body.page-login .logo {
     border-color: #4d7cff !important;
   }
 }
-
 .user-icon {
   font-size: 20px;
   width: 25px;
@@ -1325,7 +1318,6 @@ nav a:focus-visible,
   font-family: "Times New Roman", Times, serif !important;
   line-height: 1.1;
 }
-
 @media (max-width:480px) {
 
   body.page-shop,
@@ -1472,5 +1464,47 @@ nav a:focus-visible,
 
   .bottom-nav .bn-item.active {
       color: #6c8bff !important;
+  }
+}
+@media(max-width:480px) {
+
+  body.page-shop .site-header,
+  body.page-cart .site-header,
+  body.page-checkout .site-header {
+      display: block !important;
+  }
+
+  body.page-shop .header-inner,
+  body.page-cart .header-inner,
+  body.page-checkout .header-inner {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding: 10px 15px !important;
+  }
+
+  body.page-shop .logo-container,
+  body.page-cart .logo-container,
+  body.page-checkout .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0;
+  }
+
+  body.page-shop .logo-container img,
+  body.page-cart .logo-container img,
+  body.page-checkout .logo-container img {
+      width: 38px !important;
+      height: auto !important;
+  }
+
+  body.page-shop .logo,
+  body.page-cart .logo,
+  body.page-checkout .logo {
+      font-size: 20px !important;
+      font-weight: 700 !important;
+      color: var(--accent) !important;
   }
 }
