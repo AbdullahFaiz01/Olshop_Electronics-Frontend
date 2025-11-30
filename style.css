@@ -1509,46 +1509,79 @@ nav a:focus-visible,
   }
 }
 
+/* ====== MOBILE FIX FINAL (TIDAK GANGGU DESKTOP) ====== */
 @media (max-width:480px) {
-  #product-list .card img {
-      width: 100% !important;
-      height: 170px !important;
-      object-fit: contain !important;
-      background: #1c0f39 !important;
-      border-radius: 12px !important;
-  }
-}
 
-@media (max-width:480px) {
-  #product-list .card .btn {
-      width: 100% !important;
-      height: 40px !important;
-      background: #3f66ff !important;
-      border-radius: 10px !important;
-      padding: 0 !important;
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-      gap: 6px !important;
-      font-size: 14px !important;
-      font-weight: 700 !important;
-      text-align: center !important;
-      margin-top: 10px !important;
-  }
+    #product-list {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
 
-  #product-list .card .btn i {
-      font-size: 16px !important;
-  }
-}
+    #product-list .card {
+        background: #2b1b56 !important;
+        border-radius: 12px !important;
+        padding: 6px !important;
+        box-shadow: none !important;
+        text-align: center !important;
+    }
 
-@media (max-width:480px) {
-  #cart-list .card img,
-  .checkout-item img {
-      width: 100% !important;
-      height: 220px !important;
-      object-fit: contain !important;
-      background: #1c0f39 !important;
-      border-radius: 14px !important;
-      margin-bottom: 10px !important;
-  }
+    #product-list .card img {
+        width: 100% !important;
+        height: 110px !important;
+        object-fit: cover !important;
+        border-radius: 10px !important;
+        background: #1c0f39 !important;
+    }
+
+    #product-list .card h3 {
+        font-size: 12px !important;
+        line-height: 1.25 !important;
+        color: #fff !important;
+        height: auto !important;
+        margin: 6px 0 !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important; 
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }
+
+    #product-list .card p {
+        margin: 0 0 4px 0 !important;
+        font-size: 11px !important;
+        color: #d6d6d6 !important;
+    }
+
+    #product-list .card .btn {
+        width: 100% !important;
+        height: 34px !important;
+        margin-top: 8px !important;
+        background: #3f66ff !important;
+        border-radius: 10px !important;
+        padding: 0 !important;
+
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 5px !important;
+
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        text-align: center !important;
+    }
+
+    #product-list .card .btn i {
+        font-size: 14px !important;
+    }
+
+    #cart-list .card img,
+    .checkout-item img {
+        width: 100% !important;
+        height: 220px !important;
+        object-fit: contain !important;
+        background: #1c0f39 !important;
+        border-radius: 14px !important;
+        margin-bottom: 10px !important;
+    }
 }
