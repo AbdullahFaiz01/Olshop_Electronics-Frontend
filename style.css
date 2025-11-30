@@ -647,7 +647,7 @@ nav a,
   }
 
   #product-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
   }
 
@@ -717,7 +717,7 @@ nav a,
   }
 
   #product-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
   }
 
@@ -1347,7 +1347,7 @@ nav a:focus-visible,
   }
 
   #product-list {
-      grid-template-columns: repeat(2, 1fr) !important;
+      grid-template-columns: repeat(3, 1fr) !important;
       gap: 12px !important;
   }
 
